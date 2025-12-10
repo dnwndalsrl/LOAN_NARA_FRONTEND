@@ -3,9 +3,6 @@
 // @nuxtjs/seo
 // @nuxtjs/robots
 // ]
-
-import { readFileSync } from 'fs'
-
 // site: {
 //     url: process.env.NUXT_SITE_URL || 'https://나는기획.com',
 //     name: process.env.NUXT_SITE_NAME || '나는기획',
@@ -46,6 +43,9 @@ import { readFileSync } from 'fs'
 //     },
 // },
 
+import { readFileSync } from 'fs'
+
+const isDev = process.env.NODE_ENV === 'development'
 let appVersion = 'dev'
 try {
     const versionData = JSON.parse(readFileSync('./public/version.json', 'utf-8'))
@@ -60,6 +60,9 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         'pinia-plugin-persistedstate/nuxt',
         '@nuxt/image',
+        '@nuxtjs/seo',
+        '@nuxtjs/robots',
+        '@nuxtjs/sitemap',
         ['@element-plus/nuxt', { importStyle: false }],
     ],
     image: {
@@ -79,22 +82,19 @@ export default defineNuxtConfig({
         dirs: ['utils'],
     },
     devtools: { enabled: true },
-    ssr: false,
+    ssr: true,
     routeRules: {
-        '/**': { headers: { 'x-robots-tag': 'noindex, nofollow' } },
-        '/api/**': { proxy: 'http://1.234.41.50:2470/api/**' },
-    },
-    nitro: {
-        // devProxy: {
-        //     '/api/': {
-        //         target: 'http://1.234.41.50:2470',
-        //         changeOrigin: true,
-        //     },
-        // },
+        ...(isDev
+            ? {
+                  '/api/**': {
+                      proxy: `${process.env.NUXT_API_PROXY_TARGET}/**`,
+                  },
+              }
+            : {}),
     },
     app: {
         head: {
-            title: '나는기획',
+            title: '대출나라',
             meta: [
                 { charset: 'utf-8' },
                 {
@@ -103,8 +103,8 @@ export default defineNuxtConfig({
                         'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
                 },
                 { name: 'format-detection', content: 'telephone=no' },
-                { name: 'author', content: '나는기획' },
-                { name: 'description', content: '나는기획 서비스 웹 애플리케이션' },
+                { name: 'author', content: '대출나라' },
+                { name: 'description', content: '대출나라 웹 애플리케이션' },
             ],
             link: [
                 {
@@ -144,11 +144,11 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         public: {
-            apiBase: process.env.NUXT_PUBLIC_API_BASE || '/api',
+            apiBase: process.env.NUXT_PUBLIC_API_BASE,
             appVersion,
         },
     },
-    css: ['@/assets/styles/css/reset.css', 'element-plus/dist/index.css', 'aos/dist/aos.css'],
+    css: ['@/assets/styles/css/reset.css', 'element-plus/dist/index.css'],
     build: { transpile: ['element-plus'] },
     vite: {
         css: {
@@ -170,5 +170,22 @@ export default defineNuxtConfig({
             // 소스 맵 ON/OFF
             sourcemap: false,
         },
+    },
+
+    // =======================
+    // Robots.txt 설정
+    // =======================
+    robots: {
+        allow: ['/'],
+        disallow: ['/admin', '/error', '/api', '/test'],
+        sitemap: ['/sitemap.xml'],
+    },
+
+    // =======================
+    // Sitemap 설정
+    // =======================
+    site: {
+        url: 'https://대출나라.com',
+        name: '대출나라 웹사이트',
     },
 })
