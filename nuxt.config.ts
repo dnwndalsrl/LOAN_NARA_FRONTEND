@@ -113,22 +113,6 @@ export default defineNuxtConfig({
                 },
                 {
                     rel: 'stylesheet',
-                    href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap',
-                },
-                {
-                    rel: 'stylesheet',
-                    href: 'https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy.css',
-                },
-                {
-                    rel: 'stylesheet',
-                    href: 'https://cdn.jsdelivr.net/gh/fonts-archive/JalnanGothic/JalnanGothic.css',
-                },
-                {
-                    rel: 'stylesheet',
-                    href: 'https://cdn.jsdelivr.net/gh/fonts-archive/HakgyoansimAllimjang/HakgyoansimAllimjang.css',
-                },
-                {
-                    rel: 'stylesheet',
                     href: 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css',
                 },
             ],

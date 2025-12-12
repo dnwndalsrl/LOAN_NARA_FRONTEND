@@ -1,78 +1,34 @@
 @use 'variables' as *;
 @use 'sass:math';
 
-/* ≤ 768px : 모바일 고정(최소값) */
-@mixin mobile {
-    @media (max-width: #{$bp-mobile-max}) {
-        @content;
-    }
-}
-
-/* 769 ~ 1199px : 유동(점진 축소/증가 구간) */
-@mixin pc-fluid {
-    /* 48.0625rem(769px) ~ 74.9375rem(1199px) */
-    @media (min-width: 48.0625rem) and (max-width: 74.9375rem) {
-        @content;
-    }
-}
-
-/* ≥ 1200px : PC 고정(최대값) */
-@mixin pc-fixed {
-    @media (min-width: #{$bp-fluid-max}) {
-        @content;
-    }
-}
-
-// 공통: clamp 값 계산 함수
-@function rclamp($min, $max, $minVw: $bp-fluid-min, $maxVw: $bp-fluid-max) {
-    $slope: math.div($max - $min, $maxVw - $minVw);
-    $intercept: $min - ($slope * $minVw);
-
-    @return clamp($min, calc(#{$intercept} + #{$slope} * 100vw), $max);
-}
-
-// Responsive FontSize
-@mixin responsive-font-size($min, $max) {
-    font-size: rclamp($min, $max);
-}
-
-// Responsive padding-y (상하)
-@mixin responsive-padding-y($min, $max) {
-    padding-top: rclamp($min, $max);
-    padding-bottom: rclamp($min, $max);
-}
-
-// Responsive padding-x (좌우)
-@mixin responsive-padding-x($min, $max) {
-    padding-left: rclamp($min, $max);
-    padding-right: rclamp($min, $max);
-}
-
-@mixin responsive-height($min, $max) {
-    height: rclamp($min, $max);
-}
-
-// =========================================================== (윗 부분은 랜딩 페이지 전용)
-// =========================================================== (랜딩 페이지와 메인 페이지의 breakpoint가 다르므로 다른 식으로 적용)
 @mixin respond($breakpoint) {
+    // mobile: 0 ~ 360
     @if $breakpoint == mobile {
         @media (max-width: #{$bp-mobile}) {
             @content;
         }
+
+        // mobile-plus: 361 ~ 768
+    } @else if $breakpoint == mobile-plus {
+        @media (min-width: calc(#{$bp-mobile} + 0.01rem)) and (max-width: #{$bp-mobile-plus}) {
+            @content;
+        }
+
+        // tablet: 769 ~ 992
     } @else if $breakpoint == tablet {
-        @media (max-width: #{$bp-tablet}) {
+        @media (min-width: calc(#{$bp-mobile-plus} + 0.01rem)) and (max-width: #{$bp-tablet}) {
             @content;
         }
+
+        // laptop: 993 ~ 1200
     } @else if $breakpoint == laptop {
-        @media (max-width: #{$bp-laptop}) {
+        @media (min-width: calc(#{$bp-tablet} + 0.01rem)) and (max-width: #{$bp-laptop}) {
             @content;
         }
+
+        // pc: 1201 ~ ∞ (고정)
     } @else if $breakpoint == pc {
-        @media (max-width: #{$bp-pc}) {
-            @content;
-        }
-    } @else if $breakpoint == max {
-        @media (min-width: #{$bp-max}) {
+        @media (min-width: calc(#{$bp-laptop} + 0.01rem)) {
             @content;
         }
     } @else {
@@ -86,38 +42,60 @@
 }
 
 // vw 가변 + 구간 클램프
-@function vw-clamp($px, $design, $from, $to, $base: 16) {
-    $min-px: math.div($px * $from, $design);
-    $max-px: math.div($px * $to, $design);
+@function vw-clamp($minPx, $maxPx, $minWidth, $maxWidth, $base: 16) {
+    $rangePx: $maxPx - $minPx;
+    $rangeWidth: $maxWidth - $minWidth;
+
+    // slope = px 변화량 / vw 변화량
+    $slope: math.div($rangePx, math.div($rangeWidth, 100));
+
+    // intercept 계산
+    $intercept: $minPx - ($slope * math.div($minWidth, 100));
 
     @return clamp(
-        rem($min-px, $base),
-        calc(#{math.div($px, $design) * 100}vw),
-        rem($max-px, $base)
+        rem($minPx, $base),
+        calc(#{$slope}vw + #{rem($intercept, $base)}),
+        rem($maxPx, $base)
     );
 }
 
 // 공통 반응형 값 지정 믹스인
-// 사용법: @include r($prop, $mobilePx, $tabletPx, $laptopPx, $pcFixedPx: 56, $base: 16);
-// 예시:  @include r(font-size, 18, 40, 40); // PC는 기본 56px 고정
-@mixin r($prop, $mobilePx, $tabletPx, $laptopPx, $pcFixedPx: 56, $base: 16) {
-    // PC: 1200px 이상 고정
-    @media (min-width: $bp-pc) {
-        #{$prop}: rem($pcFixedPx, $base);
+@mixin r($prop, $mobilePx, $mobilePlusPx, $tabletPx, $laptopPx, $pcPx, $base: 16) {
+    /* 0 ~ 360 : 고정 */
+    @media (max-width: #{$bp-mobile}) {
+        #{$prop}: rem($mobilePx, $base);
     }
 
-    // Laptop: 992 ~ 1199 (1200 디자인 기준 가변)
-    @media (min-width: $bp-laptop) and (max-width: calc(#{$bp-pc} - 0.01rem)) {
-        #{$prop}: vw-clamp($laptopPx, 1200, 992, 1200, $base);
+    /* 361 ~ 768 */
+    @media (min-width: calc(#{$bp-mobile} + 0.01rem)) and (max-width: #{$bp-mobile-plus}) {
+        @if $mobilePlusPx == $mobilePx {
+            #{$prop}: rem($mobilePlusPx, $base);
+        } @else {
+            #{$prop}: vw-clamp($mobilePx, $mobilePlusPx, 360, 768, $base);
+        }
     }
 
-    // Tablet: 768 ~ 991 (768 디자인 기준 가변)
-    @media (min-width: $bp-tablet) and (max-width: calc(#{$bp-laptop} - 0.01rem)) {
-        #{$prop}: vw-clamp($tabletPx, 768, 768, 992, $base);
+    /* 769 ~ 992 */
+    @media (min-width: calc(#{$bp-mobile-plus} + 0.01rem)) and (max-width: #{$bp-tablet}) {
+        @if $tabletPx == $mobilePlusPx {
+            #{$prop}: rem($tabletPx, $base);
+        } @else {
+            #{$prop}: vw-clamp($mobilePlusPx, $tabletPx, 768, 992, $base);
+        }
     }
 
-    // Mobile: 0 ~ 767 (360 디자인 기준 가변)
-    @media (max-width: calc(#{$bp-tablet} - 0.01rem)) {
-        #{$prop}: vw-clamp($mobilePx, 360, 360, 768, $base);
+    /* 993 ~ 1200 */
+    @media (min-width: calc(#{$bp-tablet} + 0.01rem)) and (max-width: #{$bp-laptop}) {
+        @if $laptopPx == $tabletPx {
+            #{$prop}: rem($laptopPx, $base);
+        } @else {
+            /* tablet 33px → laptop 37px */
+            #{$prop}: vw-clamp($tabletPx, $laptopPx, 992, 1200, $base);
+        }
+    }
+
+    /* PC 1201 ~ ∞ */
+    @media (min-width: calc(#{$bp-laptop} + 0.01rem)) {
+        #{$prop}: rem($pcPx, $base);
     }
 }
