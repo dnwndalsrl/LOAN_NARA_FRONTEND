@@ -42,20 +42,21 @@
 }
 
 // vw 가변 + 구간 클램프
-@function vw-clamp($minPx, $maxPx, $minWidth, $maxWidth, $base: 16) {
-    $rangePx: $maxPx - $minPx;
-    $rangeWidth: $maxWidth - $minWidth;
+@function vw-clamp($fromPx, $toPx, $fromWidth, $toWidth, $base: 16) {
+    $rangePx: $toPx - $fromPx;
+    $rangeWidth: $toWidth - $fromWidth;
 
-    // slope = px 변화량 / vw 변화량
-    $slope: math.div($rangePx, math.div($rangeWidth, 100));
+    $slope: math.div($rangePx, $rangeWidth) * 100;
 
-    // intercept 계산
-    $intercept: $minPx - ($slope * math.div($minWidth, 100));
+    $intercept: $fromPx - ($slope * math.div($fromWidth, 100));
+
+    $low: if($fromPx < $toPx, $fromPx, $toPx);
+    $high: if($fromPx < $toPx, $toPx, $fromPx);
 
     @return clamp(
-        rem($minPx, $base),
+        rem($low, $base),
         calc(#{$slope}vw + #{rem($intercept, $base)}),
-        rem($maxPx, $base)
+        rem($high, $base)
     );
 }
 
