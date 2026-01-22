@@ -1,14 +1,3 @@
-// Responsive Layout BreakPoint
-// 769 ~ 1920 PC로 인식
-// 768 하위부터는 다 MOBILE
-
-$bp-fluid-min: 22.5rem; // 360px
-$bp-mobile-max: 48rem; // 768px
-$bp-fluid-max: 75rem; // 1200px
-
-// =========================================================== (윗 부분은 랜딩 페이지 전용)
-// =========================================================== (랜딩 페이지와 메인 페이지의 breakpoint가 다르므로 다른 식으로 적용)
-
 $bp-mobile: 22.5rem; // 360px
 $bp-mobile-plus: 48rem; // 768px
 $bp-tablet: 62rem; // 992px

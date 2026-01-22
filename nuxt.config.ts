@@ -65,19 +65,7 @@ export default defineNuxtConfig({
         '@nuxtjs/sitemap',
         ['@element-plus/nuxt', { importStyle: false }],
     ],
-    image: {
-        quality: 80,
-        format: ['avif', 'webp', 'jpeg'],
-        screens: {
-            xs: 320,
-            sm: 640,
-            md: 768,
-            lg: 1024,
-            xl: 1280,
-            xxl: 1536,
-            '2xl': 1536,
-        },
-    },
+    image: {},
     imports: {
         dirs: ['utils'],
     },
@@ -132,6 +120,7 @@ export default defineNuxtConfig({
             appVersion,
         },
     },
+    components: [{ path: '~/components', pathPrefix: false }],
     css: ['@/assets/styles/css/reset.css', 'element-plus/dist/index.css'],
     build: { transpile: ['element-plus'] },
     vite: {
