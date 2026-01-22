@@ -1,17 +1,13 @@
 <template>
-    <section class="main-section">
-        <NormalButton
-            :type="'RIGHTARROWGRAY'"
-            :size="'LARGE'"
-            :title="'광고문의'"
-            :bg-color="'#DFE3EA'"
-            :border-color="'#DFE3EA'"
-            :font-color="'#5B6C8B'"
-        />
-    </section>
+    <section class="main-section"></section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { createMeta } from '~/utils/seo/createMeta'
+import { pageMeta } from '~/utils/seo/pageMeta'
+
+useHead(createMeta(pageMeta.main))
+</script>
 
 <style lang="scss">
 section.main-section {
