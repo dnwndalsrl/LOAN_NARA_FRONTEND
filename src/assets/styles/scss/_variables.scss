@@ -1,5 +1,16 @@
-$bp-mobile: 22.5rem; // 360px
+// =========================================================== BreakPoint
+$bp-mobile: 30rem; // 480px
 $bp-mobile-plus: 48rem; // 768px
 $bp-tablet: 62rem; // 992px
 $bp-laptop: 75rem; // 1200px
 $bp-pc: 120rem; // 1920px (pc 기준 max, 지금은 1201~∞로만 사용)
+
+// =========================================================== Color
+$color-black: #292e41;
+$color-white: #ffffff;
+$color-primary: #366ecc;
+$color-light-gray: #f2f2f2;
+$color-navy: #244c8f;
+$color-red: #df4d4d;
+$color-dark-gray: #727585;
+$color-green: #0ebea9;

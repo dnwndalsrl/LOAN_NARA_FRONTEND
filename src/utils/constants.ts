@@ -4,146 +4,172 @@ export const NAV_MENUS = [
     {
         key: 'regionSearch',
         label: '지역별 업체 찾기',
-        path: 'region-search',
+        path: '/browse/region',
         subMenus: [],
     },
+
     // 상품별 업체 찾기
     {
-        key: 'productSearch',
+        key: 'loanTypeSearch',
         label: '상품별 업체 찾기',
-        path: 'product-search',
+        path: '/browse/loan-type',
         subMenus: [],
     },
+
     // 오늘의 추천 업체
     {
-        key: 'todayRecommend',
+        key: 'recommended',
         label: '오늘의 추천 업체',
-        path: 'today-recommend',
+        path: '/browse/recommended',
         subMenus: [],
     },
+
     // 맞춤검색
     {
         key: 'customSearch',
         label: '맞춤검색',
-        path: 'custom-search',
+        path: '/browse/search',
         subMenus: [],
     },
+
     // 사기번호 검색
     {
-        key: 'fraudSearch',
+        key: 'scamNumber',
         label: '사기번호 검색',
-        path: 'fraud-search',
+        path: '/scam-number',
         subMenus: [
             {
-                key: 'fraudNumberSearch',
+                key: 'scamNumberSearch',
                 label: '사기번호 검색',
-                subPath: 'fraud-number-search',
+                subPath: '/scam-number/search',
             },
             {
-                key: 'illegalFinanceResponse',
+                key: 'illegalFinance',
                 label: '불법 금융 대응',
-                subPath: 'illegal-finance-response',
+                subPath: '/scam-number/illegal-finance',
                 childMenus: [
-                    { key: 'highInterest', label: '고금리', subPath: 'high-interest' },
                     {
-                        key: 'illegalLoansReport',
-                        label: '불법대부업신고',
-                        subPath: 'illegal-loans-report',
+                        key: 'highInterest',
+                        label: '고금리',
+                        subPath: '/scam-number/illegal-finance/high-interest',
                     },
                     {
-                        key: 'illegalCollectionFee',
-                        label: '불법채권추심수수료',
-                        subPath: 'illegal-collection-fee',
+                        key: 'illegalCollection',
+                        label: '불법채권추심',
+                        subPath: '/scam-number/illegal-finance/illegal-collection',
                     },
-                    { key: 'loanFraud', label: '대출사기', subPath: 'loan-fraud' },
-                    { key: 'panelFraud', label: '판넬사기', subPath: 'panel-fraud' },
+                    {
+                        key: 'illegalBrokerageFee',
+                        label: '불법대출중개수수료',
+                        subPath: '/scam-number/illegal-finance/illegal-brokerage-fee',
+                    },
+                    {
+                        key: 'loanScam',
+                        label: '대출사기',
+                        subPath: '/scam-number/illegal-finance/loan-scam',
+                    },
+                    {
+                        key: 'phishingScam',
+                        label: '피싱사기',
+                        subPath: '/scam-number/illegal-finance/phishing-scam',
+                    },
                 ],
             },
         ],
     },
+
     // 정식업체 조회
     {
         key: 'officialCompany',
         label: '정식업체 조회',
-        path: 'official-company',
+        path: '/official-company',
         subMenus: [
             {
-                key: 'officialCompanyInquiry',
-                label: '정식업체조회',
-                subPath: 'official-company-inquiry',
+                key: 'officialCompanySearch',
+                label: '정식업체 조회',
+                subPath: '/official-company/search',
             },
             {
-                key: 'companyVerification',
-                label: '업체확인방법',
-                subPath: 'company-verification',
+                key: 'integratedSearch',
+                label: '대부업체 통합조회',
+                subPath: '/official-company/integrated-search',
             },
         ],
     },
+
     // 커뮤니티
     {
         key: 'community',
         label: '커뮤니티',
-        path: 'community',
+        path: '/community',
         subMenus: [
-            { key: 'financeNews', label: '금융뉴스', subPath: 'finance-news' },
-            { key: 'loanNews', label: '대부업 뉴스', subPath: 'loan-news' },
+            {
+                key: 'financeNews',
+                label: '금융뉴스',
+                subPath: '/community/finance-news',
+            },
+            {
+                key: 'loanNews',
+                label: '대부업 뉴스',
+                subPath: '/community/loan-news',
+            },
         ],
     },
+
     // 이용안내
     {
         key: 'guide',
         label: '이용안내',
-        path: 'guide',
+        path: '/guide',
         subMenus: [
-            { key: 'customerGuide', label: '고객 이용안내', subPath: 'customer-guide' },
-            { key: 'companyGuide', label: '업체 이용안내', subPath: 'company-guide' },
+            {
+                key: 'customerGuide',
+                label: '고객 이용안내',
+                subPath: '/guide/customer',
+            },
+            {
+                key: 'companyGuide',
+                label: '업체 이용안내',
+                subPath: '/guide/company',
+            },
         ],
     },
+
     // 고객센터
     {
-        key: 'customerCenter',
+        key: 'support',
         label: '고객센터',
-        path: 'customer-center',
+        path: '/support',
         subMenus: [
-            { key: 'notice', label: '공지사항', subPath: 'notice' },
-            { key: 'faq', label: '자주 묻는 질문', subPath: 'faq' },
-            { key: 'adInquiry', label: '광고문의', subPath: 'ad-inquiry' },
+            {
+                key: 'notice',
+                label: '공지사항',
+                subPath: '/support/notice',
+            },
+            {
+                key: 'faq',
+                label: '자주 묻는 질문',
+                subPath: '/support/faq',
+            },
+            {
+                key: 'inquiry',
+                label: '1:1 문의',
+                subPath: '/support/inquiry',
+            },
+            {
+                key: 'adInquiry',
+                label: '광고문의',
+                subPath: '/support/ad-inquiry',
+            },
         ],
     },
+
     // 대출위키
     {
         key: 'loanWiki',
         label: '대출위키',
-        path: 'loan-wiki',
+        path: '/loan-wiki',
         subMenus: [],
-    },
-]
-// 대출나라 메뉴 (MyPage)
-export const MYPAGE_MENUS = [
-    {
-        key: 'mypage',
-        label: '마이페이지',
-        path: 'mypage',
-        subMenus: [
-            { key: 'myInfo', label: '내정보', subPath: 'my-info' },
-            { key: 'managerChat', label: '관리자 1:1 채팅문의', subPath: 'manager-chat' },
-            { key: 'editProfile', label: '회원정보 수정', subPath: 'edit-profile' },
-            { key: 'companyNotice', label: '업체 전용 공지사항', subPath: 'company-notice' },
-            { key: 'companyGuide', label: '업체 이용안내', subPath: 'company-guide' },
-            { key: 'adTip', label: '광고 TIP', subPath: 'ad-tip' },
-            { key: 'siteStats', label: '대출나라 통계', subPath: 'site-stats' },
-            { key: 'resources', label: '자료실', subPath: 'resources' },
-            { key: 'adRegistration', label: '광고추가신청', subPath: 'ad-registration' },
-            {
-                key: 'adRegistrationLimit',
-                label: '광고 등록 신청',
-                subPath: 'ad-registration-limit',
-            },
-            { key: 'adScore', label: '광고수정 및 점프', subPath: 'ad-score' },
-            { key: 'adScoreStatus', label: '줄광고 점프 사용 현황', subPath: 'score-status' },
-            { key: 'adInquiry', label: '광고문의', subPath: 'ad-inquiry' },
-            { key: 'memberBenefits', label: '회원혜택', subPath: 'member-benefits' },
-        ],
     },
 ]
 

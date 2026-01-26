@@ -2,13 +2,13 @@
 @use 'sass:math';
 
 @mixin respond($breakpoint) {
-    // mobile: 0 ~ 360
+    // mobile: 0 ~ 480
     @if $breakpoint == mobile {
         @media (max-width: #{$bp-mobile}) {
             @content;
         }
 
-        // mobile-plus: 361 ~ 768
+        // mobile-plus: 481 ~ 768
     } @else if $breakpoint == mobile-plus {
         @media (min-width: calc(#{$bp-mobile} + 0.01rem)) and (max-width: #{$bp-mobile-plus}) {
             @content;
@@ -62,9 +62,9 @@
 
 // 공통 반응형 값 지정 믹스인
 @mixin r($prop, $mobilePx, $mobilePlusPx, $tabletPx, $laptopPx, $pcPx, $base: 16) {
-    /* 0 ~ 360 : 고정 */
+    /* 0 ~ 480 */
     @media (max-width: #{$bp-mobile}) {
-        #{$prop}: rem($mobilePx, $base);
+        #{$prop}: vw-clamp(0, $mobilePx, 0, 480, $base);
     }
 
     /* 361 ~ 768 */
@@ -72,7 +72,7 @@
         @if $mobilePlusPx == $mobilePx {
             #{$prop}: rem($mobilePlusPx, $base);
         } @else {
-            #{$prop}: vw-clamp($mobilePx, $mobilePlusPx, 360, 768, $base);
+            #{$prop}: vw-clamp($mobilePx, $mobilePlusPx, 480, 768, $base);
         }
     }
 
