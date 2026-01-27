@@ -7,13 +7,13 @@
                     <div class="company-info">
                         <p>주식회사대출나라대부중개<span>2025-서울강남-0111(대부중개업)</span></p>
                     </div>
-                    <nav class="utility-nav">
+                    <div class="utility-nav">
                         <div class="nav-align-box">
                             <NuxtLink>즐겨찾기</NuxtLink>
                             <NuxtLink>회원가입</NuxtLink>
                             <NuxtLink>회사소개</NuxtLink>
                         </div>
-                    </nav>
+                    </div>
                 </div>
             </div>
             <!-- Header 검색 영역 -->
@@ -51,6 +51,47 @@
                             <NuxtLink to="/browse/search" class="img-box">
                                 <img src="/images/common/search_gray.png" alt="통합검색" />
                             </NuxtLink>
+                        </div>
+                    </div>
+                    <div class="utility-nav">
+                        <div class="nav-align-box">
+                            <NuxtLink>업체로그인</NuxtLink>
+                            <NuxtLink>광고문의</NuxtLink>
+                            <p class="modal-action-title">주의사항</p>
+                            <el-dropdown
+                                trigger="click"
+                                placement="bottom-end"
+                                class="recent-dropdown-list"
+                                popper-class="recent-dropdown-list-popper"
+                            >
+                                <div class="el-dropdown-link">
+                                    <p>최근 본 업체</p>
+                                    <div class="img-box">
+                                        <img
+                                            src="/images/common/down_arrow_gray.png"
+                                            alt="최근 본 업체"
+                                        />
+                                    </div>
+                                </div>
+                                <template #dropdown>
+                                    <el-dropdown-menu class="recent-dropdown-menu">
+                                        <template v-if="recentViewCompanyValue.length > 0">
+                                            <el-dropdown-item
+                                                v-for="(item, index) in recentViewCompanyValue"
+                                                :key="index"
+                                            >
+                                                <div class="item-align-box">
+                                                    <strong>{{ index + 1 }}</strong>
+                                                    <p>{{ item }}</p>
+                                                </div>
+                                            </el-dropdown-item>
+                                        </template>
+                                        <template v-else>
+                                            <p class="empty-title">최근 본 업체가 없습니다.</p>
+                                        </template>
+                                    </el-dropdown-menu>
+                                </template>
+                            </el-dropdown>
                         </div>
                     </div>
                 </div>
@@ -158,6 +199,9 @@ const companyNameListOptions = ref([
         value: '24시스페셜무방문월변대부',
     },
 ])
+
+// 최근 본 업체 State Value
+const recentViewCompanyValue = ref([])
 </script>
 
 <style lang="scss">
@@ -189,7 +233,7 @@ div.loan-nara-layout {
                         }
                     }
                 }
-                nav.utility-nav {
+                div.utility-nav {
                     display: none;
                     @include respond(pc) {
                         display: block;
@@ -315,6 +359,60 @@ div.loan-nara-layout {
                         }
                     }
                 }
+                div.utility-nav {
+                    display: none;
+                    @include respond(pc) {
+                        display: block;
+                    }
+                    @include respond(laptop) {
+                        display: block;
+                    }
+                    div.nav-align-box {
+                        display: flex;
+                        align-items: center;
+                        gap: 1.5rem;
+                        a {
+                            font-weight: 600;
+                            color: #373f57;
+                            cursor: pointer;
+                            @include r(font-size, 14, 14, 14, 14, 14);
+                        }
+                        p {
+                            font-weight: 600;
+                            color: #373f57;
+                            cursor: pointer;
+                            @include r(font-size, 14, 14, 14, 14, 14);
+                        }
+                        div.recent-dropdown-list {
+                            div.el-dropdown-link {
+                                display: flex;
+                                align-items: center;
+                                cursor: pointer;
+                                background-color: $color-white;
+                                border: 1px solid #d7dce5;
+                                border-radius: 50px;
+                                @include r(padding-top, 7, 7, 7, 7, 7);
+                                @include r(padding-bottom, 7, 7, 7, 7, 7);
+                                @include r(padding-left, 14, 14, 14, 14, 14);
+                                @include r(padding-right, 14, 14, 14, 14, 14);
+                                p {
+                                    font-weight: 600;
+                                    color: #373f57;
+                                    @include r(margin-right, 8, 8, 8, 8, 8);
+                                    @include r(font-size, 14, 14, 14, 14, 14);
+                                }
+                                div.img-box {
+                                    width: 8px;
+                                    img {
+                                        display: block;
+                                        width: 100%;
+                                        height: auto;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -350,6 +448,76 @@ div.company-search-popper {
     }
     span.el-popper__arrow {
         display: none;
+    }
+}
+
+div.recent-dropdown-list-popper {
+    background-color: $color-white !important;
+    border-radius: 16px !important;
+    border: 1px solid #d7dce5 !important;
+    box-shadow: 4px 4px 0 rgba(224, 224, 224, 0.4) !important;
+    display: none;
+    @include respond(pc) {
+        display: block;
+    }
+    @include respond(laptop) {
+        display: block;
+    }
+    @include r(width, 177, 177, 177, 177, 177);
+    div.el-scrollbar {
+        div.el-scrollbar__wrap {
+            div.el-scrollbar__view {
+                ul.el-dropdown-menu {
+                    border-radius: 16px !important;
+                    border: none !important;
+                    background-color: #ffffff !important;
+                    line-height: 1 !important;
+                    box-shadow: none !important;
+                    @include r(padding-top, 20, 20, 20, 20, 20);
+                    @include r(padding-bottom, 20, 20, 20, 20, 20);
+                    @include r(padding-left, 16, 16, 16, 16, 16);
+                    @include r(padding-right, 20, 20, 20, 20, 20);
+                    li.el-dropdown-menu__item {
+                        padding: 0 !important;
+                        line-height: 1 !important;
+                        background-color: $color-white !important;
+                        @include r(margin-bottom, 12, 12, 12, 12, 12);
+                        @include r(font-size, 14, 14, 14, 14, 14);
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                        div.item-align-box {
+                            display: flex;
+                            align-items: center;
+                            min-width: 0;
+                            strong {
+                                flex-shrink: 0;
+                                font-weight: 700;
+                                color: $color-primary;
+                                @include r(width, 20, 20, 20, 20, 20);
+                            }
+                            p {
+                                flex: 1;
+                                min-width: 0;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                font-weight: 400;
+                                color: $color-black;
+                            }
+                        }
+                    }
+                    p.empty-title {
+                        font-weight: 600;
+                        color: $color-dark-gray;
+                        @include r(font-size, 14, 14, 14, 14, 14);
+                    }
+                }
+            }
+        }
+    }
+    span.el-popper__arrow {
+        display: none !important;
     }
 }
 </style>
