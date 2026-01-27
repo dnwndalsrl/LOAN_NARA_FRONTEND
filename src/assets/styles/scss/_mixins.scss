@@ -87,12 +87,13 @@
 
     /* 993 ~ 1200 */
     @media (min-width: calc(#{$bp-tablet} + 0.01rem)) and (max-width: #{$bp-laptop}) {
-        @if $laptopPx == $tabletPx {
-            #{$prop}: rem($laptopPx, $base);
-        } @else {
-            /* tablet 33px → laptop 37px */
-            #{$prop}: vw-clamp($tabletPx, $laptopPx, 992, 1200, $base);
-        }
+        #{$prop}: rem($laptopPx, $base);
+        // @if $laptopPx == $tabletPx {
+        //     #{$prop}: rem($laptopPx, $base);
+        // } @else {
+        //     /* tablet 33px → laptop 37px */
+        //     #{$prop}: vw-clamp($tabletPx, $laptopPx, 992, 1200, $base);
+        // }
     }
 
     /* PC 1201 ~ ∞ */
