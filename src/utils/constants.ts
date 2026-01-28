@@ -1,42 +1,33 @@
 // 대출나라 메뉴 (Nav)
 export const NAV_MENUS = [
-    // 지역별 업체 찾기
     {
         key: 'regionSearch',
         label: '지역별 업체 찾기',
-        path: '/browse/region',
+        path: '/browse/region/all',
         subMenus: [],
     },
-
-    // 상품별 업체 찾기
     {
         key: 'loanTypeSearch',
         label: '상품별 업체 찾기',
-        path: '/browse/loan-type',
+        path: '/browse/loan-type/all',
         subMenus: [],
     },
-
-    // 오늘의 추천 업체
     {
         key: 'recommended',
         label: '오늘의 추천 업체',
         path: '/browse/recommended',
         subMenus: [],
     },
-
-    // 맞춤검색
     {
         key: 'customSearch',
         label: '맞춤검색',
         path: '/browse/search',
         subMenus: [],
     },
-
-    // 사기번호 검색
     {
         key: 'scamNumber',
         label: '사기번호 검색',
-        path: '/scam-number',
+        path: '/scam-number/search',
         subMenus: [
             {
                 key: 'scamNumberSearch',
@@ -46,7 +37,7 @@ export const NAV_MENUS = [
             {
                 key: 'illegalFinance',
                 label: '불법 금융 대응',
-                subPath: '/scam-number/illegal-finance',
+                subPath: '/scam-number/illegal-finance/high-interest',
                 childMenus: [
                     {
                         key: 'highInterest',
@@ -77,12 +68,10 @@ export const NAV_MENUS = [
             },
         ],
     },
-
-    // 정식업체 조회
     {
         key: 'officialCompany',
         label: '정식업체 조회',
-        path: '/official-company',
+        path: '/official-company/search',
         subMenus: [
             {
                 key: 'officialCompanySearch',
@@ -96,12 +85,10 @@ export const NAV_MENUS = [
             },
         ],
     },
-
-    // 커뮤니티
     {
         key: 'community',
         label: '커뮤니티',
-        path: '/community',
+        path: '/community/finance-news',
         subMenus: [
             {
                 key: 'financeNews',
@@ -115,12 +102,10 @@ export const NAV_MENUS = [
             },
         ],
     },
-
-    // 이용안내
     {
         key: 'guide',
         label: '이용안내',
-        path: '/guide',
+        path: '/guide/customer',
         subMenus: [
             {
                 key: 'customerGuide',
@@ -134,12 +119,10 @@ export const NAV_MENUS = [
             },
         ],
     },
-
-    // 고객센터
     {
         key: 'support',
         label: '고객센터',
-        path: '/support',
+        path: '/support/notice',
         subMenus: [
             {
                 key: 'notice',
@@ -163,8 +146,6 @@ export const NAV_MENUS = [
             },
         ],
     },
-
-    // 대출위키
     {
         key: 'loanWiki',
         label: '대출위키',

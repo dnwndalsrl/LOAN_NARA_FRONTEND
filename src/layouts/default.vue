@@ -54,6 +54,7 @@
                         </div>
                     </div>
                     <div class="utility-nav">
+                        <!-- PC 노출 -->
                         <div class="nav-align-box">
                             <NuxtLink>업체로그인</NuxtLink>
                             <NuxtLink>광고문의</NuxtLink>
@@ -93,12 +94,73 @@
                                 </template>
                             </el-dropdown>
                         </div>
+                        <!-- LABTOP, TABLET, MOBILE 노출 -->
+                        <div class="menu-icon-box">
+                            <div class="img-box">
+                                <img src="/images/common/menu_bar.png" alt="대출나라 메뉴" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- 메뉴 영역 -->
-            <nav class="header-nav"></nav>
         </header>
+
+        <!-- 메뉴 영역 -->
+        <nav class="header-nav" @mouseenter="isMenuOpen = true" @mouseleave="isMenuOpen = false">
+            <!-- 부모 메뉴 -->
+            <div class="parent-menu-swiper-wrapper">
+                <div class="align-box">
+                    <ClientOnly>
+                        <Swiper
+                            :slides-per-view="'auto'"
+                            :space-between="39"
+                            :free-mode="true"
+                            :modules="[FreeMode]"
+                            class="parent-menu-swiper"
+                        >
+                            <SwiperSlide
+                                v-for="menu in NAV_MENUS"
+                                :key="menu.key"
+                                class="parent-menu-slide"
+                            >
+                                <NuxtLink :to="menu.path" class="parent-menu-link">
+                                    {{ menu.label }}
+                                </NuxtLink>
+                            </SwiperSlide>
+                        </Swiper>
+                    </ClientOnly>
+                </div>
+            </div>
+
+            <!-- 자식 메뉴 (LABTOP, TABLET, MOBILE 노출) -->
+            <ClientOnly>
+                <div v-show="isMenuOpen" class="mega-menu-wrapper">
+                    <div class="mega-menu-inner">
+                        <div
+                            v-for="(parentMenuItem, parentMenuIndex) in NAV_MENUS"
+                            :key="parentMenuItem.key"
+                            class="menu-align-box"
+                        >
+                            <p class="parent-title">{{ parentMenuItem.label }}</p>
+                            <ul class="child-menu-wrapper">
+                                <template> </template>
+                                <li
+                                    v-for="(
+                                        childMenuItem, childMenuIndex
+                                    ) in parentMenuItem.subMenus"
+                                    :key="childMenuItem.key"
+                                    class="child-menu-item"
+                                >
+                                    <NuxtLink :to="childMenuItem.subPath">
+                                        {{ childMenuItem.label }}
+                                    </NuxtLink>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </ClientOnly>
+        </nav>
 
         <main class="loan-nara-main-container">
             <slot></slot>
@@ -109,7 +171,10 @@
 </template>
 
 <script setup lang="ts">
-import { NuxtLink } from '#components'
+import 'swiper/css'
+import 'swiper/css/free-mode'
+import { FreeMode } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/vue'
 
 // ======================================== state
 // 통합검색 State Value
@@ -202,6 +267,9 @@ const companyNameListOptions = ref([
 
 // 최근 본 업체 State Value
 const recentViewCompanyValue = ref([])
+
+// 메뉴 Open State value
+const isMenuOpen = ref(false)
 </script>
 
 <style lang="scss">
@@ -256,8 +324,10 @@ div.loan-nara-layout {
             }
         }
         div.header-main {
+            background: $color-white;
             @include r(padding-top, 10, 10, 10, 16, 16);
             @include r(padding-bottom, 10, 10, 10, 16, 16);
+            border-bottom: 1px solid #eaedf4;
             div.align-box {
                 display: flex;
                 align-items: center;
@@ -315,7 +385,7 @@ div.loan-nara-layout {
                         }
                     }
                     div.company-search-select-box {
-                        display: flex;
+                        display: none;
                         align-items: center;
                         border: 1px solid #dfe3ea !important;
                         border-radius: 50px;
@@ -323,14 +393,8 @@ div.loan-nara-layout {
                         @include r(height, 50, 50, 50, 50, 50);
                         @include r(padding-left, 16, 16, 16, 16, 16);
                         @include r(padding-right, 20, 20, 20, 20, 20);
-                        @include respond(tablet) {
-                            display: none;
-                        }
-                        @include respond(mobile-plus) {
-                            display: none;
-                        }
-                        @include respond(mobile) {
-                            display: none;
+                        @include respond(pc) {
+                            display: flex;
                         }
                         div.el-select {
                             div.el-select__wrapper {
@@ -360,17 +424,13 @@ div.loan-nara-layout {
                     }
                 }
                 div.utility-nav {
-                    display: none;
-                    @include respond(pc) {
-                        display: block;
-                    }
-                    @include respond(laptop) {
-                        display: block;
-                    }
                     div.nav-align-box {
-                        display: flex;
+                        display: none;
                         align-items: center;
                         gap: 1.5rem;
+                        @include respond(pc) {
+                            display: flex;
+                        }
                         a {
                             font-weight: 600;
                             color: #373f57;
@@ -412,9 +472,110 @@ div.loan-nara-layout {
                             }
                         }
                     }
+                    div.menu-icon-box {
+                        display: block;
+                        @include respond(pc) {
+                            display: none;
+                        }
+                        div.img-box {
+                            cursor: pointer;
+                            @include r(width, 24, 24, 24, 24, 24);
+                            img {
+                                display: block;
+                                width: 100%;
+                                height: auto;
+                            }
+                        }
+                    }
                 }
             }
         }
+    }
+    nav.header-nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: $color-white;
+        div.parent-menu-swiper-wrapper {
+            position: relative;
+            z-index: 2;
+            box-shadow: 0px 2px 8px 0px #e0e0e066;
+            div.align-box {
+                @include r(padding-left, 16, 24, 24, 40, 40);
+                @include r(padding-right, 16, 24, 24, 40, 40);
+                @include respond(pc) {
+                    max-width: 75rem;
+                    margin: 0 auto;
+                }
+                div.parent-menu-swiper {
+                    overflow: visible !important;
+                    div.swiper-wrapper {
+                        div.parent-menu-slide {
+                            width: auto !important;
+                            @include r(padding-top, 16, 16, 16, 16, 16);
+                            @include r(padding-bottom, 16, 16, 16, 16, 16);
+                            a {
+                                font-weight: 700;
+                                color: $color-black;
+                                text-decoration: none;
+                                @include r(font-size, 16, 16, 16, 16, 16);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        div.mega-menu-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            background: #fff;
+            border-bottom: 1px solid #eaedf4;
+            display: none;
+            @include respond(pc) {
+                display: block;
+            }
+            div.mega-menu-inner {
+                display: flex;
+                justify-content: space-between;
+                @include r(gap, 36, 36, 36, 36, 36);
+                @include r(padding-left, 16, 24, 24, 40, 40);
+                @include r(padding-right, 16, 24, 24, 40, 40);
+                @include respond(pc) {
+                    max-width: 75rem;
+                    margin: 0 auto;
+                }
+                div.menu-align-box {
+                    flex-shrink: 0;
+                    @include r(padding-top, 30, 30, 30, 30, 30);
+                    &:nth-child(4) {
+                        border-right: 1px solid #eaedf4;
+                        @include r(padding-right, 30, 30, 30, 30, 30);
+                    }
+                    p.parent-title {
+                        font-weight: 600;
+                        color: $color-dark-gray;
+                        cursor: pointer;
+                        @include r(margin-bottom, 16, 16, 16, 16, 16);
+                        @include r(font-size, 13, 13, 13, 13, 13);
+                    }
+                    ul.child-menu-wrapper {
+                        li.child-menu-item {
+                            @include r(margin-bottom, 14, 14, 14, 14, 14);
+                            a {
+                                font-weight: 500;
+                                color: $color-black;
+                                text-decoration: none;
+                                @include r(font-size, 14, 14, 14, 14, 14);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    main.loan-nara-main-container {
+        height: 200vh;
     }
 }
 div.company-search-popper {
