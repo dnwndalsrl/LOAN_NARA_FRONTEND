@@ -1,684 +1,317 @@
 <template>
     <div class="loan-nara-layout">
-        <header class="loan-nara-header-container">
-            <!-- Header 상단 -->
-            <div class="header-top">
-                <div class="align-box">
-                    <div class="company-info">
-                        <p>주식회사대출나라대부중개<span>2025-서울강남-0111(대부중개업)</span></p>
-                    </div>
-                    <div class="utility-nav">
-                        <div class="nav-align-box">
-                            <NuxtLink>즐겨찾기</NuxtLink>
-                            <NuxtLink>회원가입</NuxtLink>
-                            <NuxtLink>회사소개</NuxtLink>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Header 검색 영역 -->
-            <div class="header-main">
-                <div class="align-box">
-                    <div class="search-container">
-                        <el-input
-                            v-model="integratedSearchValue"
-                            placeholder="통합검색"
-                            class="integrated-search"
-                        >
-                            <template #prefix>
-                                <NuxtLink to="/" class="img-box">
-                                    <img src="/images/common/logo_blue.png" alt="대출나라 로고" />
-                                </NuxtLink>
-                            </template>
-                            <template #suffix>
-                                <NuxtLink to="/browse/search" class="img-box">
-                                    <img src="/images/common/search_gray.png" alt="통합검색" />
-                                </NuxtLink>
-                            </template>
-                        </el-input>
-                        <div class="company-search-select-box">
-                            <el-select-v2
-                                v-model="companyNameSearchValue"
-                                :options="companyNameListOptions"
-                                placeholder="업체명 검색"
-                                class="company-search-select"
-                                filterable
-                                popper-class="company-search-popper"
-                                :popper-options="{
-                                    modifiers: [{ name: 'offset', options: { offset: [0, 18] } }],
-                                }"
-                            />
-                            <NuxtLink to="/browse/search" class="img-box">
-                                <img src="/images/common/search_gray.png" alt="통합검색" />
-                            </NuxtLink>
-                        </div>
-                    </div>
-                    <div class="utility-nav">
-                        <!-- PC 노출 -->
-                        <div class="nav-align-box">
-                            <NuxtLink>업체로그인</NuxtLink>
-                            <NuxtLink>광고문의</NuxtLink>
-                            <p class="modal-action-title">주의사항</p>
-                            <el-dropdown
-                                trigger="click"
-                                placement="bottom-end"
-                                class="recent-dropdown-list"
-                                popper-class="recent-dropdown-list-popper"
-                            >
-                                <div class="el-dropdown-link">
-                                    <p>최근 본 업체</p>
-                                    <div class="img-box">
-                                        <img
-                                            src="/images/common/down_arrow_gray.png"
-                                            alt="최근 본 업체"
-                                        />
-                                    </div>
-                                </div>
-                                <template #dropdown>
-                                    <el-dropdown-menu class="recent-dropdown-menu">
-                                        <template v-if="recentViewCompanyValue.length > 0">
-                                            <el-dropdown-item
-                                                v-for="(item, index) in recentViewCompanyValue"
-                                                :key="index"
-                                            >
-                                                <div class="item-align-box">
-                                                    <strong>{{ index + 1 }}</strong>
-                                                    <p>{{ item }}</p>
-                                                </div>
-                                            </el-dropdown-item>
-                                        </template>
-                                        <template v-else>
-                                            <p class="empty-title">최근 본 업체가 없습니다.</p>
-                                        </template>
-                                    </el-dropdown-menu>
-                                </template>
-                            </el-dropdown>
-                        </div>
-                        <!-- LABTOP, TABLET, MOBILE 노출 -->
-                        <div class="menu-icon-box">
-                            <div class="img-box">
-                                <img src="/images/common/menu_bar.png" alt="대출나라 메뉴" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+        <!-- 헤더 영역 -->
+        <AppHeader />
 
         <!-- 메뉴 영역 -->
-        <nav class="header-nav" @mouseenter="isMenuOpen = true" @mouseleave="isMenuOpen = false">
-            <!-- 부모 메뉴 -->
-            <div class="parent-menu-swiper-wrapper">
-                <div class="align-box">
-                    <ClientOnly>
-                        <Swiper
-                            :slides-per-view="'auto'"
-                            :space-between="39"
-                            :free-mode="true"
-                            :modules="[FreeMode]"
-                            class="parent-menu-swiper"
-                        >
-                            <SwiperSlide
-                                v-for="menu in NAV_MENUS"
-                                :key="menu.key"
-                                class="parent-menu-slide"
-                            >
-                                <NuxtLink :to="menu.path" class="parent-menu-link">
-                                    {{ menu.label }}
-                                </NuxtLink>
-                            </SwiperSlide>
-                        </Swiper>
-                    </ClientOnly>
-                </div>
-            </div>
+        <AppHeaderNav />
 
-            <!-- 자식 메뉴 (LABTOP, TABLET, MOBILE 노출) -->
-            <ClientOnly>
-                <div v-show="isMenuOpen" class="mega-menu-wrapper">
-                    <div class="mega-menu-inner">
-                        <div
-                            v-for="(parentMenuItem, parentMenuIndex) in NAV_MENUS"
-                            :key="parentMenuItem.key"
-                            class="menu-align-box"
-                        >
-                            <p class="parent-title">{{ parentMenuItem.label }}</p>
-                            <ul class="child-menu-wrapper">
-                                <template> </template>
-                                <li
-                                    v-for="(
-                                        childMenuItem, childMenuIndex
-                                    ) in parentMenuItem.subMenus"
-                                    :key="childMenuItem.key"
-                                    class="child-menu-item"
-                                >
-                                    <NuxtLink :to="childMenuItem.subPath">
-                                        {{ childMenuItem.label }}
-                                    </NuxtLink>
-                                </li>
-                            </ul>
+        <!-- 메인 영역 -->
+        <div class="main-with-side-container">
+            <!-- 왼쪽 플로팅 영역  -->
+            <aside ref="leftSideRef" class="side-floating is-left">
+                <div class="recent-register-company-wrapper">
+                    <div class="box-title">
+                        <div class="img-box">
+                            <img
+                                src="/images/common/recent_create_company.png"
+                                alt="최근등록업체"
+                            />
                         </div>
+                        <h2>최근등록업체</h2>
                     </div>
+                    <ul class="recent-company-list">
+                        <li
+                            v-for="(recentItem, recentIndex) in recentRegisterCompany"
+                            :key="recentItem"
+                            class="recent-company-item"
+                        >
+                            <NuxtLink :to="`/`">
+                                {{ recentItem }}
+                            </NuxtLink>
+                            <span class="badge-new">N</span>
+                        </li>
+                    </ul>
                 </div>
-            </ClientOnly>
-        </nav>
+            </aside>
 
-        <main class="loan-nara-main-container">
-            <slot></slot>
-        </main>
+            <!-- 실제 페이지 영역 -->
+            <main class="loan-nara-main-container">
+                <slot></slot>
+            </main>
 
+            <!-- 오른쪽 플로팅 영역 -->
+            <aside ref="rightSideRef" class="side-floating is-right">
+                <ul class="promo-loan-wrapper">
+                    <li
+                        v-for="(promoLoanItem, promoLoanIndex) in promoLoanItems"
+                        :key="promoLoanItem.id"
+                        class="promo-loan-item"
+                    >
+                        <div class="title-area">
+                            <h2>{{ promoLoanItem.title }}</h2>
+                            <p class="sub-title">{{ promoLoanItem.subTitle }}</p>
+                            <NuxtLink :to="promoLoanItem.path">
+                                <p>바로가기</p>
+                                <div class="img-box">
+                                    <img src="/images/common/right_arrow_gray.png" alt="바로가기" />
+                                </div>
+                            </NuxtLink>
+                        </div>
+                        <div class="img-box">
+                            <img :src="promoLoanItem.imageUrl" />
+                        </div>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+
+        <!-- 푸터 영역 -->
         <footer class="loan-nara-footer-container"></footer>
+
+        <!-- 메뉴 Dim 영역 -->
+        <ClientOnly>
+            <div v-show="commonStore.isMegaMenuOpen" class="menu-dim"></div>
+        </ClientOnly>
     </div>
 </template>
 
 <script setup lang="ts">
-import 'swiper/css'
-import 'swiper/css/free-mode'
-import { FreeMode } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/vue'
+import { useCommonStore } from '~/store/common'
+
+const commonStore = useCommonStore()
+
+const leftSideRef = ref<HTMLElement | null>(null)
+const rightSideRef = ref<HTMLElement | null>(null)
+
+let startTop = 0
 
 // ======================================== state
-// 통합검색 State Value
-const integratedSearchValue = ref('')
+// 최근 등록 업체 state
+const recentRegisterCompany = ref([
+    '대출나라대부중개',
+    '주식회사대출나라',
+    '포시즌대부중개',
+    '민생대부',
+    '대출나라대부중개',
+    '대출나라대부중개',
+    '대출나라대부중개',
+    '대출나라대부중개',
+    '대출나라대부중개',
+    '대출나라대부중개',
+])
 
-// 업체명검색 State Value
-const companyNameSearchValue = ref('')
-const companyNameListOptions = ref([
+const promoLoanItems = ref([
     {
-        label: '24시스페셜무방문월변대부1',
-        value: '24시스페셜무방문월변대부',
+        id: 1,
+        title: '전국 부동산 담보대출',
+        subTitle: '24시간 상담 가능',
+        path: '/',
+        imageUrl: '/images/common/right_float1.png',
     },
     {
-        label: '24시스페셜무방문월변대부2',
-        value: '24시스페셜무방문월변대부',
+        id: 2,
+        title: '바르고 정확하게',
+        subTitle: '전국 부동산 담보대출',
+        path: '/',
+        imageUrl: '/images/common/right_float2.png',
     },
     {
-        label: '24시스페셜무방문월변대부3',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부4',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부5',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부6',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부7',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부8',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부9',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부10',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부11',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부12',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부13',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부14',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부15',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부16',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부17',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부18',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부19',
-        value: '24시스페셜무방문월변대부',
-    },
-    {
-        label: '24시스페셜무방문월변대부20',
-        value: '24시스페셜무방문월변대부',
+        id: 3,
+        title: '24시간 상담 가능',
+        subTitle: '빠른 당일 담보대출',
+        path: '/',
+        imageUrl: '/images/common/right_float3.png',
     },
 ])
 
-// 최근 본 업체 State Value
-const recentViewCompanyValue = ref([])
+// ======================================== Function
+const onScroll = () => {
+    const scrollY = window.scrollY
+    const offset = Math.max(0, scrollY - startTop)
 
-// 메뉴 Open State value
-const isMenuOpen = ref(false)
+    if (leftSideRef.value) {
+        leftSideRef.value.style.transform = `translateY(${offset}px)`
+    }
+
+    if (rightSideRef.value) {
+        rightSideRef.value.style.transform = `translateY(${offset}px)`
+    }
+}
+
+onMounted(() => {
+    if (!leftSideRef.value) return
+
+    startTop = leftSideRef.value.getBoundingClientRect().top + window.scrollY - 40
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+})
+
+onUnmounted(() => {
+    window.removeEventListener('scroll', onScroll)
+})
 </script>
 
 <style lang="scss">
 div.loan-nara-layout {
     width: 100%;
-    header.loan-nara-header-container {
-        div.header-top {
-            background-color: #f2f2f2;
-            @include r(height, 33, 33, 33, 37, 37);
-            @include r(line-height, 33, 33, 33, 37, 37);
-            div.align-box {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                @include r(padding-left, 16, 24, 24, 40, 40);
-                @include r(padding-right, 16, 24, 24, 40, 40);
-                @include respond(pc) {
-                    max-width: 75rem;
-                    margin: 0 auto;
-                }
-                div.company-info {
-                    p {
-                        font-weight: 400;
-                        color: #6a6a6a;
-                        @include r(font-size, 14, 14, 14, 14, 14);
-                        span {
-                            display: inline-block;
-                            @include r(margin-left, 16, 16, 16, 16, 16);
-                        }
-                    }
-                }
-                div.utility-nav {
-                    display: none;
-                    @include respond(pc) {
-                        display: block;
-                    }
-                    @include respond(laptop) {
-                        display: block;
-                    }
-                    div.nav-align-box {
-                        display: flex;
-                        align-items: center;
-                        gap: 1.5rem;
-                        a {
-                            font-weight: 600;
-                            color: #6a6a6a;
-                            cursor: pointer;
-                            @include r(font-size, 14, 14, 14, 14, 14);
-                        }
-                    }
-                }
-            }
+    div.main-with-side-container {
+        position: relative;
+        @include r(padding-top, 16, 24, 24, 40, 40);
+        @include r(padding-left, 16, 24, 24, 40, 40);
+        @include r(padding-right, 16, 24, 24, 40, 40);
+        @include respond(pc) {
+            max-width: 75rem;
+            margin: 0 auto;
         }
-        div.header-main {
-            background: $color-white;
-            @include r(padding-top, 10, 10, 10, 16, 16);
-            @include r(padding-bottom, 10, 10, 10, 16, 16);
-            border-bottom: 1px solid #eaedf4;
-            div.align-box {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                @include r(padding-left, 16, 24, 24, 40, 40);
-                @include r(padding-right, 16, 24, 24, 40, 40);
-                @include respond(pc) {
-                    max-width: 75rem;
-                    margin: 0 auto;
-                }
-                div.search-container {
-                    display: flex;
-                    align-items: center;
-                    @include r(gap, 20, 20, 20, 20, 20);
-                    div.integrated-search {
-                        @include r(width, 332, 534, 460, 274, 274);
-                        @include r(height, 50, 50, 50, 50, 50);
-                        div.el-input__wrapper {
-                            box-shadow: none !important;
-                            border: 1px solid #dfe3ea !important;
-                            border-radius: 50px;
-                            @include r(padding-top, 0, 0, 0, 0, 0);
-                            @include r(padding-bottom, 0, 0, 0, 0, 0);
-                            @include r(padding-left, 16, 16, 16, 16, 16);
-                            @include r(padding-right, 20, 20, 20, 20, 20);
-                            span.el-input__prefix {
-                                span.el-input__prefix-inner {
-                                    a.img-box {
-                                        cursor: pointer;
-                                        @include r(width, 25, 25, 25, 25, 25);
-                                        img {
-                                            display: block;
-                                            width: 100%;
-                                            height: auto;
-                                        }
-                                    }
-                                }
-                            }
-                            input.el-input__inner {
-                                color: $color-black;
-                                @include r(font-size, 16, 16, 16, 16, 16);
-                            }
-                            span.el-input__suffix {
-                                span.el-input__suffix-inner {
-                                    a.img-box {
-                                        @include r(width, 18, 18, 18, 18, 18);
-                                        img {
-                                            display: block;
-                                            width: 100%;
-                                            height: auto;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    div.company-search-select-box {
-                        display: none;
-                        align-items: center;
-                        border: 1px solid #dfe3ea !important;
-                        border-radius: 50px;
-                        @include r(width, 248, 248, 248, 274, 274);
-                        @include r(height, 50, 50, 50, 50, 50);
-                        @include r(padding-left, 16, 16, 16, 16, 16);
-                        @include r(padding-right, 20, 20, 20, 20, 20);
-                        @include respond(pc) {
-                            display: flex;
-                        }
-                        div.el-select {
-                            div.el-select__wrapper {
-                                box-shadow: none !important;
-                                min-height: auto !important;
-                                padding: 0 !important;
-                                @include r(margin-right, 16, 16, 16, 16, 16);
-                                border-radius: 50px;
-                                div.el-select__selection {
-                                    @include r(font-size, 16, 16, 16, 16, 16);
-                                    div.el-select__selected-item {
-                                        input {
-                                            color: $color-black;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        a.img-box {
-                            @include r(width, 18, 18, 18, 18, 18);
-                            img {
-                                display: block;
-                                width: 100%;
-                                height: auto;
-                            }
-                        }
-                    }
-                }
-                div.utility-nav {
-                    div.nav-align-box {
-                        display: none;
-                        align-items: center;
-                        gap: 1.5rem;
-                        @include respond(pc) {
-                            display: flex;
-                        }
-                        a {
-                            font-weight: 600;
-                            color: #373f57;
-                            cursor: pointer;
-                            @include r(font-size, 14, 14, 14, 14, 14);
-                        }
-                        p {
-                            font-weight: 600;
-                            color: #373f57;
-                            cursor: pointer;
-                            @include r(font-size, 14, 14, 14, 14, 14);
-                        }
-                        div.recent-dropdown-list {
-                            div.el-dropdown-link {
-                                display: flex;
-                                align-items: center;
-                                cursor: pointer;
-                                background-color: $color-white;
-                                border: 1px solid #d7dce5;
-                                border-radius: 50px;
-                                @include r(padding-top, 7, 7, 7, 7, 7);
-                                @include r(padding-bottom, 7, 7, 7, 7, 7);
-                                @include r(padding-left, 14, 14, 14, 14, 14);
-                                @include r(padding-right, 14, 14, 14, 14, 14);
-                                p {
-                                    font-weight: 600;
-                                    color: #373f57;
-                                    @include r(margin-right, 8, 8, 8, 8, 8);
-                                    @include r(font-size, 14, 14, 14, 14, 14);
-                                }
-                                div.img-box {
-                                    width: 8px;
-                                    img {
-                                        display: block;
-                                        width: 100%;
-                                        height: auto;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    div.menu-icon-box {
-                        display: block;
-                        @include respond(pc) {
-                            display: none;
-                        }
-                        div.img-box {
-                            cursor: pointer;
-                            @include r(width, 24, 24, 24, 24, 24);
-                            img {
-                                display: block;
-                                width: 100%;
-                                height: auto;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    nav.header-nav {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        background: $color-white;
-        div.parent-menu-swiper-wrapper {
-            position: relative;
-            z-index: 2;
-            box-shadow: 0px 2px 8px 0px #e0e0e066;
-            div.align-box {
-                @include r(padding-left, 16, 24, 24, 40, 40);
-                @include r(padding-right, 16, 24, 24, 40, 40);
-                @include respond(pc) {
-                    max-width: 75rem;
-                    margin: 0 auto;
-                }
-                div.parent-menu-swiper {
-                    overflow: visible !important;
-                    div.swiper-wrapper {
-                        div.parent-menu-slide {
-                            width: auto !important;
-                            @include r(padding-top, 16, 16, 16, 16, 16);
-                            @include r(padding-bottom, 16, 16, 16, 16, 16);
-                            a {
-                                font-weight: 700;
-                                color: $color-black;
-                                text-decoration: none;
-                                @include r(font-size, 16, 16, 16, 16, 16);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        div.mega-menu-wrapper {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            background: #fff;
-            border-bottom: 1px solid #eaedf4;
+        aside.side-floating {
             display: none;
+            position: absolute;
+            top: 40px;
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform;
+            &.is-left {
+                left: -191px;
+            }
+            &.is-right {
+                right: -240px;
+            }
             @include respond(pc) {
                 display: block;
             }
-            div.mega-menu-inner {
-                display: flex;
-                justify-content: space-between;
-                @include r(gap, 36, 36, 36, 36, 36);
-                @include r(padding-left, 16, 24, 24, 40, 40);
-                @include r(padding-right, 16, 24, 24, 40, 40);
-                @include respond(pc) {
-                    max-width: 75rem;
-                    margin: 0 auto;
-                }
-                div.menu-align-box {
-                    flex-shrink: 0;
-                    @include r(padding-top, 30, 30, 30, 30, 30);
-                    &:nth-child(4) {
-                        border-right: 1px solid #eaedf4;
-                        @include r(padding-right, 30, 30, 30, 30, 30);
-                    }
-                    p.parent-title {
-                        font-weight: 600;
-                        color: $color-dark-gray;
-                        cursor: pointer;
-                        @include r(margin-bottom, 16, 16, 16, 16, 16);
-                        @include r(font-size, 13, 13, 13, 13, 13);
-                    }
-                    ul.child-menu-wrapper {
-                        li.child-menu-item {
-                            @include r(margin-bottom, 14, 14, 14, 14, 14);
-                            a {
-                                font-weight: 500;
-                                color: $color-black;
-                                text-decoration: none;
-                                @include r(font-size, 14, 14, 14, 14, 14);
-                            }
+            div.recent-register-company-wrapper {
+                background-color: $color-white;
+                border: 1px solid #dfe3ea;
+                border-radius: 16px;
+                @include r(width, 151, 151, 151, 151, 151);
+                @include r(padding-top, 20, 20, 20, 20, 20);
+                @include r(padding-bottom, 20, 20, 20, 20, 20);
+                @include r(padding-left, 20, 20, 20, 20, 20);
+                @include r(padding-right, 20, 20, 20, 20, 20);
+                div.box-title {
+                    display: flex;
+                    align-items: center;
+                    div.img-box {
+                        @include r(width, 15, 15, 15, 15, 15);
+                        img {
+                            display: block;
+                            width: 100%;
+                            height: auto;
                         }
                     }
-                }
-            }
-        }
-    }
-    main.loan-nara-main-container {
-        height: 200vh;
-    }
-}
-div.company-search-popper {
-    border-radius: 16px !important;
-    border: 1px solid #d7dce5 !important;
-    background-color: #ffffff !important;
-    box-shadow: 4px 4px 0 rgba(224, 224, 224, 0.4) !important;
-    line-height: 1 !important;
-    @include r(font-size, 13, 13, 13, 13, 13);
-    div.el-select-dropdown {
-        div.el-vl__wrapper {
-            div.el-select-dropdown__list {
-                margin: 10px 0 !important;
-                div {
-                    li.el-select-dropdown__item {
-                        padding: 0 0 0 16px !important;
-                        &.is-hovering {
-                            background-color: inherit !important;
-                        }
-                        span {
-                            font-weight: 400 !important;
-                            color: #292e41 !important;
-                        }
-                    }
-                }
-            }
-            div.el-virtual-scrollbar {
-                right: 5px !important;
-            }
-        }
-    }
-    span.el-popper__arrow {
-        display: none;
-    }
-}
-
-div.recent-dropdown-list-popper {
-    background-color: $color-white !important;
-    border-radius: 16px !important;
-    border: 1px solid #d7dce5 !important;
-    box-shadow: 4px 4px 0 rgba(224, 224, 224, 0.4) !important;
-    display: none;
-    @include respond(pc) {
-        display: block;
-    }
-    @include respond(laptop) {
-        display: block;
-    }
-    @include r(width, 177, 177, 177, 177, 177);
-    div.el-scrollbar {
-        div.el-scrollbar__wrap {
-            div.el-scrollbar__view {
-                ul.el-dropdown-menu {
-                    border-radius: 16px !important;
-                    border: none !important;
-                    background-color: #ffffff !important;
-                    line-height: 1 !important;
-                    box-shadow: none !important;
-                    @include r(padding-top, 20, 20, 20, 20, 20);
-                    @include r(padding-bottom, 20, 20, 20, 20, 20);
-                    @include r(padding-left, 16, 16, 16, 16, 16);
-                    @include r(padding-right, 20, 20, 20, 20, 20);
-                    li.el-dropdown-menu__item {
-                        padding: 0 !important;
-                        line-height: 1 !important;
-                        background-color: $color-white !important;
-                        @include r(margin-bottom, 12, 12, 12, 12, 12);
+                    h2 {
+                        font-weight: 700;
+                        color: $color-black;
+                        @include r(margin-left, 6, 6, 6, 6, 6);
                         @include r(font-size, 14, 14, 14, 14, 14);
+                    }
+                }
+                ul.recent-company-list {
+                    @include r(margin-top, 16, 16, 16, 16, 16);
+                    li.recent-company-item {
+                        display: flex;
+                        align-items: center;
+                        @include r(margin-bottom, 10, 10, 10, 10, 10);
                         &:last-child {
                             margin-bottom: 0;
                         }
-                        div.item-align-box {
+                        a {
+                            display: block;
+                            min-width: 0;
+                            font-weight: 400;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            color: $color-black;
+                            text-decoration: none;
+                            @include r(margin-right, 4, 4, 4, 4, 4);
+                            @include r(font-size, 13, 13, 13, 13, 13);
+                        }
+                        span.badge-new {
+                            flex-shrink: 0;
+                            font-weight: 700;
+                            color: $color-green;
+                            @include r(font-size, 12, 12, 12, 12, 12);
+                        }
+                    }
+                }
+            }
+            ul.promo-loan-wrapper {
+                li.promo-loan-item {
+                    display: flex;
+                    align-items: end;
+                    background-color: #ecf0f4;
+                    border: 1px solid #dfe3ea;
+                    border-radius: 16px;
+                    @include r(gap, 8, 8, 8, 8, 8);
+                    @include r(margin-bottom, 10, 10, 10, 10, 10);
+                    @include r(padding-top, 16, 16, 16, 16, 16);
+                    @include r(padding-bottom, 16, 16, 16, 16, 16);
+                    @include r(padding-left, 16, 16, 16, 16, 16);
+                    @include r(padding-right, 16, 16, 16, 16, 16);
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    div.title-area {
+                        h2 {
+                            font-weight: 700;
+                            color: $color-black;
+                            @include r(margin-bottom, 4, 4, 4, 4, 4);
+                            @include r(font-size, 13, 13, 13, 13, 13);
+                        }
+                        p.sub-title {
+                            font-weight: 400;
+                            color: #545976;
+                            @include r(margin-bottom, 16, 16, 16, 16, 16);
+                            @include r(font-size, 13, 13, 13, 13, 13);
+                        }
+                        a {
+                            width: fit-content;
                             display: flex;
                             align-items: center;
-                            min-width: 0;
-                            strong {
-                                flex-shrink: 0;
-                                font-weight: 700;
-                                color: $color-primary;
-                                @include r(width, 20, 20, 20, 20, 20);
-                            }
+                            border-radius: 6px;
+                            background-color: #d1dae9;
+                            text-decoration: none;
+                            @include r(gap, 10, 10, 10, 10, 10);
+                            @include r(padding-top, 6, 6, 6, 6, 6);
+                            @include r(padding-bottom, 6, 6, 6, 6, 6);
+                            @include r(padding-left, 10, 10, 10, 10, 10);
+                            @include r(padding-right, 10, 10, 10, 10, 10);
                             p {
-                                flex: 1;
-                                min-width: 0;
-                                white-space: nowrap;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                font-weight: 400;
-                                color: $color-black;
+                                font-weight: 700;
+                                color: #5b6c8b;
+                                @include r(font-size, 13, 13, 13, 13, 13);
+                            }
+                            div.img-box {
+                                @include r(width, 6, 6, 6, 6, 6);
+                                img {
+                                    display: block;
+                                    width: 100%;
+                                    height: auto;
+                                }
                             }
                         }
                     }
-                    p.empty-title {
-                        font-weight: 600;
-                        color: $color-dark-gray;
-                        @include r(font-size, 14, 14, 14, 14, 14);
+                    div.img-box {
+                        @include r(width, 52, 52, 52, 52, 52);
+                        img {
+                            display: block;
+                            width: 100%;
+                            height: auto;
+                        }
                     }
                 }
             }
         }
+        main.loan-nara-main-container {
+            height: 200vh;
+        }
     }
-    span.el-popper__arrow {
-        display: none !important;
+    div.menu-dim {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: 900;
     }
 }
 </style>

@@ -2,18 +2,28 @@ import { defineStore } from 'pinia'
 
 export const useCommonStore = defineStore('common', {
     state: () => ({
+        // PC일때 자식메뉴 Open Value
         isMegaMenuOpen: false,
+
+        // LABTOP, TABLET, MOBILE일때 자식메뉴 Open Value
+        isDrawerMenuOpen: false,
     }),
 
     actions: {
         openMegaMenu() {
             this.isMegaMenuOpen = true
-            document.body.style.overflow = 'hidden'
         },
 
         closeMegaMenu() {
             this.isMegaMenuOpen = false
-            document.body.style.overflow = ''
+        },
+
+        openDrawerMenu() {
+            this.isDrawerMenuOpen = true
+        },
+
+        closeDrawerMenu() {
+            this.isDrawerMenuOpen = false
         },
     },
 })

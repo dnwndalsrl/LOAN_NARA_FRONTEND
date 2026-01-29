@@ -1,5 +1,8 @@
 <template>
-    <section class="main-section">메인페이지</section>
+    <section class="main-section">
+        메인페이지메인페이지메인페이지메인페이지메인페이지메인페이지메인페이지메인페이지메인페이지메인페이지메인페이지메인페이지메인페이지메인페이지메인페이지
+        메인페이지메인페이지메인페이지메인페이지메인페이지메인페이지메인페이지메인페이지메인페이지
+    </section>
 </template>
 
 <script setup lang="ts">

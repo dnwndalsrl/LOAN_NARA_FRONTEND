@@ -63,6 +63,7 @@ export default defineNuxtConfig({
         '@nuxtjs/seo',
         '@nuxtjs/robots',
         '@nuxtjs/sitemap',
+        '@vueuse/nuxt',
         ['@element-plus/nuxt', { importStyle: false }],
     ],
     image: {},
