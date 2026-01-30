@@ -3,115 +3,109 @@
         class="loan-nara-header-nav-container"
         @mouseenter="onNavEnter()"
         @mouseleave="onNavLeave()"
+        aria-label="주요 메뉴"
     >
         <!-- 부모 메뉴 -->
         <div class="parent-menu-swiper-wrapper">
             <div class="align-box">
-                <ClientOnly>
-                    <Swiper
-                        :slides-per-view="'auto'"
-                        :space-between="39"
-                        :free-mode="true"
-                        :modules="[FreeMode]"
-                        class="parent-menu-swiper"
+                <Swiper
+                    :slides-per-view="'auto'"
+                    :space-between="39"
+                    :free-mode="true"
+                    :modules="[FreeMode]"
+                    class="parent-menu-swiper"
+                >
+                    <SwiperSlide
+                        v-for="menu in NAV_MENUS"
+                        :key="menu.key"
+                        class="parent-menu-slide"
                     >
-                        <SwiperSlide
-                            v-for="menu in NAV_MENUS"
-                            :key="menu.key"
-                            class="parent-menu-slide"
-                        >
-                            <NuxtLink :to="menu.path" class="parent-menu-link">
-                                {{ menu.label }}
-                            </NuxtLink>
-                        </SwiperSlide>
-                    </Swiper>
-                </ClientOnly>
+                        <NuxtLink :to="menu.path" class="parent-menu-link">
+                            {{ menu.label }}
+                        </NuxtLink>
+                    </SwiperSlide>
+                </Swiper>
             </div>
         </div>
 
         <!-- 자식 메뉴 (PC 노출) -->
-        <ClientOnly>
-            <div v-show="commonStore.isMegaMenuOpen" class="mega-menu-wrapper">
-                <div class="mega-menu-inner">
-                    <div
-                        v-for="(parentMenuItem, parentMenuIndex) in NAV_MENUS"
-                        :key="parentMenuItem.key"
-                        class="menu-align-box"
-                    >
-                        <p class="parent-title">{{ parentMenuItem.label }}</p>
-                        <ul class="child-menu-wrapper">
-                            <template> </template>
-                            <li
-                                v-for="(childMenuItem, childMenuIndex) in parentMenuItem.subMenus"
-                                :key="childMenuItem.key"
-                                class="child-menu-item"
-                            >
-                                <NuxtLink :to="childMenuItem.subPath">
-                                    {{ childMenuItem.label }}
-                                </NuxtLink>
-                            </li>
-                        </ul>
-                    </div>
+        <div v-show="commonStore.isMegaMenuOpen" class="mega-menu-wrapper">
+            <div class="mega-menu-inner">
+                <div
+                    v-for="(parentMenuItem, parentMenuIndex) in NAV_MENUS"
+                    :key="parentMenuItem.key"
+                    class="menu-align-box"
+                >
+                    <p class="parent-title">{{ parentMenuItem.label }}</p>
+                    <ul class="child-menu-wrapper">
+                        <li
+                            v-for="(childMenuItem, childMenuIndex) in parentMenuItem.subMenus"
+                            :key="childMenuItem.key"
+                            class="child-menu-item"
+                        >
+                            <NuxtLink :to="childMenuItem.subPath">
+                                {{ childMenuItem.label }}
+                            </NuxtLink>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </ClientOnly>
+        </div>
 
         <!-- 자식 메뉴 (LABTOP, TABLET, MOBILE 노출) -->
-        <ClientOnly>
-            <el-drawer
-                v-model="commonStore.isDrawerMenuOpen"
-                direction="rtl"
-                :with-header="false"
-                append-to-body
-                :size="drawerSize"
-                @close="commonStore.closeDrawerMenu()"
-                class="menu-drawer-wrapper"
-            >
-                <div class="drawer-body">
-                    <div class="drawer-header">
-                        <div class="close-nav">
-                            <div class="img-box" @click="commonStore.closeDrawerMenu()">
-                                <img src="/images/common/left_arrow_white.png" alt="메뉴닫기" />
-                            </div>
-                            <p>전체메뉴</p>
+        <el-drawer
+            v-model="commonStore.isDrawerMenuOpen"
+            direction="rtl"
+            :with-header="false"
+            append-to-body
+            :size="drawerSize"
+            @close="commonStore.closeDrawerMenu()"
+            class="menu-drawer-wrapper"
+        >
+            <div class="drawer-body">
+                <div class="drawer-header">
+                    <div class="close-nav">
+                        <div class="img-box" @click="commonStore.closeDrawerMenu()">
+                            <img src="/images/common/left_arrow_white.png" alt="메뉴닫기" />
                         </div>
-                        <div class="utility-nav">
-                            <NuxtLink to="/">업체로그인</NuxtLink>
-                            <NuxtLink to="/">업체회원가입</NuxtLink>
-                        </div>
+                        <p>전체메뉴</p>
                     </div>
-                    <nav class="drawer-menu">
-                        <ul class="drawer-parent-menu-wrapper">
-                            <li v-for="menu in NAV_MENUS" :key="menu.key" class="parent-menu-item">
-                                <NuxtLink
-                                    :to="menu.path"
-                                    @click="commonStore.closeDrawerMenu"
-                                    class="parent-title"
-                                >
-                                    {{ menu.label }}
-                                </NuxtLink>
-
-                                <ul v-if="menu.subMenus?.length" class="drawer-child-menu-wrapper">
-                                    <li
-                                        v-for="sub in menu.subMenus"
-                                        :key="sub.key"
-                                        class="child-menu-item"
-                                    >
-                                        <NuxtLink
-                                            :to="sub.subPath"
-                                            @click="commonStore.closeDrawerMenu"
-                                            class="child-title"
-                                        >
-                                            {{ sub.label }}
-                                        </NuxtLink>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
+                    <div class="utility-nav">
+                        <NuxtLink to="/">업체로그인</NuxtLink>
+                        <NuxtLink to="/">업체회원가입</NuxtLink>
+                    </div>
                 </div>
-            </el-drawer>
-        </ClientOnly>
+                <nav class="drawer-menu">
+                    <ul class="drawer-parent-menu-wrapper">
+                        <li v-for="menu in NAV_MENUS" :key="menu.key" class="parent-menu-item">
+                            <NuxtLink
+                                :to="menu.path"
+                                @click="commonStore.closeDrawerMenu"
+                                class="parent-title"
+                            >
+                                {{ menu.label }}
+                            </NuxtLink>
+
+                            <ul v-if="menu.subMenus?.length" class="drawer-child-menu-wrapper">
+                                <li
+                                    v-for="sub in menu.subMenus"
+                                    :key="sub.key"
+                                    class="child-menu-item"
+                                >
+                                    <NuxtLink
+                                        :to="sub.subPath"
+                                        @click="commonStore.closeDrawerMenu"
+                                        class="child-title"
+                                    >
+                                        {{ sub.label }}
+                                    </NuxtLink>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </el-drawer>
     </nav>
 </template>
 <script setup lang="ts">

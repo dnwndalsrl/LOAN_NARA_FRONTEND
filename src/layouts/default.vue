@@ -35,7 +35,6 @@
                 </div>
             </aside>
 
-            <!-- 실제 페이지 영역 -->
             <main class="loan-nara-main-container">
                 <slot></slot>
             </main>
@@ -67,7 +66,7 @@
         </div>
 
         <!-- 푸터 영역 -->
-        <footer class="loan-nara-footer-container"></footer>
+        <AppFooter />
 
         <!-- 메뉴 Dim 영역 -->
         <ClientOnly>
@@ -304,7 +303,7 @@ div.loan-nara-layout {
             }
         }
         main.loan-nara-main-container {
-            height: 200vh;
+            // height: 200vh;
         }
     }
     div.menu-dim {
