@@ -303,7 +303,7 @@ div.loan-nara-layout {
             }
         }
         main.loan-nara-main-container {
-            // height: 200vh;
+            // height: 100vh;
         }
     }
     div.menu-dim {

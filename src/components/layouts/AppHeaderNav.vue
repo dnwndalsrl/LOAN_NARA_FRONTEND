@@ -178,6 +178,9 @@ nav.loan-nara-header-nav-container {
                             font-weight: 700;
                             color: $color-black;
                             text-decoration: none;
+                            &:hover {
+                                color: $color-primary;
+                            }
                             @include r(font-size, 16, 16, 16, 16, 16);
                         }
                     }
@@ -230,6 +233,9 @@ nav.loan-nara-header-nav-container {
                             font-weight: 500;
                             color: $color-black;
                             text-decoration: none;
+                            &:hover {
+                                color: $color-primary;
+                            }
                             @include r(font-size, 14, 14, 14, 14, 14);
                         }
                     }
