@@ -11,7 +11,9 @@ div.new-badge {
     justify-content: center;
     background-color: $color-green;
     border-radius: 50%;
+    color: $color-white;
     @include r(width, 16, 16, 16, 16, 16);
     @include r(height, 16, 16, 16, 16, 16);
+    @include r(font-size, 9, 9, 9, 9, 9);
 }
 </style>
