@@ -445,8 +445,9 @@ footer.loan-nara-footer-container {
         }
     }
     div.company-info-wrapper {
+        background-color: #f8fafc;
         border-bottom: 1px solid #dfe3ea;
-        @include r(margin-top, 20, 20, 20, 40, 40);
+        @include r(padding-top, 20, 20, 20, 40, 40);
         @include r(padding-bottom, 30, 30, 30, 40, 40);
         div.align-box {
             @include r(padding-left, 16, 24, 24, 40, 40);
@@ -488,7 +489,7 @@ footer.loan-nara-footer-container {
                     address.contact-info {
                         p.phone-title {
                             font-weight: 700;
-                            color: #366fcc;
+                            color: $color-primary;
                             @include r(font-size, 24, 24, 24, 24, 32);
                             @include r(margin-bottom, 17, 17, 17, 17, 17);
                         }
@@ -624,6 +625,7 @@ footer.loan-nara-footer-container {
         }
     }
     div.legal-info-wrapper {
+        background-color: #f8fafc;
         @include r(padding-top, 30, 30, 30, 40, 40);
         @include r(padding-bottom, 30, 30, 30, 40, 40);
         div.align-box {
