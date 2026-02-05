@@ -253,9 +253,9 @@ header.loan-nara-header-container {
     }
     div.header-main {
         background: $color-white;
+        border-bottom: 1px solid #eaedf4;
         @include r(padding-top, 10, 10, 10, 16, 16);
         @include r(padding-bottom, 10, 10, 10, 16, 16);
-        border-bottom: 1px solid #eaedf4;
         div.align-box {
             display: flex;
             align-items: center;
@@ -329,8 +329,8 @@ header.loan-nara-header-container {
                             box-shadow: none !important;
                             min-height: auto !important;
                             padding: 0 !important;
-                            @include r(margin-right, 16, 16, 16, 16, 16);
                             border-radius: 50px;
+                            @include r(margin-right, 16, 16, 16, 16, 16);
                             div.el-select__selection {
                                 @include r(font-size, 16, 16, 16, 16, 16);
                                 div.el-select__selected-item {
