@@ -168,8 +168,9 @@ nav.loan-nara-header-nav-container {
                 margin: 0 auto;
             }
             div.parent-menu-swiper {
-                overflow: visible !important;
+                overflow: hidden;
                 div.swiper-wrapper {
+                    overflow: visible;
                     div.parent-menu-slide {
                         width: auto !important;
                         @include r(padding-top, 16, 16, 16, 16, 16);
