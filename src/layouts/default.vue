@@ -156,7 +156,6 @@ div.loan-nara-layout {
     width: 100%;
     div.main-with-side-container {
         position: relative;
-        padding-bottom: 100px;
         @include r(padding-top, 16, 24, 24, 40, 40);
         @include r(padding-left, 16, 24, 24, 40, 40);
         @include r(padding-right, 16, 24, 24, 40, 40);

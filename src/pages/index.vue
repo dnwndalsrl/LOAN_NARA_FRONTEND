@@ -19,6 +19,12 @@
                 <CompanyListSection />
             </section>
         </div>
+        <div class="fixed-contents-box">
+            <!-- 프로그레스바 (PC 노출) -->
+            <section class="progress-list-wrapper">
+                <ProgressSection />
+            </section>
+        </div>
     </div>
 </template>
 
@@ -60,9 +66,14 @@ div.main-section {
         section.premium-banner-wrapper {
             width: 100%;
             order: 3;
+            margin-top: 1.875rem;
             @include respond(pc) {
                 width: 28.438rem;
                 order: 2;
+                margin-top: 0;
+            }
+            @include respond(laptop) {
+                margin-top: 3.75rem;
             }
         }
         section.category-list-wrapper {
@@ -79,10 +90,33 @@ div.main-section {
             }
         }
         section.company-list-wrapper {
-            width: 100%;
+            position: relative;
             order: 2;
+            @include r(margin-top, 16, 24, 24, 40, 60);
             @include respond(pc) {
                 order: 4;
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                right: 50%;
+                margin-left: -50vw;
+                margin-right: -50vw;
+                background-color: #f8fafc;
+                z-index: -1;
+            }
+        }
+    }
+    div.fixed-contents-box {
+        section.progress-list-wrapper {
+            display: none;
+            @include r(margin-top, 60, 60, 60, 60, 60);
+            @include r(margin-bottom, 60, 60, 60, 60, 60);
+            @include respond(pc) {
+                display: block;
             }
         }
     }
