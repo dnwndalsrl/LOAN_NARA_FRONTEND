@@ -147,10 +147,14 @@ div.middle-banner-box {
     }
     div.img-box {
         height: 100%;
+        display: flex;
+        align-items: center;
         img {
             display: block;
-            width: 100%;
             height: 100%;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
         }
     }
 }
