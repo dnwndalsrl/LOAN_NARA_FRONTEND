@@ -723,7 +723,7 @@ div.company-list-section {
             gap: 1.5rem;
         }
         @include respond(mobile) {
-            gap: 1.5rem;
+            gap: 1rem;
         }
         li.list-item {
             border: 1px solid #dfe3ea;
