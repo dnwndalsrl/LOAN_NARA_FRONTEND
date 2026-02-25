@@ -24,6 +24,14 @@
             <section class="progress-list-wrapper">
                 <ProgressSection />
             </section>
+            <!-- 등록 현황 테이블 -->
+            <section class="current-situation-wrapper">
+                <RegisterStatusTableSection />
+            </section>
+            <!-- 금융뉴스/대부업뉴스/공지사항/바로가기 -->
+            <section class="notice-wrapper">
+                <NoticeSection />
+            </section>
         </div>
     </div>
 </template>
@@ -118,6 +126,9 @@ div.main-section {
             @include respond(pc) {
                 display: block;
             }
+        }
+        section.current-situation-wrapper {
+            padding-bottom: 50px;
         }
     }
 }

@@ -13,35 +13,60 @@
             </div>
         </div>
         <ul class="list-box">
-            <template v-for="(listItem, listIndex) in visibleCompanyList" :key="listItem.id">
-                <!-- 일반 리스트 -->
-                <li class="list-item">
-                    <NuxtLink :to="'/'">
-                        <div class="badge-box">
-                            <NormalBadge :title="listItem.area" />
-                            <NewBadge />
+            <!-- 상위 리스트 -->
+            <li
+                v-for="(listItem, listIndex) in upperCompanyList"
+                :key="listItem.id"
+                class="list-item"
+            >
+                <NuxtLink :to="'/'">
+                    <div class="badge-box">
+                        <NormalBadge :title="listItem.area" />
+                        <NewBadge />
+                    </div>
+                    <p class="main-title">{{ listItem.title }}</p>
+                    <div class="content-title-box">
+                        <p v-if="listItem.contents1">{{ listItem.contents1 }}</p>
+                        <p v-if="listItem.contents2">{{ listItem.contents2 }}</p>
+                    </div>
+                    <div class="phone-num-box">
+                        <div class="img-box">
+                            <img src="/images/common/tell_phone.png" alt="전화번호" />
                         </div>
-                        <p class="main-title">{{ listItem.title }}</p>
-                        <div class="content-title-box">
-                            <p v-if="listItem.contents1">{{ listItem.contents1 }}</p>
-                            <p v-if="listItem.contents2">{{ listItem.contents2 }}</p>
+                        <p>{{ listItem.phone }}</p>
+                    </div>
+                    <p class="company-name-title">{{ listItem.companyName }}</p>
+                </NuxtLink>
+            </li>
+            <!-- 배너 -->
+            <li v-if="bannerIndex !== null" class="banner-list-item">
+                <MiddleBannerSection />
+            </li>
+            <!-- 하위 리스트 -->
+            <li
+                v-for="(listItem, listIndex) in lowerCompanyList"
+                :key="listItem.id"
+                class="list-item"
+            >
+                <NuxtLink :to="'/'">
+                    <div class="badge-box">
+                        <NormalBadge :title="listItem.area" />
+                        <NewBadge />
+                    </div>
+                    <p class="main-title">{{ listItem.title }}</p>
+                    <div class="content-title-box">
+                        <p v-if="listItem.contents1">{{ listItem.contents1 }}</p>
+                        <p v-if="listItem.contents2">{{ listItem.contents2 }}</p>
+                    </div>
+                    <div class="phone-num-box">
+                        <div class="img-box">
+                            <img src="/images/common/tell_phone.png" alt="전화번호" />
                         </div>
-                        <div class="phone-num-box">
-                            <div class="img-box">
-                                <img src="/images/common/tell_phone.png" alt="전화번호" />
-                            </div>
-                            <p>{{ listItem.phone }}</p>
-                        </div>
-                        <p class="company-name-title">{{ listItem.companyName }}</p>
-                    </NuxtLink>
-                </li>
-                <!-- 중간배너 -->
-                <ClientOnly>
-                    <li v-if="listIndex === bannerIndex" class="banner-list-item">
-                        <MiddleBannerSection />
-                    </li>
-                </ClientOnly>
-            </template>
+                        <p>{{ listItem.phone }}</p>
+                    </div>
+                    <p class="company-name-title">{{ listItem.companyName }}</p>
+                </NuxtLink>
+            </li>
         </ul>
     </div>
 </template>
@@ -50,6 +75,8 @@
 import { v4 as uuid } from 'uuid'
 const { isPc, isLaptop, isTablet, isMobilePlus, isMobile } = useBreakpoints()
 // ======================================== state
+const hydrated = ref(false)
+
 const companyListInfo = ref([
     {
         id: uuid(),
@@ -656,22 +683,46 @@ const companyListInfo = ref([
 // ======================================== Computed
 // 업체 리스트 가공 (기본은 60개, 모바일부터는 30개)
 const visibleCount = computed(() => {
+    if (!hydrated.value) return 60
     if (isTablet.value) return 30
     if (isMobilePlus.value) return 30
     if (isMobile.value) return 30
     return 60
 })
 
-const visibleCompanyList = computed(() => {
-    return companyListInfo.value.slice(0, visibleCount.value)
-})
-
 const bannerIndex = computed(() => {
+    if (!hydrated.value) return null
     if (isPc.value) return 29
     if (isLaptop.value) return 31
     if (isTablet.value) return 14
     if (isMobilePlus.value) return 15
     if (isMobile.value) return 15
+
+    return null
+})
+
+const visibleCompanyList = computed(() => {
+    return companyListInfo.value.slice(0, visibleCount.value)
+})
+
+const upperCompanyList = computed(() => {
+    if (bannerIndex.value === null) {
+        return visibleCompanyList.value
+    }
+
+    return visibleCompanyList.value.slice(0, bannerIndex.value + 1)
+})
+
+const lowerCompanyList = computed(() => {
+    if (bannerIndex.value === null) {
+        return []
+    }
+
+    return visibleCompanyList.value.slice(bannerIndex.value + 1)
+})
+
+onMounted(() => {
+    hydrated.value = true
 })
 </script>
 

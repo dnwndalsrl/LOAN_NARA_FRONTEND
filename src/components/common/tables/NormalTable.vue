@@ -1,13 +1,18 @@
 <template>
     <div class="normal-table">
-        <el-table :data="props.data" :style="{ width: '100%' }" v-bind="$attrs">
-            <slot />
-            <template #empty>
-                <slot name="empty">
-                    <el-empty description="조회된 결과가 없습니다." />
-                </slot>
-            </template>
-        </el-table>
+        <template v-if="!isMobile">
+            <el-table :data="props.data" :style="{ width: '100%' }" v-bind="$attrs">
+                <slot />
+                <template #empty>
+                    <slot name="empty">
+                        <el-empty description="조회된 결과가 없습니다." />
+                    </slot>
+                </template>
+            </el-table>
+        </template>
+        <template v-else>
+            <slot name="mobile" :items="props.data" />
+        </template>
 
         <!-- 페이지네이션 -->
         <div v-if="props.showPagination" class="pagination-box">
@@ -23,8 +28,8 @@
 </template>
 
 <script setup lang="ts">
+const { isPc, isLaptop, isTablet, isMobilePlus, isMobile } = useBreakpoints()
 import { ref, watch } from 'vue'
-
 const props = withDefaults(
     defineProps<{
         data: any[]
@@ -55,6 +60,7 @@ watch(
     (v) => (currentPage.value = v ?? 1),
 )
 
+// ========================================= Function
 const onCurrentChange = (page: number) => {
     currentPage.value = page
     emit('update:currentPage', page)
@@ -66,30 +72,34 @@ const onCurrentChange = (page: number) => {
 div.normal-table {
     width: 100%;
     div.el-table {
+        border-top: 1px solid #dfe3ea;
         div.el-table__inner-wrapper {
             div.el-table__header-wrapper {
-                height: 30px;
+                border-bottom: 1px solid #dfe3ea;
+                @include r(height, 37, 37, 37, 37, 37);
                 table.el-table__header {
                     height: 100%;
                     thead {
                         height: 100%;
-                        font-weight: 700 !important;
-                        color: #222222 !important;
                         tr {
                             height: 100%;
-                            background-color: #f6f7f9 !important;
+                            background-color: $color-light-gray !important;
                             th {
                                 height: 100%;
-                                background-color: #f6f7f9 !important;
+                                background-color: $color-light-gray !important;
                                 border-bottom: none !important;
                                 text-align: center !important;
                                 padding: 0 !important;
                                 div.cell {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    line-height: 1 !important;
                                     height: 100%;
-                                    line-height: 30px !important;
-                                    label.el-checkbox {
-                                        height: 30px;
-                                    }
+                                    font-weight: 700 !important;
+                                    color: $color-black !important;
+                                    padding: 0 !important;
+                                    @include r(font-size, 14, 14, 14, 14, 14);
                                 }
                             }
                         }
@@ -106,7 +116,7 @@ div.normal-table {
                                         background-color: #ffffff !important;
                                         td.el-table__cell {
                                             div.cell {
-                                                color: #222222 !important;
+                                                color: $color-black;
                                                 line-height: normal !important;
                                                 .align-center {
                                                     text-align: center !important;
@@ -117,20 +127,44 @@ div.normal-table {
                                                 .align-right {
                                                     text-align: right !important;
                                                 }
-                                                .font-size-small {
-                                                    font-size: 12px !important;
+                                                .color-black {
+                                                    color: $color-black !important;
                                                 }
-                                                .font-middle {
-                                                    font-weight: 500 !important;
+                                                .color-gray {
+                                                    color: $color-dark-gray !important;
                                                 }
-                                                .font-bold {
-                                                    font-weight: 700 !important;
+                                                .normal-size {
+                                                    @include r(font-size, 14, 14, 14, 14, 14);
                                                 }
                                                 div.img-box {
                                                     img {
                                                         display: block;
                                                         width: 100%;
                                                         height: auto;
+                                                    }
+                                                }
+                                                div.contents-center-box {
+                                                    display: flex;
+                                                    justify-content: center;
+                                                }
+                                                div.badge-align-box {
+                                                    display: flex;
+                                                    align-items: center;
+                                                    @include r(gap, 4, 4, 4, 4, 4);
+                                                    a {
+                                                        display: block;
+                                                        font-weight: 400;
+                                                        color: $color-black;
+                                                        text-decoration: none;
+                                                        cursor: pointer;
+                                                        min-width: 0;
+                                                        white-space: nowrap;
+                                                        overflow: hidden;
+                                                        text-overflow: ellipsis;
+                                                        @include r(font-size, 14, 14, 14, 14, 14);
+                                                    }
+                                                    div.new-badge {
+                                                        flex-shrink: 0;
                                                     }
                                                 }
                                             }
@@ -143,6 +177,9 @@ div.normal-table {
                 }
             }
         }
+    }
+    ul.mobile-table-list-wrapper {
+        border-top: 1px solid #dfe3ea;
     }
     div.table-button-wrapper {
         display: flex;
