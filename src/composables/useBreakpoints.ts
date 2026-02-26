@@ -3,8 +3,13 @@ const REM = 16
 export const useBreakpoints = () => {
     const mounted = ref(false)
 
-    // client에서만 실제 width가 의미가 있음
-    const { width } = useWindowSize()
+    // ✅ SSR에서는 useWindowSize() 호출 금지
+    const width = ref(0)
+
+    if (import.meta.client) {
+        const { width: w } = useWindowSize()
+        watch(w, (v) => (width.value = v), { immediate: true })
+    }
 
     onMounted(() => {
         mounted.value = true
