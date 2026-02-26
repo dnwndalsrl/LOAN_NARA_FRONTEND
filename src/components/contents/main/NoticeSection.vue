@@ -1,9 +1,9 @@
 <template>
     <div class="notice-section">
-        <div class="notice-item">
+        <div class="notice-item is-left">
             <div class="content-box">
                 <div class="title-box">
-                    <h2>전국 대출업체 등록 현황</h2>
+                    <h2>금융뉴스</h2>
                     <NuxtLink>
                         더보기
                         <div class="img-box">
@@ -13,7 +13,26 @@
                 </div>
                 <ul class="notice-list">
                     <NoticeListCard
-                        v-for="(item, index) in tempData"
+                        v-for="(item, index) in tempData.slice(0, 10)"
+                        :key="item.id"
+                        :title="item.title"
+                        :date="item.date"
+                    />
+                </ul>
+            </div>
+            <div v-show="isPc || isLaptop" class="content-box">
+                <div class="title-box">
+                    <h2>대부업뉴스</h2>
+                    <NuxtLink>
+                        더보기
+                        <div class="img-box">
+                            <img src="/images/common/right_arrow_gray_sharp.png" alt="더보기" />
+                        </div>
+                    </NuxtLink>
+                </div>
+                <ul class="notice-list">
+                    <NoticeListCard
+                        v-for="(item, index) in tempData.slice(0, 10)"
                         :key="item.id"
                         :title="item.title"
                         :date="item.date"
@@ -21,13 +40,62 @@
                 </ul>
             </div>
         </div>
-        <div class="notice-item"></div>
-        <div class="notice-item"></div>
+        <div v-show="isPc || isLaptop" class="notice-item is-right">
+            <div class="content-box">
+                <div class="title-box">
+                    <h2>공지사항</h2>
+                    <NuxtLink>
+                        더보기
+                        <div class="img-box">
+                            <img src="/images/common/right_arrow_gray_sharp.png" alt="더보기" />
+                        </div>
+                    </NuxtLink>
+                </div>
+                <ul class="notice-list">
+                    <NoticeListCard
+                        v-for="(item, index) in tempData.slice(0, 3)"
+                        :key="item.id"
+                        :title="item.title"
+                        :date="item.date"
+                    />
+                </ul>
+            </div>
+            <div class="content-box">
+                <div class="title-box">
+                    <h2>바로가기</h2>
+                </div>
+                <div class="button-wrapper">
+                    <div class="top-area">
+                        <NuxtLink>
+                            <div class="img-box">
+                                <img src="/images/common/main_action1.png" alt="광고문의" />
+                            </div>
+                            광고문의
+                        </NuxtLink>
+                        <NuxtLink>
+                            <div class="img-box">
+                                <img src="/images/common/main_action2.png" alt="1:1 문의" />
+                            </div>
+                            1:1 문의
+                        </NuxtLink>
+                    </div>
+                    <div class="bottom-area">
+                        <NuxtLink>
+                            <div class="img-box">
+                                <img src="/images/common/main_action3.png" alt="자주묻는질문" />
+                            </div>
+                            자주묻는질문
+                        </NuxtLink>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { v4 as uuid } from 'uuid'
+const { isPc, isLaptop, isTablet, isMobilePlus, isMobile } = useBreakpoints()
 const tempData = ref([
     {
         id: uuid(),
@@ -59,8 +127,47 @@ const tempData = ref([
 
 <style lang="scss">
 div.notice-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    min-width: 0;
+    @include r(gap, 20, 20, 20, 20, 20);
     div.notice-item {
+        min-width: 0;
+        &.is-left {
+            display: flex;
+            flex: 2 1 0;
+            @include r(gap, 20, 20, 20, 20, 20);
+            @include respond(tablet) {
+                width: 100%;
+            }
+            @include respond(mobile-plus) {
+                width: 100%;
+            }
+            @include respond(mobile) {
+                width: 100%;
+            }
+            div.content-box {
+                @include respond(tablet) {
+                    width: 100%;
+                }
+                @include respond(mobile-plus) {
+                    width: 100%;
+                }
+                @include respond(mobile) {
+                    width: 100%;
+                }
+            }
+        }
+        &.is-right {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 0;
+            @include r(gap, 24, 24, 24, 24, 24);
+        }
         div.content-box {
+            flex: 1 1 0;
+            min-width: 0;
             border: 1px solid #dfe3ea;
             border-radius: 16px;
             @include r(padding-top, 32, 32, 32, 32, 32);
@@ -71,7 +178,7 @@ div.notice-section {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                @include r(margin-bottom, 24, 24, 24, 24, 24);
+                @include r(margin-bottom, 20, 20, 20, 20, 20);
                 h2 {
                     font-weight: 700;
                     color: $color-black;
@@ -98,7 +205,41 @@ div.notice-section {
                     }
                 }
             }
-            ul.notice-list {
+            div.button-wrapper {
+                display: flex;
+                flex-direction: column;
+                @include r(gap, 10, 10, 10, 10, 10);
+                div.top-area {
+                    display: flex;
+                    align-items: center;
+                    @include r(gap, 10, 10, 10, 10, 10);
+                }
+                div.bottom-area {
+                }
+                a {
+                    display: flex;
+                    justify-content: center;
+                    flex: 1 1 0;
+                    font-weight: 600;
+                    color: $color-black;
+                    text-decoration: none;
+                    cursor: pointer;
+                    background-color: $color-white;
+                    border-radius: 8px;
+                    border: 1px solid #dfe3ea;
+                    @include r(gap, 6, 6, 6, 6, 6);
+                    @include r(font-size, 14, 14, 14, 14, 14);
+                    @include r(padding-top, 14, 14, 14, 14, 14);
+                    @include r(padding-bottom, 14, 14, 14, 14, 14);
+                    div.img-box {
+                        @include r(width, 16, 16, 16, 16, 16);
+                        img {
+                            display: block;
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+                }
             }
         }
     }
