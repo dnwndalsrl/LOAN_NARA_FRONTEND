@@ -39,13 +39,13 @@
             </div>
             <div class="action-button-box">
                 <div class="img-box is-prev swiper-btn-prev">
-                    <img src="/images/common/slide_left_arrow.png" alt="이전으로" />
+                    <img src="/images/main/slide_left_arrow.png" alt="이전으로" />
                 </div>
                 <div class="img-box is-pause" @click="toggleAutoplay()">
-                    <img src="/images/common/slide_pause.png" alt="정지" />
+                    <img src="/images/main/slide_pause.png" alt="정지" />
                 </div>
                 <div class="img-box is-next swiper-btn-next">
-                    <img src="/images/common/slide_right_arrow.png" alt="다음으로" />
+                    <img src="/images/main/slide_right_arrow.png" alt="다음으로" />
                 </div>
             </div>
         </div>

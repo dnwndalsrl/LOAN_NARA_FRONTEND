@@ -151,7 +151,7 @@
                             <h2>금리 및 상환안내</h2>
                             <a href="/" class="link-btn">
                                 <div class="img-box">
-                                    <img src="/images/common/calculator.png" alt="이자계산기" />
+                                    <img src="/images/footer/calculator.png" alt="이자계산기" />
                                 </div>
                                 <p>이자계산기</p>
                             </a>
@@ -205,31 +205,31 @@ import { Vue3Marquee } from 'vue3-marquee'
 const partnerInfo = ref([
     {
         id: '금융위원회',
-        image: '/images/common/footer_img1.png',
+        image: '/images/footer/footer_img1.png',
         link: '/',
         size: 'lg',
     },
     {
         id: '금융감독원',
-        image: '/images/common/footer_img2.png',
+        image: '/images/footer/footer_img2.png',
         link: '/',
         size: 'lg',
     },
     {
         id: '신용회복위원회',
-        image: '/images/common/footer_img3.png',
+        image: '/images/footer/footer_img3.png',
         link: '/',
         size: 'md',
     },
     {
         id: '한국대부금융협회',
-        image: '/images/common/footer_img4.png',
+        image: '/images/footer/footer_img4.png',
         link: '/',
         size: 'md',
     },
     {
         id: 'NICE지키미',
-        image: '/images/common/footer_img5.png',
+        image: '/images/footer/footer_img5.png',
         link: '/',
         size: 'sm',
     },

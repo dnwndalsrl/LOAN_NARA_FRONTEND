@@ -68,13 +68,13 @@
                     <div class="top-area">
                         <NuxtLink>
                             <div class="img-box">
-                                <img src="/images/common/main_action1.png" alt="광고문의" />
+                                <img src="/images/main/main_action1.png" alt="광고문의" />
                             </div>
                             광고문의
                         </NuxtLink>
                         <NuxtLink>
                             <div class="img-box">
-                                <img src="/images/common/main_action2.png" alt="1:1 문의" />
+                                <img src="/images/main/main_action2.png" alt="1:1 문의" />
                             </div>
                             1:1 문의
                         </NuxtLink>
@@ -82,7 +82,7 @@
                     <div class="bottom-area">
                         <NuxtLink>
                             <div class="img-box">
-                                <img src="/images/common/main_action3.png" alt="자주묻는질문" />
+                                <img src="/images/main/main_action3.png" alt="자주묻는질문" />
                             </div>
                             자주묻는질문
                         </NuxtLink>

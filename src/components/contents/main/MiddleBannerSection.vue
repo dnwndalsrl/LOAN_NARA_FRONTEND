@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="img-box">
-                <img src="/images/common/middle_banner1.png" alt="대출나라" />
+                <img src="/images/main/middle_banner1.png" alt="대출나라" />
             </div>
         </template>
         <template v-if="viewIndex === 2">
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="img-box">
-                <img src="/images/common/middle_banner2.png" alt="대출나라" />
+                <img src="/images/main/middle_banner2.png" alt="대출나라" />
             </div>
         </template>
         <template v-if="viewIndex === 3">
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="img-box">
-                <img src="/images/common/middle_banner3.png" alt="대출나라" />
+                <img src="/images/main/middle_banner3.png" alt="대출나라" />
             </div>
         </template>
         <template v-if="viewIndex === 4">
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="img-box">
-                <img src="/images/common/middle_banner4.png" alt="대출나라" />
+                <img src="/images/main/middle_banner4.png" alt="대출나라" />
             </div>
         </template>
     </div>

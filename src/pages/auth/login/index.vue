@@ -1,5 +1,9 @@
 <template>
-    <section>로그인</section>
+    <div class="login-section">
+        <div class="align-box">
+            <h2>업체 로그인</h2>
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts"></script>
