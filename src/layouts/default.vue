@@ -7,7 +7,13 @@
         <AppHeaderNav />
 
         <!-- 메인 영역 -->
-        <div class="main-with-side-container">
+        <div
+            class="main-with-side-container"
+            :class="{
+                'is-main': isMain,
+                'is-auth': isAuth,
+            }"
+        >
             <!-- 왼쪽 플로팅 영역  -->
             <aside ref="leftSideRef" class="side-floating is-left">
                 <div class="recent-register-company-wrapper">
@@ -78,6 +84,7 @@
 <script setup lang="ts">
 import { useCommonStore } from '~/store/common'
 
+const route = useRoute()
 const commonStore = useCommonStore()
 
 const leftSideRef = ref<HTMLElement | null>(null)
@@ -124,6 +131,16 @@ const promoLoanItems = ref([
     },
 ])
 
+// ======================================== Computed
+const isMain = computed(() => route.path === '/')
+
+const isAuth = computed(
+    () =>
+        route.path === '/auth/login' ||
+        route.path === '/auth/find-account' ||
+        route.path === '/auth/find-account/reset-password',
+)
+
 // ======================================== Function
 const onScroll = () => {
     const scrollY = window.scrollY
@@ -156,7 +173,14 @@ div.loan-nara-layout {
     width: 100%;
     div.main-with-side-container {
         position: relative;
-        @include r(padding-top, 16, 24, 24, 40, 40);
+        @include r(padding-top, 24, 40, 40, 40, 40);
+        &.is-main {
+            @include r(padding-top, 16, 24, 24, 40, 40);
+        }
+        &.is-auth {
+            @include r(padding-top, 40, 60, 60, 60, 60);
+        }
+        @include r(padding-bottom, 60, 100, 100, 100, 100);
         @include r(padding-left, 16, 24, 24, 40, 40);
         @include r(padding-right, 16, 24, 24, 40, 40);
         @include respond(pc) {

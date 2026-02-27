@@ -42,8 +42,6 @@ const isSaveId = ref(false)
 
 <style lang="scss">
 div.login-section {
-    @include r(padding-top, 20, 20, 20, 20, 20);
-    @include r(padding-bottom, 60, 100, 100, 100, 100);
     div.align-box {
         display: flex;
         flex-direction: column;

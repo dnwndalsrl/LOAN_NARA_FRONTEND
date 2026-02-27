@@ -111,6 +111,7 @@ button.normal-button {
     border-radius: 6px;
     border: 1px solid #ffffff;
     font-weight: 700;
+    line-height: 1;
     &.is-large {
         @include r(font-size, 13, 13, 13, 13, 13);
         @include r(padding-top, 8, 8, 8, 8, 8);

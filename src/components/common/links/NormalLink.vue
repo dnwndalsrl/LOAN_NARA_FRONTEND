@@ -2,7 +2,6 @@
     <NuxtLink
         class="normal-link"
         :class="getButtonClass"
-        type="button"
         @click="handleClick()"
         :style="{
             backgroundColor: props.bgColor,

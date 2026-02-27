@@ -1,4 +1,202 @@
-// 대출나라 메뉴 (Nav)
+// 대출나라 전 Page Menu
+export const ALL_PAGE = [
+    {
+        key: 'home',
+        label: '홈',
+        path: '/',
+        subMenus: [],
+    },
+    {
+        key: 'login',
+        label: '로그인',
+        path: '/auth/login',
+        subMenus: [],
+    },
+    {
+        key: 'findAccount',
+        label: '아이디/비밀번호 찾기',
+        path: '/auth/find-account',
+        subMenus: [],
+    },
+    {
+        key: 'resetPassword',
+        label: '비밀번호 재설정',
+        path: '/auth/find-account/reset-password',
+        subMenus: [],
+    },
+    {
+        key: 'resetPassword',
+        label: '비밀번호 재설정',
+        path: '/auth/find-account/reset-password',
+        subMenus: [],
+    },
+    {
+        key: 'signupTerms',
+        label: '업체 회원가입',
+        path: '/auth/signup/terms',
+        subMenus: [],
+    },
+    {
+        key: 'signupForm',
+        label: '업체 회원가입',
+        path: '/auth/signup/form',
+        subMenus: [],
+    },
+    {
+        key: 'signupComplete',
+        label: '업체 회원가입',
+        path: '/auth/signup/complete',
+        subMenus: [],
+    },
+    {
+        key: 'loanTypeSearch',
+        label: '상품별 업체 찾기',
+        path: '/browse/loan-type/all',
+        subMenus: [],
+    },
+    {
+        key: 'recommended',
+        label: '오늘의 추천 업체',
+        path: '/browse/recommended',
+        subMenus: [],
+    },
+    {
+        key: 'customSearch',
+        label: '맞춤검색',
+        path: '/browse/search',
+        subMenus: [],
+    },
+    {
+        key: 'scamNumber',
+        label: '사기번호 검색',
+        path: '/scam-number/search',
+        subMenus: [
+            {
+                key: 'scamNumberSearch',
+                label: '사기번호 검색',
+                subPath: '/scam-number/search',
+            },
+            {
+                key: 'illegalFinance',
+                label: '불법 금융 대응',
+                subPath: '/scam-number/illegal-finance/high-interest',
+                childMenus: [
+                    {
+                        key: 'highInterest',
+                        label: '고금리',
+                        subPath: '/scam-number/illegal-finance/high-interest',
+                    },
+                    {
+                        key: 'illegalCollection',
+                        label: '불법채권추심',
+                        subPath: '/scam-number/illegal-finance/illegal-collection',
+                    },
+                    {
+                        key: 'illegalBrokerageFee',
+                        label: '불법대출중개수수료',
+                        subPath: '/scam-number/illegal-finance/illegal-brokerage-fee',
+                    },
+                    {
+                        key: 'loanScam',
+                        label: '대출사기',
+                        subPath: '/scam-number/illegal-finance/loan-scam',
+                    },
+                    {
+                        key: 'phishingScam',
+                        label: '피싱사기',
+                        subPath: '/scam-number/illegal-finance/phishing-scam',
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        key: 'officialCompany',
+        label: '정식업체 조회',
+        path: '/official-company/search',
+        subMenus: [
+            {
+                key: 'officialCompanySearch',
+                label: '정식업체 조회',
+                subPath: '/official-company/search',
+            },
+            {
+                key: 'integratedSearch',
+                label: '대부업체 통합조회',
+                subPath: '/official-company/integrated-search',
+            },
+        ],
+    },
+    {
+        key: 'community',
+        label: '커뮤니티',
+        path: '/community/finance-news',
+        subMenus: [
+            {
+                key: 'financeNews',
+                label: '금융뉴스',
+                subPath: '/community/finance-news',
+            },
+            {
+                key: 'loanNews',
+                label: '대부업 뉴스',
+                subPath: '/community/loan-news',
+            },
+        ],
+    },
+    {
+        key: 'guide',
+        label: '이용안내',
+        path: '/guide/customer',
+        subMenus: [
+            {
+                key: 'customerGuide',
+                label: '고객 이용안내',
+                subPath: '/guide/customer',
+            },
+            {
+                key: 'companyGuide',
+                label: '업체 이용안내',
+                subPath: '/guide/company',
+            },
+        ],
+    },
+    {
+        key: 'support',
+        label: '고객센터',
+        path: '/support/notice',
+        subMenus: [
+            {
+                key: 'notice',
+                label: '공지사항',
+                subPath: '/support/notice',
+            },
+            {
+                key: 'faq',
+                label: '자주 묻는 질문',
+                subPath: '/support/faq',
+            },
+            {
+                key: 'inquiry',
+                label: '1:1 문의',
+                subPath: '/support/inquiry',
+            },
+            {
+                key: 'adInquiry',
+                label: '광고문의',
+                subPath: '/support/ad-inquiry',
+            },
+        ],
+    },
+    {
+        key: 'loanWiki',
+        label: '대출위키',
+        path: '/loan-wiki',
+        subMenus: [],
+    },
+]
+
+// 대출나라 네비게이션 메뉴
 export const NAV_MENUS = [
     {
         key: 'regionSearch',

@@ -36,8 +36,6 @@ const resetPasswordState = ref({
 
 <style lang="scss">
 div.reset-password-section {
-    @include r(padding-top, 20, 20, 20, 20, 20);
-    @include r(padding-bottom, 60, 100, 100, 100, 100);
     div.align-box {
         display: flex;
         flex-direction: column;

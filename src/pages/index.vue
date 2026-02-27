@@ -46,7 +46,6 @@ useHead(createMeta(pageMeta.main))
 
 <style lang="scss">
 div.main-section {
-    @include r(padding-bottom, 60, 100, 100, 100, 100);
     div.align-box {
         display: flex;
         justify-content: space-between;
