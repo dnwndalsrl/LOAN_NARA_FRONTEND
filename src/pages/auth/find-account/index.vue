@@ -31,7 +31,7 @@
                         <button>확인</button>
                     </div>
                 </div>
-                <NuxtLink class="link-txt">로그인 화면으로 돌아가기</NuxtLink>
+                <NuxtLink :to="'/auth/login'" class="link-txt">로그인 화면으로 돌아가기</NuxtLink>
             </section>
         </div>
     </div>
@@ -51,6 +51,7 @@ const finePasswordState = ref({
 
 <style lang="scss">
 div.find-account-section {
+    @include r(padding-top, 20, 20, 20, 20, 20);
     @include r(padding-bottom, 60, 100, 100, 100, 100);
     div.align-box {
         display: flex;

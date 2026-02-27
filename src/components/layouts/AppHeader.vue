@@ -55,7 +55,7 @@
                 <div class="utility-nav">
                     <!-- PC 노출 -->
                     <div class="nav-align-box">
-                        <NuxtLink>업체로그인</NuxtLink>
+                        <NuxtLink :to="'/auth/login'">업체로그인</NuxtLink>
                         <NuxtLink>광고문의</NuxtLink>
                         <p class="modal-action-title">주의사항</p>
                         <el-dropdown
@@ -242,6 +242,8 @@ header.loan-nara-header-container {
                     align-items: center;
                     gap: 1.5rem;
                     a {
+                        display: block;
+                        text-decoration: none;
                         font-weight: 600;
                         color: #6a6a6a;
                         cursor: pointer;
@@ -360,6 +362,8 @@ header.loan-nara-header-container {
                         display: flex;
                     }
                     a {
+                        display: block;
+                        text-decoration: none;
                         font-weight: 600;
                         color: #373f57;
                         cursor: pointer;

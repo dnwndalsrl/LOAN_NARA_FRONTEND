@@ -21,9 +21,11 @@
                 <el-checkbox v-model="isSaveId">아이디 저장</el-checkbox>
                 <div class="button-wrapper">
                     <button>로그인</button>
-                    <NuxtLink>회원가입</NuxtLink>
+                    <NuxtLink :to="'/auth/signup/terms'">회원가입</NuxtLink>
                 </div>
-                <NuxtLink class="link-txt">아이디 / 비밀번호 찾기</NuxtLink>
+                <NuxtLink :to="'/auth/find-account'" class="link-txt"
+                    >아이디 / 비밀번호 찾기</NuxtLink
+                >
             </section>
         </div>
     </div>
@@ -40,6 +42,7 @@ const isSaveId = ref(false)
 
 <style lang="scss">
 div.login-section {
+    @include r(padding-top, 20, 20, 20, 20, 20);
     @include r(padding-bottom, 60, 100, 100, 100, 100);
     div.align-box {
         display: flex;
@@ -116,6 +119,7 @@ div.login-section {
                     font-weight: 700;
                     background-color: $color-primary;
                     border: none;
+                    line-height: 1;
                     border-radius: 6px;
                     cursor: pointer;
                     @include r(padding-top, 16, 16, 16, 16, 16);
