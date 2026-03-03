@@ -21,7 +21,7 @@ const emit = defineEmits<{
 }>()
 const props = withDefaults(
     defineProps<{
-        modelValue: string | number | null
+        modelValue?: string | number | null
         size?: 'NORMAL' | 'SMALL'
         disabled?: boolean
         clearable?: boolean
@@ -53,7 +53,7 @@ const onInput = (value: string | number | null) => {
 div.normal-input {
     width: 100%;
     &.is-small {
-        div.el-input_wrapper {
+        div.el-input__wrapper {
             input.el-input__inner {
                 @include r(font-size, 13, 13, 13, 13, 13);
                 @include r(height, 32, 32, 32, 32, 32);
@@ -64,6 +64,7 @@ div.normal-input {
         border-radius: 8px !important;
         border: 1px solid #dcdfe6 !important;
         box-shadow: none !important;
+        padding: 0 0.75rem !important;
         input.el-input__inner {
             font-weight: 400;
             color: #292e41;

@@ -21,7 +21,6 @@
     </ul>
 </template>
 <script setup lang="ts">
-console.log('test')
 const props = withDefaults(
     defineProps<{
         level: string
