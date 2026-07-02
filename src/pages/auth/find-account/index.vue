@@ -7,6 +7,7 @@
                     <p>아이디 찾기</p>
                     <div class="input-align-box">
                         <NormalInput
+                            :size="'NORMAL'"
                             v-model="findIdState.phoneNumber"
                             :placeholder="'휴대폰 번호'"
                         />
@@ -15,9 +16,14 @@
                 </div>
                 <div class="form-item">
                     <p>비밀번호 찾기</p>
-                    <NormalInput v-model="finePasswordState.id" :placeholder="'아이디'" />
+                    <NormalInput
+                        :size="'NORMAL'"
+                        v-model="finePasswordState.id"
+                        :placeholder="'아이디'"
+                    />
                     <div class="input-align-box">
                         <NormalInput
+                            :size="'NORMAL'"
                             v-model="finePasswordState.phoneNumber"
                             :placeholder="'휴대폰 번호'"
                         />
@@ -25,6 +31,7 @@
                     </div>
                     <div class="input-align-box">
                         <NormalInput
+                            :size="'NORMAL'"
                             v-model="finePasswordState.authenticationNumber"
                             :placeholder="'인증번호'"
                         />
@@ -56,8 +63,8 @@ div.find-account-section {
         flex-direction: column;
         align-items: center;
         h2 {
-            font-weight: 700;
-            color: $color-black;
+            font-weight: $font-weight-bold;
+            color: $color-gray-900;
             @include r(font-size, 20, 24, 24, 24, 24);
             @include r(margin-bottom, 30, 40, 40, 40, 40);
         }
@@ -76,8 +83,8 @@ div.find-account-section {
             div.form-item {
                 @include r(margin-bottom, 32, 32, 32, 32, 32);
                 p {
-                    font-weight: 700;
-                    color: $color-black;
+                    font-weight: $font-weight-bold;
+                    color: $color-gray-900;
                     @include r(font-size, 18, 18, 18, 18, 18);
                     @include r(margin-bottom, 22, 22, 22, 22, 22);
                 }
@@ -92,27 +99,26 @@ div.find-account-section {
                     button {
                         display: block;
                         color: $color-white;
-                        font-weight: 700;
-                        background-color: $color-primary;
+                        font-weight: $font-weight-bold;
+                        background-color: $color-primary-500;
                         border: none;
                         border-radius: 6px;
                         cursor: pointer;
                         &.no-background {
                             background-color: $color-white !important;
-                            border: 1px solid $color-primary !important;
-                            color: $color-primary !important;
+                            border: 1px solid $color-primary-500 !important;
+                            color: $color-primary-500 !important;
                         }
                         @include r(width, 100, 100, 100, 100, 100);
-                        @include r(padding-top, 16, 16, 16, 16, 16);
-                        @include r(padding-bottom, 16, 16, 16, 16, 16);
+                        @include r(height, 49, 49, 49, 49, 49);
                         @include r(font-size, 14, 14, 14, 14, 14);
                     }
                 }
             }
             a.link-txt {
                 display: block;
-                font-weight: 500;
-                color: $color-dark-gray;
+                font-weight: $font-weight-medium;
+                color: $color-gray-500;
                 text-decoration: none;
                 text-align: center;
                 cursor: pointer;

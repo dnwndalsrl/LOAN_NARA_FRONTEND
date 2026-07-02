@@ -54,9 +54,9 @@ div.normal-input {
     width: 100%;
     &.is-small {
         div.el-input__wrapper {
+            @include r(height, 32, 32, 32, 32, 32);
             input.el-input__inner {
                 @include r(font-size, 13, 13, 13, 13, 13);
-                @include r(height, 32, 32, 32, 32, 32);
             }
         }
     }
@@ -65,11 +65,11 @@ div.normal-input {
         border: 1px solid #dcdfe6 !important;
         box-shadow: none !important;
         padding: 0 0.75rem !important;
+        @include r(height, 49, 49, 49, 49, 49);
         input.el-input__inner {
-            font-weight: 400;
+            font-weight: $font-weight-regular;
             color: #292e41;
             @include r(font-size, 14, 14, 14, 14, 14);
-            @include r(height, 49, 49, 49, 49, 49);
         }
     }
 }

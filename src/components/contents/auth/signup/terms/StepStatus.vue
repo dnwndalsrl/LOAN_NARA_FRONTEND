@@ -37,7 +37,7 @@ ul.step-status {
     justify-content: space-between;
     align-items: center;
     border-radius: 16px;
-    background-color: $color-light-gray;
+    background-color: $color-gray-100;
     @include r(padding-top, 22, 22, 22, 22, 22);
     @include r(padding-bottom, 22, 22, 22, 22, 22);
     li.step-item {
@@ -47,10 +47,10 @@ ul.step-status {
         align-items: center;
         &.is-active {
             div.badge-box {
-                background-color: $color-primary !important;
+                background-color: $color-primary-500 !important;
             }
             p {
-                color: $color-primary !important;
+                color: $color-primary-500 !important;
             }
         }
         @include r(gap, 8, 8, 8, 8, 8);
@@ -61,7 +61,7 @@ ul.step-status {
             flex-direction: column;
         }
         div.badge-box {
-            font-weight: 700;
+            font-weight: $font-weight-bold;
             border-radius: 50px;
             background-color: #8b98b1;
             color: $color-white;
@@ -73,7 +73,7 @@ ul.step-status {
         }
         p {
             color: #8b98b1;
-            font-weight: 700;
+            font-weight: $font-weight-bold;
             @include r(font-size, 18, 18, 18, 18, 18);
         }
     }

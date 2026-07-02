@@ -83,8 +83,8 @@ section.page-header-box {
         align-items: center;
         justify-content: space-between;
         h1.page-title {
-            color: $color-black;
-            font-weight: 700;
+            color: $color-gray-900;
+            font-weight: $font-weight-bold;
             @include r(font-size, 20, 24, 24, 24, 24);
         }
         nav.breadcrumb-area {
@@ -92,8 +92,8 @@ section.page-header-box {
             align-items: center;
             @include r(gap, 10, 10, 10, 10, 10);
             p.crumb {
-                color: $color-dark-gray;
-                font-weight: 400;
+                color: $color-gray-500;
+                font-weight: $font-weight-regular;
                 @include r(font-size, 13, 13, 13, 13, 13);
             }
             div.img-box {

@@ -304,8 +304,6 @@ footer.loan-nara-footer-container {
                 }
                 div.vue3-marquee {
                     @include r(gap, 40, 40, 87, 79, 79);
-                    div.marquee {
-                    }
                 }
             }
             ul.partner-list {
@@ -375,12 +373,12 @@ footer.loan-nara-footer-container {
                     @include r(gap, 48, 48, 48, 32, 32);
                     li.term-item {
                         a {
-                            font-weight: 700;
-                            color: $color-dark-gray;
+                            font-weight: $font-weight-bold;
+                            color: $color-gray-500;
                             text-decoration: none;
                             @include r(font-size, 13, 13, 13, 14, 14);
                             &.is-black {
-                                color: $color-black;
+                                color: $color-gray-900;
                             }
                         }
                     }
@@ -389,11 +387,11 @@ footer.loan-nara-footer-container {
                     a {
                         width: fit-content;
                         display: block;
-                        font-weight: 700;
-                        color: #5b6c8b;
+                        font-weight: $font-weight-bold;
+                        color: $color-gray-500;
                         text-decoration: none;
                         border-radius: 8px;
-                        background-color: #dfe3ea;
+                        background-color: $color-gray-200;
                         @include r(padding-top, 8, 8, 8, 8, 8);
                         @include r(padding-bottom, 8, 8, 8, 8, 8);
                         @include r(padding-left, 12, 12, 12, 12, 12);
@@ -418,8 +416,8 @@ footer.loan-nara-footer-container {
                             width: auto !important;
                             &.terms-nav-slide {
                                 a {
-                                    font-weight: 700;
-                                    color: $color-dark-gray;
+                                    font-weight: $font-weight-bold;
+                                    color: $color-gray-500;
                                     text-decoration: none;
                                     @include r(font-size, 13, 13, 13, 13, 13);
                                 }
@@ -427,11 +425,11 @@ footer.loan-nara-footer-container {
                             a.type-btn {
                                 width: fit-content;
                                 display: block;
-                                font-weight: 700;
-                                color: #5b6c8b;
+                                font-weight: $font-weight-bold;
+                                color: $color-gray-500;
                                 text-decoration: none;
                                 border-radius: 8px;
-                                background-color: #dfe3ea;
+                                background-color: $color-gray-200;
                                 @include r(padding-top, 8, 8, 8, 8, 8);
                                 @include r(padding-bottom, 8, 8, 8, 8, 8);
                                 @include r(padding-left, 12, 12, 12, 12, 12);
@@ -488,20 +486,20 @@ footer.loan-nara-footer-container {
                     }
                     address.contact-info {
                         p.phone-title {
-                            font-weight: 700;
-                            color: $color-primary;
+                            font-weight: $font-weight-bold;
+                            color: $color-primary-500;
                             @include r(font-size, 24, 24, 24, 24, 32);
                             @include r(margin-bottom, 17, 17, 17, 17, 17);
                         }
                         p.business-hours-title {
-                            font-weight: 500;
-                            color: $color-black;
+                            font-weight: $font-weight-medium;
+                            color: $color-gray-900;
                             @include r(font-size, 13, 13, 13, 13, 14);
                             @include r(margin-bottom, 4, 4, 4, 4, 4);
                         }
                         p.holiday-info {
-                            font-weight: 500;
-                            color: $color-dark-gray;
+                            font-weight: $font-weight-medium;
+                            color: $color-gray-500;
                             @include r(font-size, 13, 13, 13, 13, 14);
                             @include r(margin-bottom, 17, 17, 17, 17, 17);
                         }
@@ -517,17 +515,17 @@ footer.loan-nara-footer-container {
                             p {
                                 @include r(font-size, 13, 13, 13, 13, 14);
                                 &.title {
-                                    font-weight: 700;
-                                    color: $color-black;
+                                    font-weight: $font-weight-bold;
+                                    color: $color-gray-900;
                                     @include r(width, 56, 56, 56, 56, 56);
                                     @include r(margin-right, 10, 10, 10, 10, 10);
                                 }
                                 &.contents {
-                                    font-weight: 400;
-                                    color: $color-black;
+                                    font-weight: $font-weight-regular;
+                                    color: $color-gray-900;
                                     strong {
-                                        font-weight: 700;
-                                        color: $color-dark-gray;
+                                        font-weight: $font-weight-bold;
+                                        color: $color-gray-500;
                                     }
                                 }
                             }
@@ -565,8 +563,8 @@ footer.loan-nara-footer-container {
                         justify-content: space-between;
                         @include r(margin-bottom, 10, 10, 10, 10, 30);
                         h2 {
-                            font-weight: 700;
-                            color: $color-black;
+                            font-weight: $font-weight-bold;
+                            color: $color-gray-900;
                             @include r(font-size, 16, 16, 16, 16, 16);
                         }
                         div.modal-btn {
@@ -584,7 +582,7 @@ footer.loan-nara-footer-container {
                             }
                             p {
                                 color: #5b6c8b;
-                                font-weight: 700;
+                                font-weight: $font-weight-bold;
                                 @include r(font-size, 14, 14, 14, 14, 14);
                             }
                         }
@@ -603,20 +601,20 @@ footer.loan-nara-footer-container {
                             }
                             p {
                                 color: #5b6c8b;
-                                font-weight: 700;
+                                font-weight: $font-weight-bold;
                                 @include r(font-size, 14, 14, 14, 14, 14);
                             }
                         }
                     }
                     div.contents-box {
                         p {
-                            font-weight: 400;
-                            color: $color-dark-gray;
+                            font-weight: $font-weight-regular;
+                            color: $color-gray-500;
                             line-height: 1.3;
                             @include r(font-size, 14, 14, 14, 14, 14);
                             span {
-                                font-weight: 500;
-                                color: $color-red;
+                                font-weight: $font-weight-medium;
+                                color: $color-error-500;
                             }
                         }
                     }
@@ -637,8 +635,8 @@ footer.loan-nara-footer-container {
             }
             address.legal-info-box {
                 p {
-                    font-weight: 400;
-                    color: $color-dark-gray;
+                    font-weight: $font-weight-regular;
+                    color: $color-gray-500;
                     line-height: 1.4;
                     @include r(font-size, 14, 14, 14, 14, 14);
                     &:last-child {

@@ -223,8 +223,8 @@ div.loan-nara-layout {
                         }
                     }
                     h2 {
-                        font-weight: 700;
-                        color: $color-black;
+                        font-weight: $font-weight-bold;
+                        color: $color-gray-900;
                         @include r(margin-left, 6, 6, 6, 6, 6);
                         @include r(font-size, 14, 14, 14, 14, 14);
                     }
@@ -241,19 +241,19 @@ div.loan-nara-layout {
                         a {
                             display: block;
                             min-width: 0;
-                            font-weight: 400;
+                            font-weight: $font-weight-regular;
                             white-space: nowrap;
                             overflow: hidden;
                             text-overflow: ellipsis;
-                            color: $color-black;
+                            color: $color-gray-900;
                             text-decoration: none;
                             @include r(margin-right, 4, 4, 4, 4, 4);
                             @include r(font-size, 13, 13, 13, 13, 13);
                         }
                         span.badge-new {
                             flex-shrink: 0;
-                            font-weight: 700;
-                            color: $color-green;
+                            font-weight: $font-weight-bold;
+                            color: $color-point-500;
                             @include r(font-size, 12, 12, 12, 12, 12);
                         }
                     }
@@ -277,13 +277,13 @@ div.loan-nara-layout {
                     }
                     div.title-area {
                         h2 {
-                            font-weight: 700;
-                            color: $color-black;
+                            font-weight: $font-weight-bold;
+                            color: $color-gray-900;
                             @include r(margin-bottom, 4, 4, 4, 4, 4);
                             @include r(font-size, 13, 13, 13, 13, 13);
                         }
                         p.sub-title {
-                            font-weight: 400;
+                            font-weight: $font-weight-regular;
                             color: #545976;
                             @include r(margin-bottom, 16, 16, 16, 16, 16);
                             @include r(font-size, 13, 13, 13, 13, 13);
@@ -301,7 +301,7 @@ div.loan-nara-layout {
                             @include r(padding-left, 10, 10, 10, 10, 10);
                             @include r(padding-right, 10, 10, 10, 10, 10);
                             p {
-                                font-weight: 700;
+                                font-weight: $font-weight-bold;
                                 color: #5b6c8b;
                                 @include r(font-size, 13, 13, 13, 13, 13);
                             }

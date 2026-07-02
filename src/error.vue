@@ -75,7 +75,7 @@ section.error-container {
     //             width: fit-content;
     //             background-color: #254793;
     //             color: #ffffff;
-    //             font-weight: 500;
+    //             font-weight: $font-weight-medium;
     //             border-radius: 8px;
     //             cursor: pointer;
     //             @include r(padding-top, 12, 20, 20, 20);

@@ -60,8 +60,8 @@ div.normal-date-picker {
         }
     }
     input {
+        font-weight: $font-weight-regular !important;
         @include r(font-size, 14, 14, 14, 14, 14);
-        font-weight: 400 !important;
     }
 }
 </style>

@@ -16,7 +16,7 @@ div.normal-badge {
     border: 1px solid #3665ff;
     border-radius: 50px;
     background-color: #ebf0ff;
-    font-weight: 700;
+    font-weight: $font-weight-bold;
     color: #3665ff;
     @include r(padding-top, 2, 2, 2, 2, 2);
     @include r(padding-bottom, 2, 2, 2, 2, 2);

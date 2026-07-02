@@ -247,7 +247,7 @@ const categoryInfo = ref([
 <style lang="scss">
 div.main-category-box {
     width: 100%;
-    border: 2px solid $color-primary;
+    border: 2px solid $color-primary-500;
     border-radius: 16px;
     @include r(padding-top, 24, 24, 24, 24, 24);
     @include r(padding-bottom, 24, 24, 24, 24, 24);
@@ -270,11 +270,11 @@ div.main-category-box {
                 }
             }
             h2 {
-                font-weight: 700;
-                color: $color-black;
+                font-weight: $font-weight-bold;
+                color: $color-gray-900;
                 @include r(font-size, 16, 18, 18, 18, 18);
                 strong {
-                    color: $color-primary;
+                    color: $color-primary-500;
                 }
             }
         }
@@ -282,7 +282,7 @@ div.main-category-box {
             display: flex;
             align-items: center;
             a {
-                font-weight: 500;
+                font-weight: $font-weight-medium;
                 color: #868c98;
                 text-decoration: none;
                 @include r(font-size, 13, 14, 14, 14, 14);
@@ -308,7 +308,7 @@ div.main-category-box {
         li.category-item {
             flex: 0 0 calc((100% - 8px * 8) / 9);
             border-radius: 8px;
-            background-color: $color-light-gray;
+            background-color: $color-gray-100;
             transition: background-color 0.2s ease;
             @include respond(mobile) {
                 flex: 0 0 calc((100% - 4px * 5) / 6);
@@ -317,23 +317,23 @@ div.main-category-box {
                 background-color: $color-white !important;
                 border: 1px solid #d7dce5 !important;
                 a {
-                    font-weight: 600 !important;
+                    font-weight: $font-weight-semi-bold !important;
                     color: #6a6a6a !important;
                 }
             }
             &:hover {
                 background-color: #dbe9ff;
                 a {
-                    font-weight: 700;
-                    color: $color-primary;
+                    font-weight: $font-weight-bold;
+                    color: $color-primary-500;
                 }
             }
             a {
                 display: block;
                 width: 100%;
                 height: 100%;
-                font-weight: 600;
-                color: $color-black;
+                font-weight: $font-weight-semi-bold;
+                color: $color-gray-900;
                 text-decoration: none;
                 text-align: center;
                 @include r(font-size, 13, 14, 14, 14, 14);

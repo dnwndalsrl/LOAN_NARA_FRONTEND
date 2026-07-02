@@ -21,7 +21,7 @@
             </ul>
         </section>
         <section class="footer-wrapper">
-            <p>* 대부(중개)업 등록증 상 대표자 휴대폰으로 인증바랍니다.</p>
+            <p class="warning-title">* 대부(중개)업 등록증 상 대표자 휴대폰으로 인증바랍니다.</p>
             <div class="button-wrapper">
                 <NormalLink
                     :type="'NORMAL'"
@@ -98,14 +98,14 @@ div.signup-terms-section {
                 display: flex;
                 height: auto;
                 span.el-checkbox__label {
-                    font-weight: 700;
-                    color: $color-black;
+                    font-weight: $font-weight-bold;
+                    color: $color-gray-900;
                     @include r(font-size, 14, 14, 14, 14, 14);
                 }
             }
             p.sub-info-title {
-                font-weight: 400;
-                color: $color-dark-gray;
+                font-weight: $font-weight-regular;
+                color: $color-gray-500;
                 @include r(margin-top, 10, 10, 10, 10, 10);
                 @include r(font-size, 14, 14, 14, 14, 14);
             }
@@ -125,8 +125,8 @@ div.signup-terms-section {
                     display: flex;
                     height: auto;
                     span.el-checkbox__label {
-                        font-weight: 700;
-                        color: $color-black;
+                        font-weight: $font-weight-bold;
+                        color: $color-gray-900;
                         @include r(font-size, 14, 14, 14, 14, 14);
                     }
                 }
@@ -157,9 +157,9 @@ div.signup-terms-section {
             flex-direction: column;
             align-items: end;
         }
-        p {
-            font-weight: 500;
-            color: $color-red;
+        p.warning-title {
+            font-weight: $font-weight-medium;
+            color: $color-error-500;
             @include r(font-size, 13, 13, 13, 13, 13);
         }
         div.button-wrapper {

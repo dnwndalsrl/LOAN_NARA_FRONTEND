@@ -11,8 +11,13 @@
                 </div>
                 <p class="sub-info-title">일반 고객은 회원가입 없이 이용 가능합니다.</p>
                 <div class="form-content-wrapper">
-                    <NormalInput v-model="loginFormState.id" :placeholder="'아이디'" />
                     <NormalInput
+                        :size="'NORMAL'"
+                        v-model="loginFormState.id"
+                        :placeholder="'아이디'"
+                    />
+                    <NormalInput
+                        :size="'NORMAL'"
                         v-model="loginFormState.password"
                         :show-password="true"
                         :placeholder="'비밀번호'"
@@ -47,8 +52,8 @@ div.login-section {
         flex-direction: column;
         align-items: center;
         h2 {
-            font-weight: 700;
-            color: $color-black;
+            font-weight: $font-weight-bold;
+            color: $color-gray-900;
             @include r(font-size, 20, 24, 24, 24, 24);
             @include r(margin-bottom, 30, 40, 40, 40, 40);
         }
@@ -78,14 +83,14 @@ div.login-section {
                     }
                 }
                 p {
-                    font-weight: 500;
-                    color: $color-black;
+                    font-weight: $font-weight-medium;
+                    color: $color-gray-900;
                     @include r(font-size, 16, 16, 16, 16, 16);
                 }
             }
             p.sub-info-title {
-                font-weight: 500;
-                color: $color-dark-gray;
+                font-weight: $font-weight-medium;
+                color: $color-gray-500;
                 @include r(margin-top, 7, 7, 7, 7, 7);
                 @include r(margin-bottom, 22, 22, 22, 22, 22);
                 @include r(font-size, 13, 13, 13, 13, 13);
@@ -100,8 +105,8 @@ div.login-section {
                 height: auto;
                 @include r(margin-top, 22, 22, 22, 22, 22);
                 span.el-checkbox__label {
-                    font-weight: 500;
-                    color: $color-black;
+                    font-weight: $font-weight-medium;
+                    color: $color-gray-900;
                     @include r(font-size, 14, 14, 14, 14, 14);
                 }
             }
@@ -111,38 +116,40 @@ div.login-section {
                 @include r(gap, 10, 10, 10, 10, 10);
                 @include r(margin-top, 22, 22, 22, 22, 22);
                 button {
-                    display: block;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     flex: 1 1 0;
                     color: $color-white;
-                    font-weight: 700;
-                    background-color: $color-primary;
+                    font-weight: $font-weight-bold;
+                    background-color: $color-primary-500;
                     border: none;
                     line-height: 1;
                     border-radius: 6px;
                     cursor: pointer;
-                    @include r(padding-top, 16, 16, 16, 16, 16);
-                    @include r(padding-bottom, 16, 16, 16, 16, 16);
+                    @include r(height, 49, 49, 49, 49, 49);
                     @include r(font-size, 14, 14, 14, 14, 14);
                 }
                 a {
                     flex: 1 1 0;
-                    display: block;
-                    font-weight: 700;
-                    color: $color-primary;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: $font-weight-bold;
+                    color: $color-primary-500;
                     text-decoration: none;
-                    border: 1px solid $color-primary;
+                    border: 1px solid $color-primary-500;
                     border-radius: 6px;
                     text-align: center;
                     cursor: pointer;
-                    @include r(padding-top, 16, 16, 16, 16, 16);
-                    @include r(padding-bottom, 16, 16, 16, 16, 16);
+                    @include r(height, 49, 49, 49, 49, 49);
                     @include r(font-size, 14, 14, 14, 14, 14);
                 }
             }
             a.link-txt {
                 display: block;
-                font-weight: 500;
-                color: $color-dark-gray;
+                font-weight: $font-weight-medium;
+                color: $color-gray-500;
                 text-decoration: none;
                 text-align: center;
                 cursor: pointer;

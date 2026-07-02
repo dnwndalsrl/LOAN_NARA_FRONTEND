@@ -146,18 +146,18 @@ div.premium-banner-swiper {
                 @include r(padding-left, 24, 24, 24, 24, 24);
                 @include r(padding-right, 24, 24, 24, 24, 24);
                 p.premium-card-title {
-                    font-weight: 700;
-                    color: $color-black;
+                    font-weight: $font-weight-bold;
+                    color: $color-gray-900;
                     @include r(margin-top, 16, 16, 16, 16, 16);
                     @include r(margin-bottom, 24, 24, 24, 24, 24);
                     @include r(font-size, 18, 18, 24, 24, 24);
                 }
                 div.premium-card-sub-title-box {
-                    @include r(margin-bottom, 20, 20, 24, 24, 24);
+                    @include r(margin-bottom, 24, 24, 24, 24, 24);
                     p {
                         line-height: 1.3;
-                        font-weight: 400;
-                        color: $color-black;
+                        font-weight: $font-weight-regular;
+                        color: $color-gray-900;
                         @include r(font-size, 14, 14, 16, 16, 16);
                     }
                 }
@@ -168,8 +168,8 @@ div.premium-banner-swiper {
                         @include r(margin-right, 6, 6, 6, 6, 6);
                     }
                     p.company-name-title {
-                        font-weight: 400;
-                        color: $color-black;
+                        font-weight: $font-weight-regular;
+                        color: $color-gray-900;
                         @include r(font-size, 14, 14, 14, 14, 14);
                     }
                 }
@@ -183,7 +183,7 @@ div.premium-banner-swiper {
         right: vw-clamp(0, 24, 0, 480, 16);
         display: flex;
         align-items: center;
-        background-color: $color-light-gray;
+        background-color: $color-gray-100;
         border-radius: 8px;
         @include r(gap, 16, 16, 16, 16, 16);
         @include r(padding-top, 7, 7, 7, 7, 7);
@@ -192,8 +192,8 @@ div.premium-banner-swiper {
         @include r(padding-right, 14, 14, 14, 14, 14);
         div.current-info {
             p {
-                font-weight: 600;
-                color: $color-black;
+                font-weight: $font-weight-semi-bold;
+                color: $color-gray-900;
                 @include r(font-size, 14, 14, 14, 14, 14);
             }
         }

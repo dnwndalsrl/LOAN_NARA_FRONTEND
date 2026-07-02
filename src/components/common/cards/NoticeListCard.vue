@@ -49,14 +49,14 @@ li.notice-list-card {
             width: 0.25rem;
             height: 0.25rem;
             border-radius: 50%;
-            background-color: $color-black;
+            background-color: $color-gray-900;
             @include r(margin-right, 10, 10, 10, 10, 10);
         }
         a {
             min-width: 0;
             display: block;
-            font-weight: 400;
-            color: $color-black;
+            font-weight: $font-weight-regular;
+            color: $color-gray-900;
             text-decoration: none;
             cursor: pointer;
             white-space: nowrap;
@@ -73,8 +73,8 @@ li.notice-list-card {
     div.align-right {
         flex: 0 0 auto;
         p {
-            font-weight: 400;
-            color: $color-dark-gray;
+            font-weight: $font-weight-regular;
+            color: $color-gray-500;
             @include r(font-size, 13, 13, 13, 14, 14);
         }
     }

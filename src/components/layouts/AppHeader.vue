@@ -220,7 +220,7 @@ header.loan-nara-header-container {
             }
             div.company-info {
                 p {
-                    font-weight: 400;
+                    font-weight: $font-weight-regular;
                     color: #6a6a6a;
                     @include r(font-size, 14, 14, 14, 14, 14);
                     span {
@@ -244,7 +244,7 @@ header.loan-nara-header-container {
                     a {
                         display: block;
                         text-decoration: none;
-                        font-weight: 600;
+                        font-weight: $font-weight-semi-bold;
                         color: #6a6a6a;
                         cursor: pointer;
                         @include r(font-size, 14, 14, 14, 14, 14);
@@ -297,7 +297,7 @@ header.loan-nara-header-container {
                             }
                         }
                         input.el-input__inner {
-                            color: $color-black;
+                            color: $color-gray-900;
                             @include r(font-size, 16, 16, 16, 16, 16);
                         }
                         span.el-input__suffix {
@@ -337,7 +337,7 @@ header.loan-nara-header-container {
                                 @include r(font-size, 16, 16, 16, 16, 16);
                                 div.el-select__selected-item {
                                     input {
-                                        color: $color-black;
+                                        color: $color-gray-900;
                                     }
                                 }
                             }
@@ -364,13 +364,13 @@ header.loan-nara-header-container {
                     a {
                         display: block;
                         text-decoration: none;
-                        font-weight: 600;
+                        font-weight: $font-weight-semi-bold;
                         color: #373f57;
                         cursor: pointer;
                         @include r(font-size, 14, 14, 14, 14, 14);
                     }
                     p {
-                        font-weight: 600;
+                        font-weight: $font-weight-semi-bold;
                         color: #373f57;
                         cursor: pointer;
                         @include r(font-size, 14, 14, 14, 14, 14);
@@ -388,7 +388,7 @@ header.loan-nara-header-container {
                             @include r(padding-left, 14, 14, 14, 14, 14);
                             @include r(padding-right, 14, 14, 14, 14, 14);
                             p {
-                                font-weight: 600;
+                                font-weight: $font-weight-semi-bold;
                                 color: #373f57;
                                 @include r(margin-right, 8, 8, 8, 8, 8);
                                 @include r(font-size, 14, 14, 14, 14, 14);
@@ -442,7 +442,7 @@ div.company-search-popper {
                             background-color: inherit !important;
                         }
                         span {
-                            font-weight: 400 !important;
+                            font-weight: $font-weight-regular !important;
                             color: #292e41 !important;
                         }
                     }
@@ -499,8 +499,8 @@ div.recent-dropdown-list-popper {
                             min-width: 0;
                             strong {
                                 flex-shrink: 0;
-                                font-weight: 700;
-                                color: $color-primary;
+                                font-weight: $font-weight-bold;
+                                color: $color-primary-500;
                                 @include r(width, 20, 20, 20, 20, 20);
                             }
                             p {
@@ -509,14 +509,14 @@ div.recent-dropdown-list-popper {
                                 white-space: nowrap;
                                 overflow: hidden;
                                 text-overflow: ellipsis;
-                                font-weight: 400;
-                                color: $color-black;
+                                font-weight: $font-weight-regular;
+                                color: $color-gray-900;
                             }
                         }
                     }
                     p.empty-title {
-                        font-weight: 600;
-                        color: $color-dark-gray;
+                        font-weight: $font-weight-semi-bold;
+                        color: $color-gray-500;
                         @include r(font-size, 14, 14, 14, 14, 14);
                     }
                 }

@@ -9,7 +9,7 @@ div.new-badge {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $color-green;
+    background-color: $color-point-500;
     border-radius: 50%;
     color: $color-white;
     @include r(width, 16, 16, 16, 16, 16);

@@ -736,8 +736,8 @@ div.company-list-section {
         justify-content: space-between;
         @include r(margin-bottom, 20, 30, 30, 30, 30);
         h2 {
-            font-weight: 700;
-            color: $color-black;
+            font-weight: $font-weight-bold;
+            color: $color-gray-900;
             @include r(font-size, 20, 20, 20, 24, 24);
         }
         div.sub-info-box {
@@ -745,7 +745,7 @@ div.company-list-section {
             align-items: center;
             @include r(gap, 16, 16, 16, 16, 16);
             p.sub-title {
-                font-weight: 400;
+                font-weight: $font-weight-regular;
                 color: #545976;
                 @include r(font-size, 14, 14, 14, 14, 14);
                 @include respond(mobile-plus) {
@@ -782,7 +782,7 @@ div.company-list-section {
             background-color: $color-white;
             transition: border-color 0.2s ease;
             &:hover {
-                border: 1px solid $color-primary;
+                border: 1px solid $color-primary-500;
             }
             @include respond(pc) {
                 flex: 0 0 calc((100% - 1.25rem * 4) / 5);
@@ -813,8 +813,8 @@ div.company-list-section {
                     @include r(margin-bottom, 10, 10, 10, 10, 10);
                 }
                 p.main-title {
-                    font-weight: 700;
-                    color: $color-black;
+                    font-weight: $font-weight-bold;
+                    color: $color-gray-900;
                     @include r(font-size, 18, 18, 18, 18, 18);
                     @include r(margin-bottom, 16, 16, 16, 16, 16);
                 }
@@ -822,8 +822,8 @@ div.company-list-section {
                     @include r(margin-bottom, 16, 16, 16, 16, 16);
                     p {
                         line-height: 1.3;
-                        font-weight: 400;
-                        color: $color-dark-gray;
+                        font-weight: $font-weight-regular;
+                        color: $color-gray-500;
                         @include r(font-size, 14, 14, 14, 14, 14);
                     }
                 }
@@ -842,14 +842,14 @@ div.company-list-section {
                         }
                     }
                     p {
-                        font-weight: 500;
-                        color: $color-black;
+                        font-weight: $font-weight-medium;
+                        color: $color-gray-900;
                         @include r(font-size, 14, 14, 14, 14, 14);
                     }
                 }
                 p.company-name-title {
-                    font-weight: 400;
-                    color: $color-black;
+                    font-weight: $font-weight-regular;
+                    color: $color-gray-900;
                     @include r(margin-top, 10, 10, 10, 10, 10);
                     @include r(font-size, 13, 13, 13, 13, 13);
                 }

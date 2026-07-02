@@ -17,10 +17,10 @@ div.premium-badge {
     border-radius: 50px;
     background: linear-gradient(
         90deg,
-        $color-primary 0%,
+        $color-primary-500 0%,
         #4f82dd 33%,
         #69a2ff 66%,
-        $color-primary 100%
+        $color-primary-500 100%
     );
     background-size: 200% 100%;
     background-position: 0% 50%;
@@ -39,7 +39,7 @@ div.premium-badge {
         }
     }
     p {
-        font-weight: 700;
+        font-weight: $font-weight-bold;
         color: $color-white;
         @include r(font-size, 12, 12, 12, 12, 12);
     }

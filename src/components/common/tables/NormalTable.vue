@@ -83,10 +83,10 @@ div.normal-table {
                         height: 100%;
                         tr {
                             height: 100%;
-                            background-color: $color-light-gray !important;
+                            background-color: $color-gray-100 !important;
                             th {
                                 height: 100%;
-                                background-color: $color-light-gray !important;
+                                background-color: $color-gray-100 !important;
                                 border-bottom: none !important;
                                 text-align: center !important;
                                 padding: 0 !important;
@@ -96,8 +96,8 @@ div.normal-table {
                                     justify-content: center;
                                     line-height: 1 !important;
                                     height: 100%;
-                                    font-weight: 700 !important;
-                                    color: $color-black !important;
+                                    font-weight: $font-weight-bold !important;
+                                    color: $color-gray-900 !important;
                                     padding: 0 !important;
                                     @include r(font-size, 14, 14, 14, 14, 14);
                                 }
@@ -116,7 +116,7 @@ div.normal-table {
                                         background-color: #ffffff !important;
                                         td.el-table__cell {
                                             div.cell {
-                                                color: $color-black;
+                                                color: $color-gray-900;
                                                 line-height: normal !important;
                                                 .align-center {
                                                     text-align: center !important;
@@ -128,10 +128,10 @@ div.normal-table {
                                                     text-align: right !important;
                                                 }
                                                 .color-black {
-                                                    color: $color-black !important;
+                                                    color: $color-gray-900 !important;
                                                 }
                                                 .color-gray {
-                                                    color: $color-dark-gray !important;
+                                                    color: $color-gray-500 !important;
                                                 }
                                                 .normal-size {
                                                     @include r(font-size, 14, 14, 14, 14, 14);
@@ -153,8 +153,8 @@ div.normal-table {
                                                     @include r(gap, 4, 4, 4, 4, 4);
                                                     a {
                                                         display: block;
-                                                        font-weight: 400;
-                                                        color: $color-black;
+                                                        font-weight: $font-weight-regular;
+                                                        color: $color-gray-900;
                                                         text-decoration: none;
                                                         cursor: pointer;
                                                         min-width: 0;

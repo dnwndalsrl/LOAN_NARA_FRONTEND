@@ -5,12 +5,77 @@ $bp-tablet: 62rem; // 992px
 $bp-laptop: 75rem; // 1200px
 $bp-pc: 120rem; // 1920px (pc 기준 max, 지금은 1201~∞로만 사용)
 
+// =========================================================== Font
+$font-weight-thin: 100;
+$font-weight-extra-light: 200;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+$font-weight-black: 900;
+
 // =========================================================== Color
-$color-black: #292e41;
+// Legacy
 $color-white: #ffffff;
-$color-primary: #366ecc;
-$color-light-gray: #f2f2f2;
-$color-navy: #244c8f;
-$color-red: #df4d4d;
-$color-dark-gray: #727585;
-$color-green: #0ebea9;
+// Gray Scale
+$color-gray-900: #0f172a;
+$color-gray-800: #1e293b;
+$color-gray-700: #334155;
+$color-gray-600: #475569;
+$color-gray-500: #64748b;
+$color-gray-400: #94a3b8;
+$color-gray-300: #cbd5e1;
+$color-gray-200: #e2e8f0;
+$color-gray-100: #f1f5f9;
+// Primary
+$color-primary-900: #050b14;
+$color-primary-800: #132647;
+$color-primary-700: #20427a;
+$color-primary-600: #2e5dad;
+$color-primary-500: #366ecc;
+$color-primary-400: #5483d3;
+$color-primary-300: #86a8e0;
+$color-primary-200: #d1e0fa;
+$color-primary-100: #ebf1fa;
+// Secondary
+$color-secondary-900: #04080e;
+$color-secondary-800: #0d1b32;
+$color-secondary-700: #152e56;
+$color-secondary-600: #1e417a;
+$color-secondary-500: #244c8f;
+$color-secondary-400: #4467a0;
+$color-secondary-300: #7b94bc;
+$color-secondary-200: #b3c1d8;
+$color-secondary-100: #eaeef4;
+// Point
+$color-point-900: #011311;
+$color-point-800: #05423b;
+$color-point-700: #087265;
+$color-point-600: #0ca190;
+$color-point-500: #0ebea9;
+$color-point-400: #32c7b6;
+$color-point-300: #6ed8cb;
+$color-point-200: #abe8e1;
+$color-point-100: #e7f9f7;
+// Success
+$color-success-900: #05130d;
+$color-success-800: #10422e;
+$color-success-700: #1b724f;
+$color-success-600: #27a170;
+$color-success-500: #2ebd84;
+$color-success-400: #4dc796;
+$color-success-300: #81d8b5;
+$color-success-200: #b6e8d4;
+$color-success-100: #ebf9f3;
+// Error
+$color-error-900: #160808;
+$color-error-800: #4e1b1b;
+$color-error-700: #862e2e;
+$color-error-600: #be4141;
+$color-error-500: #df4d4d;
+$color-error-400: #e46767;
+$color-error-300: #ec9494;
+$color-error-200: #f4c1c1;
+$color-error-100: #fceeee;

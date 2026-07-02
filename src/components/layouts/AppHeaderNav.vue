@@ -176,11 +176,11 @@ nav.loan-nara-header-nav-container {
                         @include r(padding-top, 16, 16, 16, 16, 16);
                         @include r(padding-bottom, 16, 16, 16, 16, 16);
                         a {
-                            font-weight: 700;
-                            color: $color-black;
+                            font-weight: $font-weight-bold;
+                            color: $color-gray-900;
                             text-decoration: none;
                             &:hover {
-                                color: $color-primary;
+                                color: $color-primary-500;
                             }
                             @include r(font-size, 16, 16, 16, 16, 16);
                         }
@@ -218,8 +218,8 @@ nav.loan-nara-header-nav-container {
                     @include r(padding-right, 30, 30, 30, 30, 30);
                 }
                 p.parent-title {
-                    font-weight: 600;
-                    color: $color-dark-gray;
+                    font-weight: $font-weight-semi-bold;
+                    color: $color-gray-500;
                     cursor: pointer;
                     @include r(margin-bottom, 16, 16, 16, 16, 16);
                     @include r(font-size, 13, 13, 13, 13, 13);
@@ -231,11 +231,11 @@ nav.loan-nara-header-nav-container {
                             margin-bottom: 0;
                         }
                         a {
-                            font-weight: 500;
-                            color: $color-black;
+                            font-weight: $font-weight-medium;
+                            color: $color-gray-900;
                             text-decoration: none;
                             &:hover {
-                                color: $color-primary;
+                                color: $color-primary-500;
                             }
                             @include r(font-size, 14, 14, 14, 14, 14);
                         }
@@ -272,7 +272,7 @@ div.menu-drawer-wrapper {
                         }
                     }
                     p {
-                        font-weight: 700;
+                        font-weight: $font-weight-bold;
                         color: $color-white;
                         @include r(font-size, 16, 16, 16, 16, 16);
                     }
@@ -282,7 +282,7 @@ div.menu-drawer-wrapper {
                     align-items: center;
                     @include r(gap, 20, 20, 20, 20, 20);
                     a {
-                        font-weight: 700;
+                        font-weight: $font-weight-bold;
                         color: #b9c9e5;
                         text-decoration: none;
                         @include r(font-size, 13, 13, 13, 13, 13);
@@ -295,8 +295,8 @@ div.menu-drawer-wrapper {
                         a.parent-title {
                             display: block;
                             width: 100%;
-                            font-weight: 700;
-                            color: $color-black;
+                            font-weight: $font-weight-bold;
+                            color: $color-gray-900;
                             text-decoration: none;
                             background-color: $color-white;
                             border-bottom: 1px solid #dfe3ea;
@@ -310,7 +310,7 @@ div.menu-drawer-wrapper {
                             width: 100%;
                             display: flex;
                             flex-wrap: wrap;
-                            background-color: $color-light-gray;
+                            background-color: $color-gray-100;
                             border-bottom: 1px solid #dfe3ea;
                             gap: 0.875rem 0;
                             @include r(padding-top, 18, 18, 18, 18, 18);
@@ -321,7 +321,7 @@ div.menu-drawer-wrapper {
                                 width: 50%;
                                 flex: 0 0 50%;
                                 a.child-title {
-                                    font-weight: 600;
+                                    font-weight: $font-weight-semi-bold;
                                     color: #6a6a6a;
                                     text-decoration: none;
                                     @include r(font-size, 14, 14, 14, 14, 14);

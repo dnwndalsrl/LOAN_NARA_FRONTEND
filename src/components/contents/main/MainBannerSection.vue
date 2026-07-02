@@ -51,13 +51,13 @@ const mainBannerStatusInfo = ref([
 div.main-banner-section {
     div.title-area {
         p.sub-title {
-            font-weight: 700;
+            font-weight: $font-weight-bold;
             color: #d9e5f1;
             @include r(margin-bottom, 8, 8, 8, 10, 4);
             @include r(font-size, 16, 16, 16, 16, 16);
         }
         p.main-title {
-            font-weight: 800;
+            font-weight: $font-weight-extra-bold;
             color: $color-white;
             @include r(font-size, 24, 28, 28, 28, 28);
         }
@@ -78,7 +78,7 @@ div.main-banner-section {
                 }
             }
             p {
-                font-weight: 700;
+                font-weight: $font-weight-bold;
                 color: $color-white;
                 @include r(font-size, 14, 14, 14, 14, 14);
             }
@@ -98,13 +98,13 @@ div.main-banner-section {
                 @include r(padding-left, 16, 16, 16, 16, 16);
                 @include r(padding-right, 16, 16, 16, 16, 16);
                 p.title {
-                    font-weight: 600;
+                    font-weight: $font-weight-semi-bold;
                     color: $color-white;
                     @include r(margin-bottom, 8, 8, 8, 8, 8);
                     @include r(font-size, 14, 14, 14, 14, 14);
                 }
                 p.contents {
-                    font-weight: 700;
+                    font-weight: $font-weight-bold;
                     color: #bdd6ff;
                     @include r(font-size, 14, 14, 14, 14, 14);
                 }

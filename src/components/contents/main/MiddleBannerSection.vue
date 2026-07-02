@@ -95,8 +95,8 @@ div.middle-banner-box {
             flex-direction: column;
         }
         p.strong-title {
-            font-weight: 700;
-            color: $color-black;
+            font-weight: $font-weight-bold;
+            color: $color-gray-900;
             @include r(font-size, 18, 18, 22, 22, 22);
             @include respond(pc) {
                 margin-right: 0.625rem;
@@ -132,8 +132,8 @@ div.middle-banner-box {
                 flex-direction: column;
             }
             p.light-title {
-                font-weight: 400;
-                color: $color-black;
+                font-weight: $font-weight-regular;
+                color: $color-gray-900;
 
                 @include r(font-size, 18, 18, 22, 22, 22);
                 @include respond(mobile-plus) {

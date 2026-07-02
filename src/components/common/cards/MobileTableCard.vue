@@ -48,8 +48,8 @@ li.mobile-table-card {
         @include r(gap, 8, 8, 8, 8, 8);
         a {
             display: block;
-            font-weight: 400;
-            color: $color-black;
+            font-weight: $font-weight-regular;
+            color: $color-gray-900;
             text-decoration: none;
             cursor: pointer;
             min-width: 0;
@@ -68,13 +68,13 @@ li.mobile-table-card {
             align-items: center;
             @include r(gap, 6, 6, 6, 6, 6);
             h2 {
-                font-weight: 600;
-                color: $color-dark-gray;
+                font-weight: $font-weight-semi-bold;
+                color: $color-gray-500;
                 @include r(font-size, 13, 13, 13, 13, 13);
             }
             p {
-                font-weight: 400;
-                color: $color-dark-gray;
+                font-weight: $font-weight-regular;
+                color: $color-gray-500;
                 @include r(font-size, 13, 13, 13, 13, 13);
             }
         }

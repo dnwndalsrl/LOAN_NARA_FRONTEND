@@ -153,7 +153,7 @@ div.progress-section {
         @include r(gap, 20, 20, 20, 20, 20);
         li.progress-card-item {
             width: 100%;
-            border: 1px solid $color-primary;
+            border: 1px solid $color-primary-500;
             border-radius: 16px;
             div.card-header {
                 display: flex;
@@ -175,11 +175,11 @@ div.progress-section {
                     }
                 }
                 h2 {
-                    font-weight: 700;
-                    color: $color-black;
+                    font-weight: $font-weight-bold;
+                    color: $color-gray-900;
                     @include r(font-size, 18, 18, 18, 18, 18);
                     strong {
-                        color: $color-primary;
+                        color: $color-primary-500;
                     }
                 }
             }
@@ -198,7 +198,7 @@ div.progress-section {
                             margin-bottom: 0;
                         }
                         p.index-title {
-                            font-weight: 700;
+                            font-weight: $font-weight-bold;
                             color: #979dae;
                             @include r(font-size, 13, 13, 13, 13, 13);
                         }
@@ -216,17 +216,17 @@ div.progress-section {
                                     min-width: 0;
                                 }
                                 p.main-title {
-                                    font-weight: 700;
+                                    font-weight: $font-weight-bold;
                                     color: #979dae;
                                     @include r(font-size, 13, 13, 13, 13, 13);
                                     &.is-highlight {
-                                        color: $color-black;
+                                        color: $color-gray-900;
                                         strong {
-                                            color: $color-primary;
+                                            color: $color-primary-500;
                                         }
                                     }
                                     strong {
-                                        font-weight: 700;
+                                        font-weight: $font-weight-bold;
                                         color: #6b7286;
                                     }
                                 }

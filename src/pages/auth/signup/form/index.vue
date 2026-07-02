@@ -311,8 +311,8 @@ div.signup-form-section {
                 div.form-item {
                     flex: 1 1 0;
                     p.form-item-title {
-                        font-weight: 700;
-                        color: $color-black;
+                        font-weight: $font-weight-bold;
+                        color: $color-gray-900;
                         &.large-gap {
                             @include r(margin-bottom, 20, 20, 20, 20, 20);
                         }
@@ -328,8 +328,8 @@ div.signup-form-section {
                         }
                     }
                     p.form-item-sub-title {
-                        font-weight: 500;
-                        color: $color-dark-gray;
+                        font-weight: $font-weight-medium;
+                        color: $color-gray-500;
                         @include r(font-size, 12, 12, 13, 13, 13);
                         @include r(margin-top, 10, 10, 10, 10, 10);
                     }
@@ -347,8 +347,8 @@ div.signup-form-section {
                             }
                         }
                         p {
-                            font-weight: 500;
-                            color: $color-dark-gray;
+                            font-weight: $font-weight-medium;
+                            color: $color-gray-500;
                             @include r(font-size, 12, 12, 13, 13, 13);
                         }
                     }
@@ -367,15 +367,15 @@ div.signup-form-section {
                             }
                         }
                         p {
-                            font-weight: 500;
-                            color: $color-black;
+                            font-weight: $font-weight-medium;
+                            color: $color-gray-900;
                             line-height: 1.2;
                             @include r(font-size, 13, 13, 13, 13, 13);
                         }
                     }
                     div.checkbox-wrapper {
                         border-radius: 16px;
-                        background-color: $color-light-gray;
+                        background-color: $color-gray-100;
                         @include r(padding-top, 20, 24, 24, 24, 24);
                         @include r(padding-bottom, 20, 24, 24, 24, 24);
                         @include r(padding-left, 20, 24, 24, 24, 24);
@@ -421,8 +421,8 @@ div.signup-form-section {
                                 }
                             }
                             p {
-                                font-weight: 700;
-                                color: $color-black;
+                                font-weight: $font-weight-bold;
+                                color: $color-gray-900;
                                 @include r(font-size, 16, 16, 16, 16, 16);
                                 @include r(margin-bottom, 20, 20, 20, 20, 20);
                             }
@@ -433,8 +433,8 @@ div.signup-form-section {
                                 label.el-checkbox-button {
                                     &.is-checked {
                                         span.el-checkbox-button__inner {
-                                            border: 1px solid $color-primary;
-                                            color: $color-primary;
+                                            border: 1px solid $color-primary-500;
+                                            color: $color-primary-500;
                                         }
                                     }
                                     span.el-checkbox-button__inner {
@@ -443,7 +443,7 @@ div.signup-form-section {
                                         background-color: #ffffff;
                                         border-radius: 8px !important;
                                         color: #727585;
-                                        font-weight: 600 !important;
+                                        font-weight: $font-weight-semi-bold !important;
                                         @include r(font-size, 13, 14, 14, 14, 14);
                                         @include r(padding-top, 8, 8, 8, 8, 8);
                                         @include r(padding-bottom, 8, 8, 8, 8, 8);
@@ -457,19 +457,19 @@ div.signup-form-section {
                     p.last-price-title {
                         display: flex;
                         justify-content: end;
-                        font-weight: 500;
-                        color: $color-black;
+                        font-weight: $font-weight-medium;
+                        color: $color-gray-900;
                         @include r(padding-top, 17, 17, 17, 17, 9);
                         @include r(padding-bottom, 17, 17, 17, 17, 9);
                         @include r(margin-top, 24, 24, 24, 24, 24);
                         @include r(font-size, 14, 14, 14, 14, 14);
                         strong {
-                            font-weight: 700;
-                            color: $color-black;
+                            font-weight: $font-weight-bold;
+                            color: $color-gray-900;
                             @include r(margin-left, 10, 10, 10, 10, 10);
                             @include r(font-size, 16, 16, 16, 16, 16);
                             b {
-                                color: $color-primary;
+                                color: $color-primary-500;
                             }
                         }
                     }
@@ -490,8 +490,8 @@ div.signup-form-section {
                 }
             }
             p {
-                font-weight: 700;
-                color: $color-black;
+                font-weight: $font-weight-bold;
+                color: $color-gray-900;
                 @include r(font-size, 16, 16, 16, 16, 16);
             }
         }

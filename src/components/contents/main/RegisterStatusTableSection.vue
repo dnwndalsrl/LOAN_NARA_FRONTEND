@@ -166,8 +166,8 @@ div.register-status-table-section {
             justify-content: space-between;
             @include r(margin-bottom, 24, 24, 24, 24, 24);
             h2 {
-                font-weight: 700;
-                color: $color-black;
+                font-weight: $font-weight-bold;
+                color: $color-gray-900;
                 @include r(line-height, 24, 24, 24, 24, 24);
                 @include r(font-size, 20, 20, 20, 20, 20);
             }
@@ -176,7 +176,7 @@ div.register-status-table-section {
                 align-items: center;
                 width: fit-content;
                 cursor: pointer;
-                font-weight: 500;
+                font-weight: $font-weight-medium;
                 color: #868c98;
                 @include r(gap, 8, 10, 10, 10, 10);
                 @include r(line-height, 24, 24, 24, 24, 24);

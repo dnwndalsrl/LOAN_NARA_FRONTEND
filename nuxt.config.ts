@@ -1,48 +1,3 @@
-// ================================ SEO 관련 라이브러리 세팅
-// modules: [
-// @nuxtjs/seo
-// @nuxtjs/robots
-// ]
-// site: {
-//     url: process.env.NUXT_SITE_URL || 'https://나는기획.com',
-//     name: process.env.NUXT_SITE_NAME || '나는기획',
-// },
-// robots: {
-//     disallow: ['/', '/receive', '/admin'],
-//     sitemap: [`${process.env.NUXT_SITE_URL}/sitemap.xml`],
-// },
-// sitemap: {
-//     exclude: ['/', '/admin/**', '/receive/**'],
-//     defaults: { changefreq: 'weekly', priority: 0.7 },
-// },
-
-// ================================ SSR 세팅
-// ssr: true
-// routeRules: {
-//     '/': {
-//         ssr: false,
-//         prerender: false,
-//         headers: { 'x-robots-tag': 'noindex, nofollow' },
-//     },
-//     '/receive/**': {
-//         ssr: false,
-//         prerender: false,
-//         headers: { 'x-robots-tag': 'noindex, nofollow' },
-//     },
-//     '/admin/**': {
-//         ssr: false,
-//         prerender: false,
-//         headers: { 'x-robots-tag': 'noindex, nofollow' },
-//     },
-//     '/api/**': { proxy: 'http://1.234.41.50:2470/api/**' },
-// },
-// nitro: {
-//     prerender: {
-//         crawlLinks: true,
-//         routes: ['/'],
-//     },
-// },
-
 import { readFileSync } from 'fs'
 
 const isDev = process.env.NODE_ENV === 'development'
@@ -72,14 +27,18 @@ export default defineNuxtConfig({
     },
     devtools: { enabled: true },
     ssr: true,
-    routeRules: {
-        ...(isDev
+    routeRules: {},
+    nitro: {
+        devProxy: isDev
             ? {
-                  '/api/**': {
-                      proxy: `${process.env.NUXT_API_PROXY_TARGET}/**`,
+                  '/api/': {
+                      target: process.env.NUXT_API_PROXY_TARGET,
+                      changeOrigin: true,
+                      prependPath: true,
+                      secure: false,
                   },
               }
-            : {}),
+            : undefined,
     },
     app: {
         head: {
@@ -117,7 +76,8 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         public: {
-            apiBase: process.env.NUXT_PUBLIC_API_BASE,
+            apiBase: process.env.NUXT_PUBLIC_API_BASE || '/api',
+            niceReturnUrl: process.env.NUXT_PUBLIC_NICE_RETURN_URL,
             appVersion,
         },
     },

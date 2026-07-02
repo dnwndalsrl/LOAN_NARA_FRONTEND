@@ -57,8 +57,8 @@ div.normal-select-box {
         border-radius: 8px !important;
         height: 100% !important;
         min-height: inherit !important;
-        font-weight: 400 !important;
-        color: $color-black !important;
+        font-weight: $font-weight-regular !important;
+        color: $color-gray-900 !important;
         line-height: 1 !important;
         box-shadow: none !important;
         border: 1px solid #dcdfe6 !important;

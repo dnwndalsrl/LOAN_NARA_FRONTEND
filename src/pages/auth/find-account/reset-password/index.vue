@@ -6,6 +6,7 @@
                 <div class="form-item">
                     <p>새 비밀번호</p>
                     <NormalInput
+                        :size="'NORMAL'"
                         v-model="resetPasswordState.newPassword"
                         :placeholder="'새 비밀번호를 입력해 주세요.'"
                     />
@@ -14,6 +15,7 @@
                 <div class="form-item">
                     <p>비밀번호 확인</p>
                     <NormalInput
+                        :size="'NORMAL'"
                         v-model="resetPasswordState.newPassword"
                         :placeholder="'비밀번호를 다시 입력해 주세요.'"
                     />
@@ -41,8 +43,8 @@ div.reset-password-section {
         flex-direction: column;
         align-items: center;
         h2 {
-            font-weight: 700;
-            color: $color-black;
+            font-weight: $font-weight-bold;
+            color: $color-gray-900;
             @include r(font-size, 20, 24, 24, 24, 24);
             @include r(margin-bottom, 30, 40, 40, 40, 40);
         }
@@ -61,15 +63,15 @@ div.reset-password-section {
             div.form-item {
                 @include r(margin-bottom, 32, 32, 32, 32, 32);
                 p {
-                    font-weight: 700;
-                    color: $color-black;
+                    font-weight: $font-weight-bold;
+                    color: $color-gray-900;
                     @include r(font-size, 18, 18, 18, 18, 18);
                     @include r(margin-bottom, 22, 22, 22, 22, 22);
                 }
                 span.guide-txt {
                     display: block;
-                    font-weight: 400;
-                    color: $color-dark-gray;
+                    font-weight: $font-weight-regular;
+                    color: $color-gray-500;
                     @include r(font-size, 13, 13, 13, 13, 13);
                     @include r(margin-top, 10, 10, 10, 10, 10);
                     @include r(padding-left, 12, 12, 12, 12, 12);
@@ -82,30 +84,32 @@ div.reset-password-section {
                 @include r(margin-top, 22, 22, 22, 22, 22);
                 a {
                     flex: 1 1 0;
-                    display: block;
-                    font-weight: 700;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: $font-weight-bold;
                     color: $color-white;
                     text-decoration: none;
                     border-radius: 6px;
                     text-align: center;
                     background-color: #717786;
                     cursor: pointer;
-                    @include r(padding-top, 16, 16, 16, 16, 16);
-                    @include r(padding-bottom, 16, 16, 16, 16, 16);
+                    @include r(height, 49, 49, 49, 49, 49);
                     @include r(font-size, 14, 14, 14, 14, 14);
                 }
                 button {
-                    display: block;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     flex: 1 1 0;
                     color: $color-white;
-                    font-weight: 700;
-                    background-color: $color-primary;
+                    font-weight: $font-weight-bold;
+                    background-color: $color-primary-500;
                     border: none;
                     line-height: 1;
                     border-radius: 6px;
                     cursor: pointer;
-                    @include r(padding-top, 16, 16, 16, 16, 16);
-                    @include r(padding-bottom, 16, 16, 16, 16, 16);
+                    @include r(height, 49, 49, 49, 49, 49);
                     @include r(font-size, 14, 14, 14, 14, 14);
                 }
             }
