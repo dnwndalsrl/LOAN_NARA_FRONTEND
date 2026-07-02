@@ -32,7 +32,7 @@
                             :key="recentItem"
                             class="recent-company-item"
                         >
-                            <NuxtLink :to="`/`">
+                            <NuxtLink :to="`/company/${recentIndex}`">
                                 {{ recentItem }}
                             </NuxtLink>
                             <span class="badge-new">N</span>
@@ -112,21 +112,21 @@ const promoLoanItems = ref([
         id: 1,
         title: '전국 부동산 담보대출',
         subTitle: '24시간 상담 가능',
-        path: '/',
+        path: '/company/1',
         imageUrl: '/images/common/right_float1.png',
     },
     {
         id: 2,
         title: '바르고 정확하게',
         subTitle: '전국 부동산 담보대출',
-        path: '/',
+        path: '/company/2',
         imageUrl: '/images/common/right_float2.png',
     },
     {
         id: 3,
         title: '24시간 상담 가능',
         subTitle: '빠른 당일 담보대출',
-        path: '/',
+        path: '/company/3',
         imageUrl: '/images/common/right_float3.png',
     },
 ])

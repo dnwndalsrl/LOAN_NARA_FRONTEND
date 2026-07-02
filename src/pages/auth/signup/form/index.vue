@@ -209,6 +209,7 @@
                     :bgColor="'#DFDFDF'"
                     :borderColor="'#DFDFDF'"
                     :fontColor="'#6B707E'"
+                    @click="goBack()"
                 />
                 <NormalButton
                     :type="'NORMAL'"
@@ -217,6 +218,7 @@
                     :bgColor="'#366ECC'"
                     :borderColor="'#366ECC'"
                     :fontColor="'#ffffff'"
+                    @click="onClickMoveComplete()"
                 />
             </div>
         </section>
@@ -224,6 +226,7 @@
 </template>
 
 <script setup lang="ts">
+const { goBack } = useBack()
 // 지역 CheckBox Group Info
 const areaCheckBoxGroupInfo = ref({
     selectGroup: [],
@@ -279,6 +282,10 @@ const productCheckBoxGroupInfo = ref({
         '기타',
     ],
 })
+
+const onClickMoveComplete = () => {
+    navigateTo('/auth/signup/complete')
+}
 </script>
 
 <style lang="scss">

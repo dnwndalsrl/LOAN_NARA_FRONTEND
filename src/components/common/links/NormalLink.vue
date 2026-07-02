@@ -1,5 +1,6 @@
 <template>
     <NuxtLink
+        :to="to"
         class="normal-link"
         :class="size === 'LARGE' ? 'is-large' : 'is-small'"
         @click="handleClick()"
@@ -24,6 +25,7 @@
 <script setup lang="ts">
 const props = withDefaults(
     defineProps<{
+        to?: string
         isIcon?: boolean
         iconDirection?: 'LEFT' | 'RIGHT'
         iconUrl?: string

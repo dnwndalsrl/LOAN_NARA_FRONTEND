@@ -3,7 +3,7 @@
         <div class="table-item">
             <div class="title-box">
                 <h2>전국 대출업체 등록 현황</h2>
-                <NuxtLink>
+                <NuxtLink :to="'/browse/search'">
                     더보기
                     <div class="img-box">
                         <img src="/images/common/right_arrow_gray_sharp.png" alt="더보기" />
@@ -26,7 +26,7 @@
                 <el-table-column label="제목">
                     <template #default="{ row }">
                         <div class="badge-align-box">
-                            <NuxtLink to="/">{{ row.title }}</NuxtLink>
+                            <NuxtLink :to="`/company/${row.id}`">{{ row.title }}</NuxtLink>
                             <NewBadge />
                         </div>
                     </template>
@@ -52,7 +52,7 @@
         <div v-if="isPc || isLaptop" class="table-item">
             <div class="title-box">
                 <h2>오늘의 추천업체</h2>
-                <NuxtLink>
+                <NuxtLink :to="'/browse/recommended'">
                     더보기
                     <div class="img-box">
                         <img src="/images/common/right_arrow_gray_sharp.png" alt="더보기" />
@@ -75,7 +75,7 @@
                 <el-table-column label="제목">
                     <template #default="{ row }">
                         <div class="badge-align-box">
-                            <NuxtLink to="/">{{ row.title }}</NuxtLink>
+                            <NuxtLink :to="`/company/${row.id}`">{{ row.title }}</NuxtLink>
                             <NewBadge />
                         </div>
                     </template>

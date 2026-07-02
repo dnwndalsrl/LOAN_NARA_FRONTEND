@@ -69,7 +69,12 @@
                         </li>
                     </ul>
                     <div class="right-area">
-                        <a href="/">채무자대리인 신청</a>
+                        <a
+                            href="https://www.fss.or.kr/fss/main/contents.do?menuNo=200343"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >채무자대리인 신청</a
+                        >
                     </div>
                 </div>
                 <!-- TABLET/MOBILE -->
@@ -91,7 +96,13 @@
                             </NuxtLink>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <a href="/" class="type-btn">채무자대리인 신청</a>
+                            <a
+                                href="https://www.fss.or.kr/fss/main/contents.do?menuNo=200343"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="type-btn"
+                                >채무자대리인 신청</a
+                            >
                         </SwiperSlide>
                     </Swiper>
                 </div>
@@ -149,7 +160,12 @@
                     <div class="service-guide-box">
                         <div class="title-box">
                             <h2>금리 및 상환안내</h2>
-                            <a href="/" class="link-btn">
+                            <a
+                                href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EB%8C%80%EC%B6%9C%EC%9D%B4%EC%9E%90%EA%B3%84%EC%82%B0%EA%B8%B0"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="link-btn"
+                            >
                                 <div class="img-box">
                                     <img src="/images/footer/calculator.png" alt="이자계산기" />
                                 </div>
@@ -206,31 +222,31 @@ const partnerInfo = ref([
     {
         id: '금융위원회',
         image: '/images/footer/footer_img1.png',
-        link: '/',
+        link: 'https://www.fsc.go.kr/index',
         size: 'lg',
     },
     {
         id: '금융감독원',
         image: '/images/footer/footer_img2.png',
-        link: '/',
+        link: 'https://www.fss.or.kr/fss/main/main.do?menuNo=200000',
         size: 'lg',
     },
     {
         id: '신용회복위원회',
         image: '/images/footer/footer_img3.png',
-        link: '/',
+        link: 'https://ccrs.or.kr/index.do;jsessionid=224A80F465DB1CAC866F48A8B8D2812D',
         size: 'md',
     },
     {
         id: '한국대부금융협회',
         image: '/images/footer/footer_img4.png',
-        link: '/',
+        link: 'https://www.clfa.or.kr/',
         size: 'md',
     },
     {
         id: 'NICE지키미',
         image: '/images/footer/footer_img5.png',
-        link: '/',
+        link: 'https://www.credit.co.kr/ib20/mnu/BZWMAN00001',
         size: 'sm',
     },
 ])
@@ -239,31 +255,31 @@ const partnerInfo = ref([
 const termsInfo = ref([
     {
         id: '회사소개',
-        link: '/',
+        link: '/legal/about',
     },
     {
         id: '이용안내',
-        link: '/',
+        link: '/guide/customer',
     },
     {
         id: '이용약관',
-        link: '/',
+        link: '/legal/terms',
     },
     {
         id: '개인정보처리방침',
-        link: '/',
+        link: '/legal/privacy',
     },
     {
         id: '책임의한계와법적고지',
-        link: '/',
+        link: '/legal/disclaimer',
     },
     {
         id: '이메일무단수집거부',
-        link: '/',
+        link: '/legal/email-policy',
     },
     {
         id: '오류신고',
-        link: '/',
+        link: '/support/inquiry',
     },
 ])
 </script>

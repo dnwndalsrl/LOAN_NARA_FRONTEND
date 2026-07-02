@@ -2,7 +2,13 @@
     <li class="notice-list-card">
         <div class="align-left">
             <div class="black-circle"></div>
-            <NuxtLink>{{ props.title }}</NuxtLink>
+            <NuxtLink
+                :to="linkUrl"
+                :external="isExternalLink"
+                :target="isExternalLink ? '_blank' : undefined"
+                :rel="isExternalLink ? 'noopener noreferrer' : undefined"
+                >{{ props.title }}</NuxtLink
+            >
             <NewBadge />
         </div>
         <div class="align-right">
@@ -16,6 +22,7 @@ const props = withDefaults(
     defineProps<{
         title: string
         date: string
+        linkUrl?: any
     }>(),
     {
         title: '',
@@ -23,9 +30,10 @@ const props = withDefaults(
     },
 )
 
-// =============================================== Computed
-
 // =============================================== Custom Function
+const isExternalLink = computed(() => {
+    return /^(https?:)?\/\//.test(props.linkUrl)
+})
 </script>
 
 <style lang="scss">

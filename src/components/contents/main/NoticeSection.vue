@@ -4,7 +4,7 @@
             <div class="content-box">
                 <div class="title-box">
                     <h2>금융뉴스</h2>
-                    <NuxtLink>
+                    <NuxtLink :to="'/community/finance-news'">
                         더보기
                         <div class="img-box">
                             <img src="/images/common/right_arrow_gray_sharp.png" alt="더보기" />
@@ -13,17 +13,18 @@
                 </div>
                 <ul class="notice-list">
                     <NoticeListCard
-                        v-for="(item, index) in tempData.slice(0, 10)"
+                        v-for="(item, index) in newsTempData"
                         :key="item.id"
                         :title="item.title"
                         :date="item.date"
+                        :linkUrl="item.linkUrl"
                     />
                 </ul>
             </div>
             <div v-show="isPc || isLaptop" class="content-box">
                 <div class="title-box">
                     <h2>대부업뉴스</h2>
-                    <NuxtLink>
+                    <NuxtLink :to="'/community/loan-news'">
                         더보기
                         <div class="img-box">
                             <img src="/images/common/right_arrow_gray_sharp.png" alt="더보기" />
@@ -32,10 +33,11 @@
                 </div>
                 <ul class="notice-list">
                     <NoticeListCard
-                        v-for="(item, index) in tempData.slice(0, 10)"
+                        v-for="(item, index) in newsTempData.slice(0, 10)"
                         :key="item.id"
                         :title="item.title"
                         :date="item.date"
+                        :linkUrl="item.linkUrl"
                     />
                 </ul>
             </div>
@@ -44,7 +46,7 @@
             <div class="content-box">
                 <div class="title-box">
                     <h2>공지사항</h2>
-                    <NuxtLink>
+                    <NuxtLink :to="`/support/notice`">
                         더보기
                         <div class="img-box">
                             <img src="/images/common/right_arrow_gray_sharp.png" alt="더보기" />
@@ -57,6 +59,7 @@
                         :key="item.id"
                         :title="item.title"
                         :date="item.date"
+                        :linkUrl="`/support/notice/detail/${item.id}`"
                     />
                 </ul>
             </div>
@@ -66,13 +69,13 @@
                 </div>
                 <div class="button-wrapper">
                     <div class="top-area">
-                        <NuxtLink>
+                        <NuxtLink :to="'/support/ad-inquiry'">
                             <div class="img-box">
                                 <img src="/images/main/main_action1.png" alt="광고문의" />
                             </div>
                             광고문의
                         </NuxtLink>
-                        <NuxtLink>
+                        <NuxtLink :to="'/support/inquiry'">
                             <div class="img-box">
                                 <img src="/images/main/main_action2.png" alt="1:1 문의" />
                             </div>
@@ -80,7 +83,7 @@
                         </NuxtLink>
                     </div>
                     <div class="bottom-area">
-                        <NuxtLink>
+                        <NuxtLink :to="'/support/faq'">
                             <div class="img-box">
                                 <img src="/images/main/main_action3.png" alt="자주묻는질문" />
                             </div>
@@ -96,6 +99,39 @@
 <script setup lang="ts">
 import { v4 as uuid } from 'uuid'
 const { isPc, isLaptop, isTablet, isMobilePlus, isMobile } = useBreakpoints()
+const newsTempData = ref([
+    {
+        id: uuid(),
+        title: '24시 친절상담 당일송금 정식등록',
+        date: '2025-11-11',
+        linkUrl: 'https://www.naver.com',
+    },
+    {
+        id: uuid(),
+        title: '24시 친절상담 당일송금 정식등록',
+        date: '2025-11-11',
+        linkUrl: 'https://www.naver.com',
+    },
+    {
+        id: uuid(),
+        title: '24시 친절상담 당일송금 정식등록',
+        date: '2025-11-11',
+        linkUrl: 'https://www.naver.com',
+    },
+    {
+        id: uuid(),
+        title: '24시 친절상담 당일송금 정식등록',
+        date: '2025-11-11',
+        linkUrl: 'https://www.naver.com',
+    },
+    {
+        id: uuid(),
+        title: '24시 친절상담 당일송금 정식등록',
+        date: '2025-11-11',
+        linkUrl: 'https://www.naver.com',
+    },
+])
+
 const tempData = ref([
     {
         id: uuid(),

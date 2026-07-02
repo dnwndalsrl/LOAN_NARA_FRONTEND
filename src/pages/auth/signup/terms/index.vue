@@ -30,6 +30,7 @@
                     :bgColor="'#DFDFDF'"
                     :borderColor="'#DFDFDF'"
                     :fontColor="'#6B707E'"
+                    @click="goBack()"
                 />
                 <NormalButton
                     :type="'NORMAL'"
@@ -38,6 +39,7 @@
                     :bgColor="'#366ECC'"
                     :borderColor="'#366ECC'"
                     :fontColor="'#ffffff'"
+                    @click="onClickMoveForm()"
                 />
             </div>
         </section>
@@ -45,6 +47,7 @@
 </template>
 
 <script setup lang="ts">
+const { goBack } = useBack()
 import { v4 as uuid } from 'uuid'
 
 // 전체 동의하기 여부
@@ -75,6 +78,10 @@ const termsInfo = ref([
             '이 약관은 주식회사 대출나라대부중개(대출나라)(이하 “회사”라고 합니다)가 운영하는 대출직거래 사이',
     },
 ])
+
+const onClickMoveForm = () => {
+    navigateTo('/auth/signup/form')
+}
 </script>
 
 <style lang="scss">

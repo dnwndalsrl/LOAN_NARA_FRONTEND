@@ -24,7 +24,7 @@
                 </h2>
             </div>
             <div class="direct-title-box">
-                <NuxtLink :to="'/'">바로가기</NuxtLink>
+                <NuxtLink :to="categoryItem.linkUrl">바로가기</NuxtLink>
                 <div class="img-box">
                     <img src="/images/common/right_arrow_gray_sharp.png" alt="바로가기" />
                 </div>
@@ -50,194 +50,194 @@ const categoryInfo = ref([
     {
         id: uuid(),
         type: 'AREA',
-        linkUrl: '/',
+        linkUrl: '/browse/region/all',
         items: [
             {
                 id: uuid(),
                 title: '전체',
-                linkUrl: '/',
+                linkUrl: '/browse/region/all',
             },
             {
                 id: uuid(),
                 title: '서울',
-                linkUrl: '/',
+                linkUrl: '/browse/region/1',
             },
             {
                 id: uuid(),
                 title: '경기',
-                linkUrl: '/',
+                linkUrl: '/browse/region/2',
             },
             {
                 id: uuid(),
                 title: '인천',
-                linkUrl: '/',
+                linkUrl: '/browse/region/3',
             },
             {
                 id: uuid(),
                 title: '대전',
-                linkUrl: '/',
+                linkUrl: '/browse/region/4',
             },
             {
                 id: uuid(),
                 title: '대구',
-                linkUrl: '/',
+                linkUrl: '/browse/region/5',
             },
             {
                 id: uuid(),
                 title: '부산',
-                linkUrl: '/',
+                linkUrl: '/browse/region/6',
             },
             {
                 id: uuid(),
                 title: '광주',
-                linkUrl: '/',
+                linkUrl: '/browse/region/7',
             },
             {
                 id: uuid(),
                 title: '울산',
-                linkUrl: '/',
+                linkUrl: '/browse/region/8',
             },
             {
                 id: uuid(),
                 title: '세종',
-                linkUrl: '/',
+                linkUrl: '/browse/region/9',
             },
             {
                 id: uuid(),
                 title: '강원',
-                linkUrl: '/',
+                linkUrl: '/browse/region/10',
             },
             {
                 id: uuid(),
                 title: '충북',
-                linkUrl: '/',
+                linkUrl: '/browse/region/11',
             },
             {
                 id: uuid(),
                 title: '충남',
-                linkUrl: '/',
+                linkUrl: '/browse/region/12',
             },
             {
                 id: uuid(),
                 title: '전북',
-                linkUrl: '/',
+                linkUrl: '/browse/region/13',
             },
             {
                 id: uuid(),
                 title: '전남',
-                linkUrl: '/',
+                linkUrl: '/browse/region/14',
             },
             {
                 id: uuid(),
                 title: '경북',
-                linkUrl: '/',
+                linkUrl: '/browse/region/15',
             },
             {
                 id: uuid(),
                 title: '경남',
-                linkUrl: '/',
+                linkUrl: '/browse/region/16',
             },
             {
                 id: uuid(),
                 title: '제주',
-                linkUrl: '/',
+                linkUrl: '/browse/region/17',
             },
         ],
     },
     {
         id: uuid(),
         type: 'PRODUCT',
-        linkUrl: '/',
+        linkUrl: '/browse/loan-type/all',
         items: [
             {
                 id: uuid(),
                 title: '전체',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/all',
             },
             {
                 id: uuid(),
                 title: '직장인',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/1',
             },
             {
                 id: uuid(),
                 title: '무직자',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/2',
             },
             {
                 id: uuid(),
                 title: '여성',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/3',
             },
             {
                 id: uuid(),
                 title: '비상금',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/4',
             },
             {
                 id: uuid(),
                 title: '모바일',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/5',
             },
             {
                 id: uuid(),
                 title: '소액',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/6',
             },
             {
                 id: uuid(),
                 title: '무방문',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/7',
             },
             {
                 id: uuid(),
                 title: '자영업',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/8',
             },
             {
                 id: uuid(),
                 title: '당일',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/9',
             },
             {
                 id: uuid(),
                 title: '사업자',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/10',
             },
             {
                 id: uuid(),
                 title: '전문직',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/11',
             },
             {
                 id: uuid(),
                 title: '저신용',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/12',
             },
             {
                 id: uuid(),
                 title: '신용',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/13',
             },
             {
                 id: uuid(),
                 title: '추가',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/14',
             },
             {
                 id: uuid(),
                 title: '자동차',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/15',
             },
             {
                 id: uuid(),
                 title: '부동산',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/16',
             },
             {
                 id: uuid(),
                 title: '더보기',
-                linkUrl: '/',
+                linkUrl: '/browse/loan-type/all',
             },
         ],
     },

@@ -5,6 +5,7 @@
             <div class="sub-info-box">
                 <p class="sub-title">배너 위치는 실시간으로 랜덤 배치됩니다.</p>
                 <NormalLink
+                    :to="'/support/ad-inquiry'"
                     :title="'광고문의'"
                     :bgColor="'#DFE3EA'"
                     :borderColor="'#DFE3EA'"
@@ -19,7 +20,7 @@
                 :key="listItem.id"
                 class="list-item"
             >
-                <NuxtLink :to="'/'">
+                <NuxtLink :to="`/company/${listItem.id}`">
                     <div class="badge-box">
                         <NormalBadge :title="listItem.area" />
                         <NewBadge />
@@ -48,7 +49,7 @@
                 :key="listItem.id"
                 class="list-item"
             >
-                <NuxtLink :to="'/'">
+                <NuxtLink :to="`/company/${listItem.id}`">
                     <div class="badge-box">
                         <NormalBadge :title="listItem.area" />
                         <NewBadge />
