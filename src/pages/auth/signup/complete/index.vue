@@ -141,6 +141,9 @@ div.signup-complete-section {
             display: flex;
             align-items: center;
             @include r(gap, 16, 16, 16, 16, 16);
+            @include respond(laptop) {
+                flex-direction: column;
+            }
             @include respond(tablet) {
                 flex-direction: column;
             }
@@ -160,6 +163,10 @@ div.signup-complete-section {
                 @include r(padding-bottom, 24, 24, 20, 20, 20);
                 @include r(padding-left, 24, 24, 16, 16, 16);
                 @include r(padding-right, 24, 24, 16, 16, 16);
+                @include respond(laptop) {
+                    width: 100%;
+                    flex-direction: row;
+                }
                 @include respond(tablet) {
                     width: 100%;
                     flex-direction: row;
@@ -173,6 +180,9 @@ div.signup-complete-section {
                     flex-direction: row;
                 }
                 div.img-box {
+                    @include respond(laptop) {
+                        width: vw-clamp(64, 64, 992, 1200, 16);
+                    }
                     @include respond(tablet) {
                         width: vw-clamp(64, 64, 768, 992, 16);
                     }
@@ -197,10 +207,10 @@ div.signup-complete-section {
                     @include r(width, 55, 55, 55, 55, 55);
                     @include r(padding-top, 3, 3, 3, 3, 3);
                     @include r(padding-bottom, 3, 3, 3, 3, 3);
-                    @include r(margin-top, 0, 0, 20, 20, 20);
-                    @include r(margin-bottom, 0, 0, 12, 12, 12);
-                    @include r(margin-left, 24, 24, 24, 0, 0);
-                    @include r(margin-right, 12, 12, 12, 0, 0);
+                    @include r(margin-top, 0, 0, 0, 0, 20);
+                    @include r(margin-bottom, 0, 0, 0, 0, 12);
+                    @include r(margin-left, 24, 24, 24, 24, 0);
+                    @include r(margin-right, 12, 12, 12, 12, 0);
                     p.step-title {
                         font-weight: $font-weight-bold;
                         color: $color-white;
@@ -218,6 +228,9 @@ div.signup-complete-section {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                @include respond(laptop) {
+                    transform: rotate(90deg);
+                }
                 @include respond(tablet) {
                     transform: rotate(90deg);
                 }

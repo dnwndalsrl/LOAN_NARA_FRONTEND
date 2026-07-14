@@ -25,8 +25,8 @@ div.premium-badge {
     background-size: 200% 100%;
     background-position: 0% 50%;
     animation: premium-gradient-move 2.5s linear infinite;
-    @include r(padding-top, 6, 6, 6, 6, 6);
-    @include r(padding-bottom, 6, 6, 6, 6, 6);
+    @include r(padding-top, 6, 6, 6, 6, 5);
+    @include r(padding-bottom, 6, 6, 6, 6, 5);
     @include r(padding-left, 8, 8, 8, 8, 8);
     @include r(padding-right, 8, 8, 8, 8, 8);
     div.img-box {
@@ -41,6 +41,7 @@ div.premium-badge {
     p {
         font-weight: $font-weight-bold;
         color: $color-white;
+        line-height: 1;
         @include r(font-size, 12, 12, 12, 12, 12);
     }
 }

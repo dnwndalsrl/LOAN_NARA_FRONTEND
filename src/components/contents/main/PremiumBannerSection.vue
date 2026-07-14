@@ -3,7 +3,6 @@
         :modules="[Navigation, Autoplay]"
         :slides-per-view="1"
         :loop="true"
-        :autoplay="{ delay: 3000, disableOnInteraction: false }"
         :navigation="{
             prevEl: '.swiper-btn-prev',
             nextEl: '.swiper-btn-next',
@@ -164,6 +163,7 @@ div.premium-banner-swiper {
                 div.company-info-box {
                     display: flex;
                     align-items: center;
+                    @include r(height, 31, 31, 31, 31, 31);
                     div.normal-badge {
                         @include r(margin-right, 6, 6, 6, 6, 6);
                     }
@@ -179,7 +179,7 @@ div.premium-banner-swiper {
     div.premium-swiper-controller {
         z-index: 2;
         position: absolute;
-        bottom: vw-clamp(0, 24, 0, 480, 16);
+        // bottom: vw-clamp(0, 24, 0, 480, 16);
         right: vw-clamp(0, 24, 0, 480, 16);
         display: flex;
         align-items: center;
@@ -190,6 +190,7 @@ div.premium-banner-swiper {
         @include r(padding-bottom, 7, 7, 7, 7, 7);
         @include r(padding-left, 14, 14, 14, 14, 14);
         @include r(padding-right, 14, 14, 14, 14, 14);
+        @include r(bottom, 28, 28, 28, 28, 28);
         div.current-info {
             p {
                 font-weight: $font-weight-semi-bold;

@@ -1,0 +1,814 @@
+<template>
+    <ul class="region-company-list-box">
+        <!-- 상위 리스트 -->
+        <li v-for="(listItem, listIndex) in upperCompanyList" :key="listItem.id" class="list-item">
+            <NuxtLink :to="`/company/${listItem.id}`">
+                <div class="badge-box">
+                    <NormalBadge :title="listItem.area" />
+                    <NewBadge />
+                </div>
+                <p class="main-title">{{ listItem.title }}</p>
+                <div class="content-title-box">
+                    <p v-if="listItem.contents1">{{ listItem.contents1 }}</p>
+                    <p v-if="listItem.contents2">{{ listItem.contents2 }}</p>
+                </div>
+                <div class="phone-num-box">
+                    <div class="img-box">
+                        <img src="/images/common/tell_phone.png" alt="전화번호" />
+                    </div>
+                    <p>{{ listItem.phone }}</p>
+                </div>
+                <p class="company-name-title">{{ listItem.companyName }}</p>
+            </NuxtLink>
+        </li>
+        <!-- 배너 -->
+        <li v-if="bannerIndex !== null" class="banner-list-item">
+            <MiddleBannerSection />
+        </li>
+        <!-- 하위 리스트 -->
+        <li v-for="(listItem, listIndex) in lowerCompanyList" :key="listItem.id" class="list-item">
+            <NuxtLink :to="`/company/${listItem.id}`">
+                <div class="badge-box">
+                    <NormalBadge :title="listItem.area" />
+                    <NewBadge />
+                </div>
+                <p class="main-title">{{ listItem.title }}</p>
+                <div class="content-title-box">
+                    <p v-if="listItem.contents1">{{ listItem.contents1 }}</p>
+                    <p v-if="listItem.contents2">{{ listItem.contents2 }}</p>
+                </div>
+                <div class="phone-num-box">
+                    <div class="img-box">
+                        <img src="/images/common/tell_phone.png" alt="전화번호" />
+                    </div>
+                    <p>{{ listItem.phone }}</p>
+                </div>
+                <p class="company-name-title">{{ listItem.companyName }}</p>
+            </NuxtLink>
+        </li>
+    </ul>
+</template>
+
+<script setup lang="ts">
+import { v4 as uuid } from 'uuid'
+const { isPc, isLaptop, isTablet, isMobilePlus, isMobile } = useBreakpoints()
+// ======================================== state
+const hydrated = ref(false)
+
+const companyListInfo = ref([
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+    {
+        id: uuid(),
+        area: '전국',
+        isNew: true,
+        title: '당일지급 무방문 월변',
+        contents1: '소액에서 1000까지',
+        contents2: '당일송금 당일승인 원칙',
+        phone: '010-1234-1234',
+        companyName: '대출나라',
+    },
+])
+
+// ======================================== Computed
+// 업체 리스트 가공 (기본은 60개, 모바일부터는 30개)
+const visibleCount = computed(() => {
+    if (!hydrated.value) return 60
+    if (isTablet.value) return 30
+    if (isMobilePlus.value) return 30
+    if (isMobile.value) return 30
+    return 60
+})
+
+const bannerIndex = computed(() => {
+    if (!hydrated.value) return null
+    if (isPc.value) return 29
+    if (isLaptop.value) return 31
+    if (isTablet.value) return 14
+    if (isMobilePlus.value) return 15
+    if (isMobile.value) return 15
+
+    return null
+})
+
+const visibleCompanyList = computed(() => {
+    return companyListInfo.value.slice(0, visibleCount.value)
+})
+
+const upperCompanyList = computed(() => {
+    if (bannerIndex.value === null) {
+        return visibleCompanyList.value
+    }
+
+    return visibleCompanyList.value.slice(0, bannerIndex.value + 1)
+})
+
+const lowerCompanyList = computed(() => {
+    if (bannerIndex.value === null) {
+        return []
+    }
+
+    return visibleCompanyList.value.slice(bannerIndex.value + 1)
+})
+
+onMounted(() => {
+    hydrated.value = true
+})
+</script>
+
+<style lang="scss">
+ul.region-company-list-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    @include respond(pc) {
+        gap: 1.25rem;
+    }
+    @include respond(laptop) {
+        gap: 1.25rem;
+    }
+    @include respond(tablet) {
+        gap: 1.25rem;
+    }
+    @include respond(mobile-plus) {
+        gap: 1.5rem;
+    }
+    @include respond(mobile) {
+        gap: 1rem;
+    }
+    li.list-item {
+        border: 1px solid #dfe3ea;
+        border-radius: 16px;
+        background-color: $color-white;
+        transition: border-color 0.2s ease;
+        &:hover {
+            border: 1px solid $color-primary-500;
+        }
+        @include respond(pc) {
+            flex: 0 0 calc((100% - 1.25rem * 4) / 5);
+        }
+        @include respond(laptop) {
+            flex: 0 0 calc((100% - 1.25rem * 3) / 4);
+        }
+        @include respond(tablet) {
+            flex: 0 0 calc((100% - 1.25rem * 2) / 3);
+        }
+        @include respond(mobile-plus) {
+            flex: 0 0 calc((100% - 1.5rem * 1) / 2);
+        }
+        @include respond(mobile) {
+            flex: 0 0 calc((100% - 1.5rem * 1) / 2);
+        }
+        a {
+            display: block;
+            text-decoration: none;
+            @include r(padding-top, 24, 24, 24, 24, 24);
+            @include r(padding-bottom, 24, 24, 24, 24, 24);
+            @include r(padding-left, 24, 24, 24, 24, 24);
+            @include r(padding-right, 24, 24, 24, 24, 24);
+            div.badge-box {
+                display: flex;
+                align-items: center;
+                @include r(gap, 6, 6, 6, 6, 6);
+                @include r(margin-bottom, 10, 10, 10, 10, 10);
+            }
+            p.main-title {
+                font-weight: $font-weight-bold;
+                color: $color-gray-900;
+                @include r(font-size, 18, 18, 18, 18, 18);
+                @include r(margin-bottom, 16, 16, 16, 16, 16);
+            }
+            div.content-title-box {
+                @include r(margin-bottom, 16, 16, 16, 16, 16);
+                p {
+                    line-height: 1.3;
+                    font-weight: $font-weight-regular;
+                    color: $color-gray-500;
+                    @include r(font-size, 14, 14, 14, 14, 14);
+                }
+            }
+            div.phone-num-box {
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid #dfe3ea;
+                @include r(padding-bottom, 10, 10, 10, 10, 10);
+                div.img-box {
+                    @include r(margin-right, 8, 8, 8, 8, 8);
+                    @include r(width, 14, 14, 14, 14, 14);
+                    img {
+                        display: block;
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+                p {
+                    font-weight: $font-weight-medium;
+                    color: $color-gray-900;
+                    @include r(font-size, 14, 14, 14, 14, 14);
+                }
+            }
+            p.company-name-title {
+                font-weight: $font-weight-regular;
+                color: $color-gray-900;
+                @include r(margin-top, 10, 10, 10, 10, 10);
+                @include r(font-size, 13, 13, 13, 13, 13);
+            }
+        }
+    }
+    li.banner-list-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+        border: none;
+        background: transparent;
+        padding: 0;
+    }
+}
+</style>

@@ -73,6 +73,7 @@ a.normal-link {
     border: 1px solid #ffffff;
     font-weight: $font-weight-bold;
     line-height: 1;
+    text-decoration: none;
     &.is-large {
         @include r(height, 32, 32, 32, 32, 32);
         div.align-wrapper {
