@@ -45,7 +45,7 @@ const onChange = (val: string | number | null) => {
 <style lang="scss">
 div.normal-select-box {
     display: block !important;
-    width: 100% !important;
+    width: 100%;
     @include r(height, 49, 49, 49, 49, 49);
     &.is-small {
         @include r(height, 32, 32, 32, 32, 32);

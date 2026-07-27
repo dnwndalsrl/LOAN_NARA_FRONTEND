@@ -1,6 +1,6 @@
 <template>
     <div class="normal-table">
-        <template v-if="!isMobile">
+        <template v-if="!isMobile && !isMobilePlus">
             <el-table :data="props.data" :style="{ width: '100%' }" v-bind="$attrs">
                 <slot />
                 <template #empty>
@@ -16,12 +16,12 @@
 
         <!-- 페이지네이션 -->
         <div v-if="props.showPagination" class="pagination-box">
-            <el-pagination
-                layout="prev, pager, next"
+            <NormalPagination
                 :total="props.total"
                 :page-size="pageSize"
-                v-model:current-page="currentPage"
-                @current-change="onCurrentChange"
+                :current-page="currentPage"
+                @update:current-page="onUpdateCurrentPage"
+                @change="onCurrentChange"
             />
         </div>
     </div>
@@ -55,16 +55,27 @@ const emit = defineEmits<{
 const currentPage = ref(props.currentPage)
 const pageSize = ref(props.pageSizes)
 
+// 부모 컴포넌트에서 현재 페이지가 변경되면 내부 페이지값에 반영합니다.
 watch(
     () => props.currentPage,
-    (v) => (currentPage.value = v ?? 1),
+    (value) => {
+        currentPage.value = value ?? 1
+    },
 )
 
 // ========================================= Function
-const onCurrentChange = (page: number) => {
+// 페이지네이션에서 전달받은 현재 페이지를 내부 상태와 부모에 반영합니다.
+const onUpdateCurrentPage = (page: number) => {
     currentPage.value = page
     emit('update:currentPage', page)
-    emit('change', { page: page, size: pageSize.value })
+}
+
+// 변경된 페이지와 페이지당 노출 개수를 부모 컴포넌트에 전달합니다.
+const onCurrentChange = (page: number) => {
+    emit('change', {
+        page,
+        size: pageSize.value,
+    })
 }
 </script>
 
@@ -75,8 +86,8 @@ div.normal-table {
         border-top: 1px solid #dfe3ea;
         div.el-table__inner-wrapper {
             div.el-table__header-wrapper {
-                border-bottom: 1px solid #dfe3ea;
-                @include r(height, 37, 37, 37, 37, 37);
+                border-bottom: 1px solid $color-gray-100;
+                @include r(height, 0, 37, 37, 37, 37);
                 table.el-table__header {
                     height: 100%;
                     thead {
@@ -115,6 +126,8 @@ div.normal-table {
                                     tr.el-table__row {
                                         background-color: #ffffff !important;
                                         td.el-table__cell {
+                                            padding: 0 !important;
+                                            height: 37px !important;
                                             div.cell {
                                                 color: $color-gray-900;
                                                 line-height: normal !important;
@@ -178,20 +191,8 @@ div.normal-table {
             }
         }
     }
-    ul.mobile-table-list-wrapper {
-        border-top: 1px solid #dfe3ea;
-    }
-    div.table-button-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-top: 9px;
-    }
     div.pagination-box {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-        text-align: center;
+        @include r(margin-top, 40, 40, 40, 40, 40);
     }
 }
 </style>

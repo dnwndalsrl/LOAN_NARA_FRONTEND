@@ -90,6 +90,74 @@
                 </div>
                 <RegionCompanyListSection />
             </section>
+            <!-- 줄광고 테이블 리스트 -->
+            <section class="line-advertising-table-list-wrapper">
+                <ActionTableListBox
+                    title="지역별 업체 등록 현황"
+                    :data="lineAdvertisingTableValue.list"
+                    :total="lineAdvertisingTableValue.total"
+                    :page-size="lineAdvertisingTableValue.pageSize"
+                    :show-total="true"
+                    v-model:current-page="lineAdvertisingTableValue.currentPage"
+                    @change="onChangePage"
+                >
+                    <!-- 검색 영역 -->
+                    <template #search>
+                        <div class="search-box">
+                            <NormalSelectBox :options="[]" :size="'SMALL'" :placeholder="'선택'" />
+                            <NormalInput :placeholder="'검색어를 입력해 주세요.'" />
+                            <NormalButton
+                                :isIcon="true"
+                                :icon-direction="'LEFT'"
+                                :icon-url="'/images/common/search_white.png'"
+                                :title="'검색'"
+                                :bg-color="'#244C8F'"
+                                :border-color="'#244C8F'"
+                                :font-color="'#ffffff'"
+                            />
+                        </div>
+                    </template>
+
+                    <!-- PC 테이블 컬럼 -->
+                    <el-table-column label="지역" width="100">
+                        <template #default="{ row }">
+                            {{ row.region }}
+                        </template>
+                    </el-table-column>
+
+                    <el-table-column label="제목">
+                        <template #default="{ row }">
+                            <NuxtLink :to="`/company/${row.seq}`">
+                                {{ row.title }}
+                            </NuxtLink>
+                        </template>
+                    </el-table-column>
+
+                    <el-table-column label="대출한도" width="160">
+                        <template #default="{ row }">
+                            {{ row.loanLimit }}
+                        </template>
+                    </el-table-column>
+
+                    <el-table-column label="업체명" width="180">
+                        <template #default="{ row }">
+                            {{ row.companyName }}
+                        </template>
+                    </el-table-column>
+
+                    <!-- 모바일 목록 -->
+                    <template #mobile="{ items }">
+                        <ul class="mobile-company-list">
+                            <li v-for="item in items" :key="item.seq" class="mobile-company-item">
+                                <NuxtLink :to="`/company/${item.seq}`">
+                                    <strong>{{ item.title }}</strong>
+                                    <span>{{ item.companyName }}</span>
+                                </NuxtLink>
+                            </li>
+                        </ul>
+                    </template>
+                </ActionTableListBox>
+            </section>
         </div>
     </div>
 </template>
@@ -286,6 +354,36 @@ const regionInfo = [
     },
 ]
 
+// 줄광고 테이블 리스트 더미데이터
+const lineAdvertisingTableValue = reactive({
+    total: 100,
+    currentPage: 1,
+    pageSize: 10,
+    list: [
+        {
+            seq: 1,
+            region: '전국',
+            title: '사업자대출 보증금담보대출 자영업자대출 월변가능',
+            loanLimit: '5,000만원',
+            companyName: 'R&R파이낸셜대부중개',
+        },
+        {
+            seq: 2,
+            region: '전국',
+            title: '전국무방문 비대면 24시간상담',
+            loanLimit: '200만원',
+            companyName: '더원머니대부',
+        },
+        {
+            seq: 3,
+            region: '전국',
+            title: '무소득 비대면 당일입금',
+            loanLimit: '1,000만원',
+            companyName: '유원상사대부중개',
+        },
+    ],
+})
+
 // =================================================== Computed
 
 // URL에서 현재 선택된 대분류 지역값을 가져옵니다.
@@ -356,6 +454,12 @@ const getRegionLink = (regionId: string) => {
 // 전체 선택 시 대분류 지역 URL을 반환합니다.
 const getDistrictLink = (districtId: string) => {
     return `/browse/region/${selectedRegionId.value}/${districtId}`
+}
+
+// 변경된 페이지를 반영하고 목록을 다시 조회합니다.
+const onChangePage = ({ page, size }: { page: number; size: number }) => {
+    lineAdvertisingTableValue.currentPage = page
+    lineAdvertisingTableValue.pageSize = size
 }
 </script>
 
@@ -583,6 +687,40 @@ div.browse-region-section {
                     color: $color-primary-500;
                     line-height: 1.3;
                     @include r(font-size, 14, 14, 14, 14, 14);
+                }
+            }
+        }
+        section.line-advertising-table-list-wrapper {
+            width: 100%;
+            order: 4;
+            @include r(margin-top, 60, 60, 60, 60, 60);
+            div.search-box {
+                display: flex;
+                align-items: center;
+                @include r(gap, 10, 10, 10, 10, 10);
+                div.normal-select-box {
+                    flex-shrink: 0;
+                    @include r(width, 100, 100, 100, 100, 100);
+                }
+                div.normal-input {
+                    @include respond(pc) {
+                        width: 15.625rem;
+                    }
+                    @include respond(laptop) {
+                        width: 15.625rem;
+                    }
+                    @include respond(tablet) {
+                        width: 15.625rem;
+                    }
+                    @include respond(mobile-plus) {
+                        width: 100%;
+                    }
+                    @include respond(mobile) {
+                        width: 100%;
+                    }
+                }
+                button.normal-button {
+                    flex-shrink: 0;
                 }
             }
         }

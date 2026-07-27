@@ -69,12 +69,13 @@ button.normal-button {
     width: fit-content;
     cursor: pointer;
     border-radius: 6px;
-    border: 1px solid #ffffff;
     font-weight: $font-weight-bold;
     line-height: 1;
+    padding: 0;
+    border: none;
     &.is-large {
-        @include r(height, 32, 32, 32, 32, 32);
         div.align-wrapper {
+            @include r(height, 32, 32, 32, 32, 32);
             @include r(padding-left, 12, 12, 12, 12, 12);
             @include r(padding-right, 12, 12, 12, 12, 12);
             p.link-title {
@@ -83,8 +84,8 @@ button.normal-button {
         }
     }
     &.is-small {
-        @include r(height, 22, 22, 22, 22, 22);
         div.align-wrapper {
+            @include r(height, 22, 22, 22, 22, 22);
             @include r(padding-left, 8, 8, 8, 8, 8);
             @include r(padding-right, 8, 8, 8, 8, 8);
             p.link-title {
@@ -93,7 +94,6 @@ button.normal-button {
         }
     }
     div.align-wrapper {
-        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
