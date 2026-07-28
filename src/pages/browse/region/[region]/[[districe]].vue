@@ -694,33 +694,47 @@ div.browse-region-section {
             width: 100%;
             order: 4;
             @include r(margin-top, 60, 60, 60, 60, 60);
-            div.search-box {
-                display: flex;
-                align-items: center;
-                @include r(gap, 10, 10, 10, 10, 10);
-                div.normal-select-box {
-                    flex-shrink: 0;
-                    @include r(width, 100, 100, 100, 100, 100);
+            section.action-table-list-box {
+                div.search-box {
+                    display: flex;
+                    align-items: center;
+                    @include r(gap, 10, 10, 10, 10, 10);
+                    div.normal-select-box {
+                        flex-shrink: 0;
+                        @include r(width, 100, 100, 100, 100, 100);
+                    }
+                    div.normal-input {
+                        @include respond(pc) {
+                            width: 15.625rem;
+                        }
+                        @include respond(laptop) {
+                            width: 15.625rem;
+                        }
+                        @include respond(tablet) {
+                            width: 15.625rem;
+                        }
+                        @include respond(mobile-plus) {
+                            width: 100%;
+                        }
+                        @include respond(mobile) {
+                            width: 100%;
+                        }
+                    }
+                    button.normal-button {
+                        flex-shrink: 0;
+                    }
                 }
-                div.normal-input {
-                    @include respond(pc) {
-                        width: 15.625rem;
+                ul.mobile-company-list {
+                    border-top: 1px solid $color-gray-200;
+                    li.mobile-company-item {
+                        border-bottom: 1px solid $color-gray-200;
+                        @include r(padding-top, 10, 10, 10, 10, 10);
+                        @include r(padding-bottom, 10, 10, 10, 10, 10);
+                        @include r(padding-left, 8, 8, 8, 8, 8);
+                        @include r(padding-right, 8, 8, 8, 8, 8);
+                        a {
+                        }
                     }
-                    @include respond(laptop) {
-                        width: 15.625rem;
-                    }
-                    @include respond(tablet) {
-                        width: 15.625rem;
-                    }
-                    @include respond(mobile-plus) {
-                        width: 100%;
-                    }
-                    @include respond(mobile) {
-                        width: 100%;
-                    }
-                }
-                button.normal-button {
-                    flex-shrink: 0;
                 }
             }
         }
