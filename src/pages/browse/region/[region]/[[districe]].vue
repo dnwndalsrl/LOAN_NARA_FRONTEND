@@ -498,7 +498,7 @@ div.browse-region-section {
             @include r(padding-bottom, 24, 24, 24, 24, 24);
             @include r(padding-left, 24, 24, 24, 24, 24);
             @include r(padding-right, 24, 24, 24, 24, 24);
-            @include r(margin-right, 0, 0, 0, 20, 20);
+            @include r(margin-right, 0, 0, 0, 0, 20);
 
             div.title-box {
                 flex: 0 0 auto;
@@ -543,6 +543,10 @@ div.browse-region-section {
                     grid-template-columns: repeat(6, minmax(0, 1fr));
                     grid-template-rows: repeat(3, minmax(0, 1fr));
                     @include r(gap, 4, 8, 8, 8, 8);
+                    @include respond(laptop) {
+                        grid-template-columns: repeat(9, minmax(0, 1fr));
+                        grid-template-rows: repeat(2, minmax(0, 1fr));
+                    }
                     @include respond(tablet) {
                         grid-template-columns: repeat(9, minmax(0, 1fr));
                         grid-template-rows: repeat(2, minmax(0, 1fr));
@@ -558,7 +562,7 @@ div.browse-region-section {
                                 color: $color-primary-500;
                             }
                         }
-                        @include r(min-height, 32, 34, 33, 0, 0);
+                        @include r(min-height, 32, 34, 33, 33, 0);
                         a {
                             display: flex;
                             align-items: center;
@@ -586,16 +590,12 @@ div.browse-region-section {
                 order: 2;
                 margin-top: 0;
             }
-            @include respond(laptop) {
-                width: 28.438rem;
-                order: 2;
-                margin-top: 0;
-            }
         }
         section.company-list-wrapper {
+            width: 100%;
             position: relative;
             order: 2;
-            @include r(margin-top, 30, 44, 44, 64, 64);
+            @include r(margin-top, 30, 44, 44, 44, 64);
             @include respond(pc) {
                 order: 4;
             }
