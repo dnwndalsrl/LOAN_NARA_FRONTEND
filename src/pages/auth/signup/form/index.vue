@@ -143,12 +143,14 @@
                     <div class="form-item">
                         <p class="form-item-title">대부업등록증 파일첨부</p>
                         <NormalButton
-                            :type="'FILE'"
                             :size="'LARGE'"
-                            :title="'파일첨부'"
-                            :bgColor="'#DFE3EA'"
-                            :borderColor="'#DFE3EA'"
-                            :fontColor="'#5B6C8B'"
+                            :isIcon="true"
+                            :icon-direction="'LEFT'"
+                            :icon-url="'/images/common/file_add.png'"
+                            :title="'검색'"
+                            :bg-color="'#DFE3EA'"
+                            :border-color="'#DFE3EA'"
+                            :font-color="'#5B6C8B'"
                         />
                     </div>
                 </div>

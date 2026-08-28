@@ -1,6 +1,6 @@
 <template>
     <div class="browse-region-section">
-        <h1>지역별 업체찾기</h1>
+        <PageHeaderBox />
         <div class="align-box">
             <!-- 카테고리 -->
             <section class="category-wrapper">

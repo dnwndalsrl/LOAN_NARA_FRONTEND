@@ -13,11 +13,11 @@ const props = defineProps<{
 <style lang="scss">
 div.normal-badge {
     width: fit-content;
-    border: 1px solid #3665ff;
+    border: 1px solid $color-primary-500;
     border-radius: 50px;
-    background-color: #ebf0ff;
+    background-color: $color-primary-100;
     font-weight: $font-weight-bold;
-    color: #3665ff;
+    color: $color-primary-500;
     @include r(padding-top, 2, 2, 2, 2, 2);
     @include r(padding-bottom, 2, 2, 2, 2, 2);
     @include r(padding-left, 6, 6, 6, 6, 6);

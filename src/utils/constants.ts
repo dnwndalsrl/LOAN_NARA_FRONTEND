@@ -49,9 +49,15 @@ export const ALL_PAGE = [
         subMenus: [],
     },
     {
+        key: 'regionSearch',
+        label: '지역별 업체 찾기',
+        path: '/browse/region',
+        subMenus: [],
+    },
+    {
         key: 'loanTypeSearch',
         label: '상품별 업체 찾기',
-        path: '/browse/loan-type/all',
+        path: '/browse/loan-type',
         subMenus: [],
     },
     {

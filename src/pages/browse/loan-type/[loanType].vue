@@ -1,6 +1,6 @@
 <template>
     <div class="browse-product-section">
-        <h1>상품별 업체찾기</h1>
+        <PageHeaderBox />
 
         <div class="align-box">
             <!-- 상품 카테고리 -->
@@ -416,7 +416,7 @@ div.browse-product-section {
             @include r(padding-bottom, 24, 24, 24, 24, 24);
             @include r(padding-left, 24, 24, 24, 24, 24);
             @include r(padding-right, 24, 24, 24, 24, 24);
-            @include r(margin-right, 0, 0, 0, 20, 20);
+            @include r(margin-right, 0, 0, 0, 0, 20);
 
             div.title-box {
                 flex: 0 0 auto;
