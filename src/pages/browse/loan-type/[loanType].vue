@@ -1,6 +1,8 @@
 <template>
     <div class="browse-product-section">
-        <PageHeaderBox />
+        <div class="page-header-wrapper">
+            <PageHeaderBox />
+        </div>
 
         <div class="align-box">
             <!-- 상품 카테고리 -->
@@ -379,11 +381,7 @@ const getLineAdvertisingList = async () => {
 
 <style lang="scss">
 div.browse-product-section {
-    h1 {
-        font-weight: $font-weight-bold;
-        color: $color-gray-900;
-
-        @include r(font-size, 24, 24, 24, 24, 24);
+    div.page-header-wrapper {
         @include r(margin-bottom, 20, 30, 30, 30, 30);
     }
 

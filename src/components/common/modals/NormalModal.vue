@@ -75,8 +75,9 @@ div.normal-modal {
                 @include r(font-size, 20, 20, 20, 20, 20);
             }
             div.close-img-box {
-                @include r(width, 13, 13, 13, 13, 13);
                 cursor: pointer;
+                @include r(width, 13, 13, 13, 13, 13);
+
                 img {
                     display: block;
                     width: 100%;

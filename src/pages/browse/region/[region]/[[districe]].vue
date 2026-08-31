@@ -1,6 +1,8 @@
 <template>
     <div class="browse-region-section">
-        <PageHeaderBox />
+        <div class="page-header-wrapper">
+            <PageHeaderBox />
+        </div>
         <div class="align-box">
             <!-- 카테고리 -->
             <section class="category-wrapper">
@@ -465,10 +467,7 @@ const onChangePage = ({ page, size }: { page: number; size: number }) => {
 
 <style lang="scss">
 div.browse-region-section {
-    h1 {
-        font-weight: $font-weight-bold;
-        color: $color-gray-900;
-        @include r(font-size, 24, 24, 24, 24, 24);
+    div.page-header-wrapper {
         @include r(margin-bottom, 20, 30, 30, 30, 30);
     }
     div.align-box {
