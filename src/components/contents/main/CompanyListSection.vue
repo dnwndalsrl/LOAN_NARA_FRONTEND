@@ -7,9 +7,9 @@
                 <NormalLink
                     :to="'/support/ad-inquiry'"
                     :title="'광고문의'"
-                    :bgColor="'#DFE3EA'"
-                    :borderColor="'#DFE3EA'"
-                    :fontColor="'#5B6C8B'"
+                    :bgColor="'gray-300'"
+                    :borderColor="'gray-300'"
+                    :fontColor="'gray-500'"
                 />
             </div>
         </div>

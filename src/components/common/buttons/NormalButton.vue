@@ -1,14 +1,14 @@
 <template>
     <button
         class="normal-button"
-        :class="size === 'LARGE' ? 'is-large' : 'is-small'"
+        :class="[
+            size === 'LARGE' ? 'is-large' : 'is-small',
+            `bg-${bgColor}`,
+            `border-${borderColor}`,
+            `font-${fontColor}`,
+        ]"
         type="button"
         @click="handleClick()"
-        :style="{
-            backgroundColor: props.bgColor,
-            borderColor: props.borderColor,
-            color: props.fontColor,
-        }"
     >
         <div class="align-wrapper">
             <div v-if="isIcon && iconDirection === 'LEFT'" class="img-box">
@@ -23,6 +23,63 @@
 </template>
 
 <script setup lang="ts">
+type ColorKey =
+    | 'white'
+    | 'gray-900'
+    | 'gray-800'
+    | 'gray-700'
+    | 'gray-600'
+    | 'gray-500'
+    | 'gray-400'
+    | 'gray-300'
+    | 'gray-200'
+    | 'gray-100'
+    | 'primary-900'
+    | 'primary-800'
+    | 'primary-700'
+    | 'primary-600'
+    | 'primary-500'
+    | 'primary-400'
+    | 'primary-300'
+    | 'primary-200'
+    | 'primary-100'
+    | 'secondary-900'
+    | 'secondary-800'
+    | 'secondary-700'
+    | 'secondary-600'
+    | 'secondary-500'
+    | 'secondary-400'
+    | 'secondary-300'
+    | 'secondary-200'
+    | 'secondary-100'
+    | 'point-900'
+    | 'point-800'
+    | 'point-700'
+    | 'point-600'
+    | 'point-500'
+    | 'point-400'
+    | 'point-300'
+    | 'point-200'
+    | 'point-100'
+    | 'success-900'
+    | 'success-800'
+    | 'success-700'
+    | 'success-600'
+    | 'success-500'
+    | 'success-400'
+    | 'success-300'
+    | 'success-200'
+    | 'success-100'
+    | 'error-900'
+    | 'error-800'
+    | 'error-700'
+    | 'error-600'
+    | 'error-500'
+    | 'error-400'
+    | 'error-300'
+    | 'error-200'
+    | 'error-100'
+
 const props = withDefaults(
     defineProps<{
         isIcon?: boolean
@@ -30,14 +87,17 @@ const props = withDefaults(
         iconUrl?: string
         size?: 'LARGE' | 'SMALL'
         title: string
-        bgColor: string
-        borderColor: string
-        fontColor: string
+        bgColor?: ColorKey
+        borderColor?: ColorKey
+        fontColor?: ColorKey
     }>(),
     {
         isIcon: false,
         iconDirection: 'LEFT',
         size: 'LARGE',
+        bgColor: 'primary-500',
+        borderColor: 'primary-500',
+        fontColor: 'white',
     },
 )
 
@@ -73,6 +133,19 @@ button.normal-button {
     line-height: 1;
     padding: 0;
     border: none;
+    @each $name, $color in $button-colors {
+        &.bg-#{$name} {
+            background-color: $color;
+        }
+
+        &.border-#{$name} {
+            border-color: $color;
+        }
+
+        &.font-#{$name} {
+            color: $color;
+        }
+    }
     &.is-large {
         div.align-wrapper {
             @include r(height, 32, 32, 32, 32, 32);

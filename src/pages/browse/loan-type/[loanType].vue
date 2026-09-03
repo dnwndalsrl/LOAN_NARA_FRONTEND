@@ -54,9 +54,9 @@
                         <NormalLink
                             to="/support/ad-inquiry"
                             title="광고문의"
-                            bgColor="#DFE3EA"
-                            borderColor="#DFE3EA"
-                            fontColor="#5B6C8B"
+                            bgColor="gray-300"
+                            borderColor="gray-300"
+                            fontColor="gray-500"
                         />
                     </div>
                 </div>
@@ -84,9 +84,9 @@
                                 :icon-direction="'LEFT'"
                                 :icon-url="'/images/common/search_white.png'"
                                 :title="'검색'"
-                                :bg-color="'#244C8F'"
-                                :border-color="'#244C8F'"
-                                :font-color="'#ffffff'"
+                                :bg-color="'secondary-500'"
+                                :border-color="'secondary-500'"
+                                :font-color="'white'"
                             />
                         </div>
                     </template>

@@ -15,9 +15,9 @@
                         <div class="button-box">
                             <NormalButton
                                 :title="'업체정보'"
-                                :bg-color="'#244C8F'"
-                                :border-color="'#244C8F'"
-                                :font-color="'#ffffff'"
+                                :bg-color="'secondary-500'"
+                                :border-color="'secondary-500'"
+                                :font-color="'white'"
                                 @click="companyDetailModalVisible = true"
                             />
                             <NormalButton
@@ -25,9 +25,9 @@
                                 :icon-direction="'LEFT'"
                                 :icon-url="'/images/common/warning.png'"
                                 :title="'주의사항'"
-                                :bg-color="'#CBD5E1'"
-                                :border-color="'#CBD5E1'"
-                                :font-color="'#64748B'"
+                                :bg-color="'gray-300'"
+                                :border-color="'gray-300'"
+                                :font-color="'gray-500'"
                             />
                         </div>
                     </div>
@@ -234,9 +234,9 @@
                         :to="'/'"
                         :title="'목록으로'"
                         `
-                        :bgColor="'#244C8F'"
-                        :borderColor="'#244C8F'"
-                        :fontColor="'#ffffff'"
+                        :bgColor="'secondary-500'"
+                        :borderColor="'secondary-500'"
+                        :fontColor="'white'"
                     />
                 </div>
             </section>
@@ -261,9 +261,9 @@
                                 :icon-direction="'LEFT'"
                                 :icon-url="'/images/common/search_white.png'"
                                 :title="'검색'"
-                                :bg-color="'#244C8F'"
-                                :border-color="'#244C8F'"
-                                :font-color="'#ffffff'"
+                                :bg-color="'secondary-500'"
+                                :border-color="'secondary-500'"
+                                :font-color="'white'"
                             />
                         </div>
                     </template>
@@ -367,9 +367,9 @@
                 <div class="button-wrapper">
                     <NormalButton
                         :title="'확인'"
-                        :bg-color="'#366ECC'"
-                        :border-color="'#366ECC'"
-                        :font-color="'#ffffff'"
+                        :bg-color="'primary-500'"
+                        :border-color="'primary-500'"
+                        :font-color="'white'"
                         @click="companyDetailModalVisible = false"
                     />
                 </div>
@@ -417,9 +417,9 @@
                 <div class="button-wrapper">
                     <NormalButton
                         :title="'닫기'"
-                        :bg-color="'#94A3B8'"
-                        :border-color="'#94A3B8'"
-                        :font-color="'#ffffff'"
+                        :bg-color="'gray-400'"
+                        :border-color="'gray-400'"
+                        :font-color="'white'"
                         @click="companyClickCountModalVisible = false"
                     />
                 </div>

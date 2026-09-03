@@ -16,9 +16,9 @@
                                 :type="'NORMAL'"
                                 :size="'LARGE'"
                                 :title="'중복확인'"
-                                :bgColor="'#FFFFFF'"
-                                :borderColor="'#366ECC'"
-                                :fontColor="'#366ECC'"
+                                :bgColor="'white'"
+                                :borderColor="'primary-500'"
+                                :fontColor="'primary-500'"
                             />
                         </div>
                         <p class="form-item-sub-title">
@@ -148,9 +148,9 @@
                             :icon-direction="'LEFT'"
                             :icon-url="'/images/common/file_add.png'"
                             :title="'검색'"
-                            :bg-color="'#DFE3EA'"
-                            :border-color="'#DFE3EA'"
-                            :font-color="'#5B6C8B'"
+                            :bg-color="'gray-300'"
+                            :border-color="'gray-300'"
+                            :font-color="'gray-500'"
                         />
                     </div>
                 </div>
@@ -208,18 +208,18 @@
                     :type="'NORMAL'"
                     :size="'LARGE'"
                     :title="'이전으로'"
-                    :bgColor="'#DFDFDF'"
-                    :borderColor="'#DFDFDF'"
-                    :fontColor="'#6B707E'"
+                    :bgColor="'gray-400'"
+                    :borderColor="'gray-400'"
+                    :fontColor="'white'"
                     @click="goBack()"
                 />
                 <NormalButton
                     :type="'NORMAL'"
                     :size="'LARGE'"
                     :title="'확인'"
-                    :bgColor="'#366ECC'"
-                    :borderColor="'#366ECC'"
-                    :fontColor="'#ffffff'"
+                    :bgColor="'primary-500'"
+                    :borderColor="'primary-500'"
+                    :fontColor="'white'"
                     @click="onClickMoveComplete()"
                 />
             </div>

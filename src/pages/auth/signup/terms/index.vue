@@ -27,18 +27,18 @@
                     :type="'NORMAL'"
                     :size="'LARGE'"
                     :title="'취소'"
-                    :bgColor="'#DFDFDF'"
-                    :borderColor="'#DFDFDF'"
-                    :fontColor="'#6B707E'"
+                    :bgColor="'gray-400'"
+                    :borderColor="'gray-400'"
+                    :fontColor="'white'"
                     @click="goBack()"
                 />
                 <NormalButton
                     :type="'NORMAL'"
                     :size="'LARGE'"
                     :title="'인증번호받기'"
-                    :bgColor="'#366ECC'"
-                    :borderColor="'#366ECC'"
-                    :fontColor="'#ffffff'"
+                    :bgColor="'primary-500'"
+                    :borderColor="'primary-500'"
+                    :fontColor="'white'"
                     @click="onClickMoveForm()"
                 />
             </div>

@@ -45,17 +45,17 @@
                     :type="'NORMAL'"
                     :size="'LARGE'"
                     :title="'메인으로 이동'"
-                    :bgColor="'#717786'"
-                    :borderColor="'#717786'"
-                    :fontColor="'#FFFFFF'"
+                    :bgColor="'gray-400'"
+                    :borderColor="'gray-400'"
+                    :fontColor="'white'"
                 />
                 <NormalLink
                     :type="'NORMAL'"
                     :size="'LARGE'"
                     :title="'로그인'"
-                    :bgColor="'#366ECC'"
-                    :borderColor="'#366ECC'"
-                    :fontColor="'#FFFFFF'"
+                    :bgColor="'primary-500'"
+                    :borderColor="'primary-500'"
+                    :fontColor="'white'"
                 />
             </div>
         </section>
