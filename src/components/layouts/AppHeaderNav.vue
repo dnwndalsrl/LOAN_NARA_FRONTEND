@@ -5,27 +5,89 @@
         @mouseleave="onNavLeave()"
         aria-label="주요 메뉴"
     >
-        <!-- 부모 메뉴 -->
-        <div class="parent-menu-swiper-wrapper">
-            <div class="align-box">
-                <Swiper
-                    :slides-per-view="'auto'"
-                    :space-between="39"
-                    :free-mode="true"
-                    :modules="[FreeMode]"
-                    class="parent-menu-swiper"
-                >
-                    <SwiperSlide
-                        v-for="menu in NAV_MENUS"
-                        :key="menu.key"
-                        class="parent-menu-slide"
+        <!-- 메뉴 영역 -->
+        <div class="navigation-menu-wrapper">
+            <!-- 부모 메뉴 -->
+            <div class="parent-menu-swiper-wrapper">
+                <div class="align-box">
+                    <Swiper
+                        :slides-per-view="'auto'"
+                        :space-between="39"
+                        :free-mode="true"
+                        :modules="[FreeMode]"
+                        class="parent-menu-swiper"
                     >
-                        <NuxtLink :to="menu.path" class="parent-menu-link">
-                            {{ menu.label }}
-                        </NuxtLink>
-                    </SwiperSlide>
-                </Swiper>
+                        <SwiperSlide
+                            v-for="menu in NAV_MENUS"
+                            :key="menu.key"
+                            class="parent-menu-slide"
+                        >
+                            <NuxtLink :to="menu.path" class="parent-menu-link">
+                                {{ menu.label }}
+                            </NuxtLink>
+                        </SwiperSlide>
+                    </Swiper>
+                </div>
             </div>
+            <!-- PC 제외 디바이스 하위 메뉴 -->
+            <template v-if="!isPc">
+                <!-- 2Depth -->
+                <div v-if="currentParentMenu?.subMenus?.length" class="sub-menu-bar-wrapper">
+                    <div class="align-box">
+                        <Swiper
+                            :slides-per-view="'auto'"
+                            :space-between="24"
+                            :free-mode="true"
+                            :modules="[FreeMode]"
+                            class="sub-menu-swiper"
+                        >
+                            <SwiperSlide
+                                v-for="subMenu in currentParentMenu.subMenus"
+                                :key="subMenu.key"
+                                class="sub-menu-slide"
+                            >
+                                <NuxtLink
+                                    :to="subMenu.subPath"
+                                    class="sub-menu-link"
+                                    :class="{
+                                        'is-active': isActiveSubMenu(subMenu),
+                                    }"
+                                >
+                                    {{ subMenu.label }}
+                                </NuxtLink>
+                            </SwiperSlide>
+                        </Swiper>
+                    </div>
+                </div>
+                <!-- 3Depth -->
+                <div v-if="currentSubMenu?.childMenus?.length" class="child-menu-bar-wrapper">
+                    <div class="align-box">
+                        <Swiper
+                            :slides-per-view="'auto'"
+                            :space-between="28"
+                            :free-mode="true"
+                            :modules="[FreeMode]"
+                            class="child-menu-swiper"
+                        >
+                            <SwiperSlide
+                                v-for="childMenu in currentSubMenu.childMenus"
+                                :key="childMenu.key"
+                                class="child-menu-slide"
+                            >
+                                <NuxtLink
+                                    :to="childMenu.subPath"
+                                    class="child-menu-link"
+                                    :class="{
+                                        'is-active': isActiveChildMenu(childMenu.subPath),
+                                    }"
+                                >
+                                    {{ childMenu.label }}
+                                </NuxtLink>
+                            </SwiperSlide>
+                        </Swiper>
+                    </div>
+                </div>
+            </template>
         </div>
 
         <!-- 자식 메뉴 (PC 노출) -->
@@ -116,9 +178,50 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useCommonStore } from '~/store/common'
 
 const commonStore = useCommonStore()
+const route = useRoute()
 const { isPc, isLaptop, isTablet, isMobilePlus, isMobile } = useBreakpoints()
 
 // ======================================== Computed
+// 현재 URL을 기준으로 선택된 상위 메뉴를 찾습니다.
+const currentParentMenu = computed(() => {
+    return NAV_MENUS.find((menu) => {
+        // 상위 메뉴 URL과 일치하는 경우
+        if (route.path === menu.path) {
+            return true
+        }
+
+        // 하위 메뉴 또는 자식 메뉴 URL과 일치하는 경우
+        return menu.subMenus?.some((subMenu) => {
+            if (route.path === subMenu.subPath) {
+                return true
+            }
+
+            return subMenu.childMenus?.some((childMenu) => {
+                return route.path === childMenu.subPath
+            })
+        })
+    })
+})
+
+// 현재 URL을 기준으로 선택된 2Depth 메뉴를 찾습니다.
+const currentSubMenu = computed(() => {
+    if (!currentParentMenu.value?.subMenus?.length) {
+        return undefined
+    }
+
+    return currentParentMenu.value.subMenus.find((subMenu) => {
+        // 2Depth 메뉴와 현재 URL이 동일한 경우
+        if (route.path === subMenu.subPath) {
+            return true
+        }
+
+        // 3Depth 메뉴 중 현재 URL과 동일한 메뉴가 있는 경우
+        return subMenu.childMenus?.some((childMenu) => {
+            return route.path === childMenu.subPath
+        })
+    })
+})
+
 // 우측 Drawer Menu Size
 const drawerSize = computed(() => {
     if (isPc.value) return '0'
@@ -148,6 +251,26 @@ const onNavLeave = () => {
     if (!isPc.value) return
     commonStore.closeMegaMenu()
 }
+
+// 현재 URL을 기준으로 하위 메뉴 활성화 여부를 반환합니다.
+const isActiveSubMenu = (subMenu: any) => {
+    // 하위 메뉴 URL과 현재 URL이 동일한 경우
+    if (route.path === subMenu.subPath) {
+        return true
+    }
+
+    // 자식 메뉴 중 현재 URL과 동일한 메뉴가 있는 경우
+    return Boolean(
+        subMenu.childMenus?.some((childMenu: any) => {
+            return route.path === childMenu.subPath
+        }),
+    )
+}
+
+// 현재 URL을 기준으로 3Depth 메뉴 활성화 여부를 반환합니다.
+const isActiveChildMenu = (path: string) => {
+    return route.path === path
+}
 </script>
 
 <style lang="scss">
@@ -156,33 +279,95 @@ nav.loan-nara-header-nav-container {
     top: 0;
     z-index: 1000;
     background: $color-white;
-    div.parent-menu-swiper-wrapper {
-        position: relative;
-        z-index: 2;
-        box-shadow: 0px 2px 8px 0px #e0e0e066;
-        div.align-box {
-            @include r(padding-left, 16, 24, 24, 40, 40);
-            @include r(padding-right, 16, 24, 24, 40, 40);
-            @include respond(pc) {
-                max-width: 75rem;
-                margin: 0 auto;
-            }
-            div.parent-menu-swiper {
-                overflow: hidden;
-                div.swiper-wrapper {
-                    overflow: visible;
-                    div.parent-menu-slide {
-                        width: auto !important;
-                        @include r(padding-top, 16, 16, 16, 16, 16);
-                        @include r(padding-bottom, 16, 16, 16, 16, 16);
-                        a {
-                            font-weight: $font-weight-bold;
-                            color: $color-gray-900;
-                            text-decoration: none;
-                            &:hover {
-                                color: $color-primary-500;
+    div.navigation-menu-wrapper {
+        div.parent-menu-swiper-wrapper {
+            position: relative;
+            z-index: 2;
+            box-shadow: 0px 2px 8px 0px #e0e0e066;
+            div.align-box {
+                @include r(padding-left, 16, 24, 24, 40, 40);
+                @include r(padding-right, 16, 24, 24, 40, 40);
+                @include respond(pc) {
+                    max-width: 75rem;
+                    margin: 0 auto;
+                }
+                div.parent-menu-swiper {
+                    overflow: hidden;
+                    div.swiper-wrapper {
+                        overflow: visible;
+                        div.parent-menu-slide {
+                            width: auto !important;
+                            @include r(padding-top, 16, 16, 16, 16, 16);
+                            @include r(padding-bottom, 16, 16, 16, 16, 16);
+                            a {
+                                font-weight: $font-weight-bold;
+                                color: $color-gray-900;
+                                text-decoration: none;
+                                &:hover {
+                                    color: $color-primary-500;
+                                }
+                                @include r(font-size, 16, 16, 16, 16, 16);
                             }
-                            @include r(font-size, 16, 16, 16, 16, 16);
+                        }
+                    }
+                }
+            }
+        }
+        div.sub-menu-bar-wrapper {
+            position: relative;
+            z-index: 2;
+            background: $color-gray-100;
+            div.align-box {
+                @include r(padding-left, 16, 24, 24, 24, 24);
+                @include r(padding-right, 16, 24, 24, 24, 24);
+                div.sub-menu-swiper {
+                    overflow: hidden;
+                    div.swiper-wrapper {
+                        overflow: visible;
+                        div.sub-menu-slide {
+                            width: auto !important;
+                            @include r(padding-top, 10, 10, 10, 10, 10);
+                            @include r(padding-bottom, 10, 10, 10, 10, 10);
+                            a {
+                                font-weight: $font-weight-medium;
+                                color: $color-gray-500;
+                                text-decoration: none;
+                                &.is-active {
+                                    font-weight: $font-weight-semi-bold;
+                                    color: $color-gray-900;
+                                }
+                                @include r(font-size, 15, 15, 15, 15, 15);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        div.child-menu-bar-wrapper {
+            position: relative;
+            z-index: 2;
+            background: $color-gray-200;
+            div.align-box {
+                @include r(padding-left, 16, 24, 24, 24, 24);
+                @include r(padding-right, 16, 24, 24, 24, 24);
+                div.child-menu-swiper {
+                    overflow: hidden;
+                    div.swiper-wrapper {
+                        overflow: visible;
+                        div.child-menu-slide {
+                            width: auto !important;
+                            @include r(padding-top, 10, 10, 10, 10, 10);
+                            @include r(padding-bottom, 10, 10, 10, 10, 10);
+                            a {
+                                font-weight: $font-weight-medium;
+                                color: $color-gray-600;
+                                text-decoration: none;
+                                &.is-active {
+                                    font-weight: $font-weight-semi-bold;
+                                    color: $color-gray-900;
+                                }
+                                @include r(font-size, 15, 15, 15, 15, 15);
+                            }
                         }
                     }
                 }
