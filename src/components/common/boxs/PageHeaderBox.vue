@@ -22,10 +22,19 @@ const { isPc, isLaptop, isTablet, isMobilePlus, isMobile } = useBreakpoints()
 
 const route = useRoute()
 // =============================================== Computed
-const labels = computed(() => resolveNavLabels(ALL_PAGE, route.path))
+// 현재 URL을 기준으로 페이지 네비게이션 정보를 가져옵니다.
+const navigationInfo = computed(() => {
+    return resolveNavigationInfo(ALL_PAGE, route.path)
+})
 
+// breadcrumb에 표시할 메뉴명을 반환합니다.
+const labels = computed(() => {
+    return navigationInfo.value.labels
+})
+
+// 현재 페이지의 제목을 반환합니다.
 const title = computed(() => {
-    return labels.value[labels.value.length - 1] ?? ''
+    return navigationInfo.value.pageTitle
 })
 // =============================================== Function
 const normalizePath = (path: string) => {
@@ -34,25 +43,32 @@ const normalizePath = (path: string) => {
     return path
 }
 
-const resolveNavLabels = (nav: any, routePath: any) => {
+// 현재 URL을 기준으로 페이지 제목과 breadcrumb 정보를 반환합니다.
+const resolveNavigationInfo = (nav: any, routePath: string) => {
     const current = normalizePath(routePath)
-    // 모든 가능한 경로를 평탄화
+
+    // 전체 메뉴를 URL 기준으로 평탄화합니다.
     const candidates = nav.flatMap((menu: any) => {
         const parent = {
             path: normalizePath(menu.path),
             labels: [menu.label],
+            pageTitle: menu.pageTitle ?? menu.label,
         }
 
         const subs = (menu.subMenus ?? []).flatMap((sub: any) => {
             const subItem = {
                 path: normalizePath(sub.subPath),
                 labels: [menu.label, sub.label],
+                pageTitle: sub.pageTitle ?? sub.label,
             }
 
-            const children = (sub.childMenus ?? []).map((child: any) => ({
-                path: normalizePath(child.subPath),
-                labels: [menu.label, sub.label, child.label],
-            }))
+            const children = (sub.childMenus ?? []).map((child: any) => {
+                return {
+                    path: normalizePath(child.subPath),
+                    labels: [menu.label, sub.label, child.label],
+                    pageTitle: child.pageTitle ?? child.label,
+                }
+            })
 
             return [subItem, ...children]
         })
@@ -60,19 +76,41 @@ const resolveNavLabels = (nav: any, routePath: any) => {
         return [parent, ...subs]
     })
 
-    // 현재 경로와 prefix 매칭되는 것만 필터
-    const matched = candidates.filter(
-        (item: any) => current === item.path || current.startsWith(item.path + '/'),
-    )
+    // 현재 URL과 일치하는 메뉴를 찾습니다.
+    const matched = candidates.filter((item: any) => {
+        return current === item.path || current.startsWith(`${item.path}/`)
+    })
 
-    if (!matched.length) return []
+    if (!matched.length) {
+        return {
+            labels: [],
+            pageTitle: '',
+        }
+    }
 
-    // 가장 긴 path(=가장 구체적인 메뉴) 선택
-    const best = matched.reduce((prev: any, curr: any) =>
-        curr.path.length > prev.path.length ? curr : prev,
-    )
+    // 가장 구체적인 메뉴를 선택합니다.
+    // URL 길이가 같으면 depth가 더 깊은 메뉴를 우선합니다.
+    const best = matched.reduce((prev: any, curr: any) => {
+        if (curr.path.length > prev.path.length) {
+            return curr
+        }
 
-    return best.labels
+        if (curr.path.length === prev.path.length && curr.labels.length > prev.labels.length) {
+            return curr
+        }
+
+        return prev
+    })
+
+    // 동일한 메뉴명이 연속해서 들어가는 경우 중복을 제거합니다.
+    const uniqueLabels = best.labels.filter((label: string, index: number, array: string[]) => {
+        return index === 0 || label !== array[index - 1]
+    })
+
+    return {
+        labels: uniqueLabels,
+        pageTitle: best.pageTitle,
+    }
 }
 </script>
 
