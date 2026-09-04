@@ -1,5 +1,10 @@
 <template>
-    <div class="loan-nara-layout">
+    <div
+        class="loan-nara-layout"
+        :class="{
+            'has-company-detail-fixed-bar': isCompanyDetailPage,
+        }"
+    >
         <!-- 헤더 영역 -->
         <AppHeader />
 
@@ -141,6 +146,11 @@ const isAuth = computed(
         route.path === '/auth/find-account/reset-password',
 )
 
+// 업체 상세페이지 여부를 확인합니다.
+const isCompanyDetailPage = computed(() => {
+    return route.path.startsWith('/company/')
+})
+
 // ======================================== Function
 const onScroll = () => {
     const scrollY = window.scrollY
@@ -171,6 +181,11 @@ onUnmounted(() => {
 <style lang="scss">
 div.loan-nara-layout {
     width: 100%;
+    &.has-company-detail-fixed-bar {
+        @include respond(mobile) {
+            @include r(padding-bottom, 50, 50, 50, 50, 50);
+        }
+    }
     div.main-with-side-container {
         position: relative;
         @include r(padding-top, 24, 40, 40, 40, 40);

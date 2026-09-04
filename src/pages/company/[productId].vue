@@ -309,6 +309,32 @@
                 </ActionTableListBox>
             </section>
         </div>
+        <!-- 하단 Fixed Box (Mobile 에서만 노출) -->
+        <Teleport to="body">
+            <div v-if="isMobile" class="company-detail-footer-fixed-box">
+                <div class="button-wrapper">
+                    <button type="button">
+                        <div class="align-wrapper">
+                            <div class="img-box">
+                                <NuxtImg src="/images/common/message_blue.png" alt="문자상담" />
+                            </div>
+
+                            <p class="link-title">문자상담</p>
+                        </div>
+                    </button>
+
+                    <button type="button">
+                        <div class="align-wrapper">
+                            <div class="img-box">
+                                <NuxtImg src="/images/common/tell_phone_white.png" alt="전화상담" />
+                            </div>
+
+                            <p class="link-title">전화상담</p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </Teleport>
         <!-- 업체정보 상세보기 Modal -->
         <NormalModal
             v-model="companyDetailModalVisible"
@@ -429,6 +455,7 @@
 </template>
 
 <script setup lang="ts">
+const { isPc, isLaptop, isTablet, isMobilePlus, isMobile } = useBreakpoints()
 // =================================================== State
 // 줄광고 테이블 목록입니다.
 const lineAdvertisingTableValue = reactive({
@@ -765,6 +792,7 @@ div.company-detail-section {
         }
     }
 }
+
 div.company-detail-modal {
     div.el-dialog__body {
         div.contents-wrapper {
@@ -839,6 +867,7 @@ div.company-detail-modal {
         }
     }
 }
+
 div.company-click-count-modal {
     div.el-dialog__body {
         div.contents-wrapper {
@@ -927,6 +956,71 @@ div.company-click-count-modal {
             align-items: center;
             justify-content: end;
             @include r(margin-top, 24, 24, 24, 24, 24);
+        }
+    }
+}
+
+div.company-detail-footer-fixed-box {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 4px 0px 20px 0px #00000029;
+    background-color: $color-white;
+    @include r(padding-top, 10, 10, 10, 10, 10);
+    @include r(padding-bottom, 10, 10, 10, 10, 10);
+    @include r(padding-left, 10, 10, 10, 10, 10);
+    @include r(padding-right, 10, 10, 10, 10, 10);
+    div.button-wrapper {
+        display: flex;
+        align-items: center;
+        @include r(gap, 10, 10, 10, 10, 10);
+        button {
+            display: block;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: $font-weight-bold;
+            line-height: 1;
+            padding: 0;
+            border: none;
+            &:first-child {
+                background-color: $color-white;
+                border: 1px solid $color-primary-500;
+                div.align-wrapper {
+                    p.link-title {
+                        color: $color-primary-500;
+                    }
+                }
+            }
+            &:last-child {
+                background-color: $color-primary-500;
+                border: 1px solid $color-primary-500;
+                div.align-wrapper {
+                    p.link-title {
+                        color: $color-white;
+                    }
+                }
+            }
+            div.align-wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                @include r(gap, 8, 8, 8, 8, 8);
+                @include r(padding-top, 12, 12, 12, 12, 12);
+                @include r(padding-bottom, 12, 12, 12, 12, 12);
+                div.img-box {
+                    @include r(width, 14, 14, 14, 14, 14);
+                    img {
+                        display: block;
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+                p.link-title {
+                    font-weight: $font-weight-bold;
+                }
+            }
         }
     }
 }
