@@ -6,6 +6,7 @@
         aria-label="주요 메뉴"
     >
         <!-- 메뉴 영역 -->
+        <!-- 메뉴 영역 -->
         <div class="navigation-menu-wrapper">
             <!-- 부모 메뉴 -->
             <div class="parent-menu-swiper-wrapper">
@@ -29,65 +30,64 @@
                     </Swiper>
                 </div>
             </div>
-            <!-- PC 제외 디바이스 하위 메뉴 -->
-            <template v-if="!isPc">
-                <!-- 2Depth -->
-                <div v-if="currentParentMenu?.subMenus?.length" class="sub-menu-bar-wrapper">
-                    <div class="align-box">
-                        <Swiper
-                            :slides-per-view="'auto'"
-                            :space-between="24"
-                            :free-mode="true"
-                            :modules="[FreeMode]"
-                            class="sub-menu-swiper"
+
+            <!-- 2Depth 메뉴 -->
+            <div v-if="currentParentMenu?.subMenus?.length" class="sub-menu-bar-wrapper">
+                <div class="align-box">
+                    <Swiper
+                        :slides-per-view="'auto'"
+                        :space-between="24"
+                        :free-mode="true"
+                        :modules="[FreeMode]"
+                        class="sub-menu-swiper"
+                    >
+                        <SwiperSlide
+                            v-for="subMenu in currentParentMenu.subMenus"
+                            :key="subMenu.key"
+                            class="sub-menu-slide"
                         >
-                            <SwiperSlide
-                                v-for="subMenu in currentParentMenu.subMenus"
-                                :key="subMenu.key"
-                                class="sub-menu-slide"
+                            <NuxtLink
+                                :to="subMenu.subPath"
+                                class="sub-menu-link"
+                                :class="{
+                                    'is-active': isActiveSubMenu(subMenu),
+                                }"
                             >
-                                <NuxtLink
-                                    :to="subMenu.subPath"
-                                    class="sub-menu-link"
-                                    :class="{
-                                        'is-active': isActiveSubMenu(subMenu),
-                                    }"
-                                >
-                                    {{ subMenu.label }}
-                                </NuxtLink>
-                            </SwiperSlide>
-                        </Swiper>
-                    </div>
+                                {{ subMenu.label }}
+                            </NuxtLink>
+                        </SwiperSlide>
+                    </Swiper>
                 </div>
-                <!-- 3Depth -->
-                <div v-if="currentSubMenu?.childMenus?.length" class="child-menu-bar-wrapper">
-                    <div class="align-box">
-                        <Swiper
-                            :slides-per-view="'auto'"
-                            :space-between="28"
-                            :free-mode="true"
-                            :modules="[FreeMode]"
-                            class="child-menu-swiper"
+            </div>
+
+            <!-- 3Depth 메뉴 -->
+            <div v-if="currentSubMenu?.childMenus?.length" class="child-menu-bar-wrapper">
+                <div class="align-box">
+                    <Swiper
+                        :slides-per-view="'auto'"
+                        :space-between="28"
+                        :free-mode="true"
+                        :modules="[FreeMode]"
+                        class="child-menu-swiper"
+                    >
+                        <SwiperSlide
+                            v-for="childMenu in currentSubMenu.childMenus"
+                            :key="childMenu.key"
+                            class="child-menu-slide"
                         >
-                            <SwiperSlide
-                                v-for="childMenu in currentSubMenu.childMenus"
-                                :key="childMenu.key"
-                                class="child-menu-slide"
+                            <NuxtLink
+                                :to="childMenu.subPath"
+                                class="child-menu-link"
+                                :class="{
+                                    'is-active': isActiveChildMenu(childMenu.subPath),
+                                }"
                             >
-                                <NuxtLink
-                                    :to="childMenu.subPath"
-                                    class="child-menu-link"
-                                    :class="{
-                                        'is-active': isActiveChildMenu(childMenu.subPath),
-                                    }"
-                                >
-                                    {{ childMenu.label }}
-                                </NuxtLink>
-                            </SwiperSlide>
-                        </Swiper>
-                    </div>
+                                {{ childMenu.label }}
+                            </NuxtLink>
+                        </SwiperSlide>
+                    </Swiper>
                 </div>
-            </template>
+            </div>
         </div>
 
         <!-- 자식 메뉴 (PC 노출) -->
@@ -314,9 +314,14 @@ nav.loan-nara-header-nav-container {
             }
         }
         div.sub-menu-bar-wrapper {
+            display: block;
             position: relative;
             z-index: 2;
             background: $color-gray-100;
+            // PC에서는 하위 메뉴 숨김
+            @include respond(pc) {
+                display: none;
+            }
             div.align-box {
                 @include r(padding-left, 16, 24, 24, 24, 24);
                 @include r(padding-right, 16, 24, 24, 24, 24);
@@ -344,9 +349,14 @@ nav.loan-nara-header-nav-container {
             }
         }
         div.child-menu-bar-wrapper {
+            display: block;
             position: relative;
             z-index: 2;
             background: $color-gray-200;
+            // PC에서는 하위 메뉴 숨김
+            @include respond(pc) {
+                display: none;
+            }
             div.align-box {
                 @include r(padding-left, 16, 24, 24, 24, 24);
                 @include r(padding-right, 16, 24, 24, 24, 24);

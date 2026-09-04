@@ -20,13 +20,13 @@
                             :to="subMenu.subPath"
                             class="sub-menu-link"
                             :class="{
-                                'is-active': isActiveMenu(subMenu.subPath),
+                                'is-active': isActiveSubMenu(subMenu),
                             }"
                         >
                             <span>{{ subMenu.label }}</span>
 
-                            <!-- 하위 메뉴가 없는 경우에만 화살표 -->
-                            <div v-if="!subMenu.childMenus?.length" class="img-box">
+                            <!-- 현재 활성화된 2Depth 메뉴에만 화살표 표시 -->
+                            <div v-if="isActiveSubMenu(subMenu)" class="img-box">
                                 <img src="/images/common/right_arrow_black.png" alt="" />
                             </div>
                         </NuxtLink>
@@ -123,6 +123,21 @@ const currentMenu = computed(() => {
 // 현재 페이지와 메뉴 URL이 동일한지 확인합니다.
 const isActiveMenu = (path: string) => {
     return route.path === path
+}
+
+// 현재 URL을 기준으로 2Depth 메뉴 활성화 여부를 확인합니다.
+const isActiveSubMenu = (subMenu: any) => {
+    // 2Depth 메뉴 URL과 현재 URL이 동일한 경우
+    if (route.path === subMenu.subPath) {
+        return true
+    }
+
+    // 현재 URL이 해당 2Depth의 3Depth 메뉴에 포함된 경우
+    return Boolean(
+        subMenu.childMenus?.some((childMenu: any) => {
+            return route.path === childMenu.subPath
+        }),
+    )
 }
 </script>
 
