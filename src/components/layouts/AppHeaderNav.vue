@@ -1,5 +1,6 @@
 <template>
     <nav
+        ref="headerNavRef"
         class="loan-nara-header-nav-container"
         @mouseenter="onNavEnter()"
         @mouseleave="onNavLeave()"
@@ -181,6 +182,9 @@ const commonStore = useCommonStore()
 const route = useRoute()
 const { isPc, isLaptop, isTablet, isMobilePlus, isMobile } = useBreakpoints()
 
+const headerNavRef = ref<HTMLElement | null>(null)
+let headerNavResizeObserver: ResizeObserver | null = null
+
 // ======================================== Computed
 // 현재 URL을 기준으로 선택된 상위 메뉴를 찾습니다.
 const currentParentMenu = computed(() => {
@@ -271,6 +275,39 @@ const isActiveSubMenu = (subMenu: any) => {
 const isActiveChildMenu = (path: string) => {
     return route.path === path
 }
+
+// 현재 상단 네비게이션의 실제 높이를 CSS 변수에 반영합니다.
+const updateHeaderNavHeight = () => {
+    if (!headerNavRef.value) {
+        return
+    }
+
+    document.documentElement.style.setProperty(
+        '--header-nav-height',
+        `${headerNavRef.value.offsetHeight}px`,
+    )
+}
+
+onMounted(() => {
+    if (!headerNavRef.value) {
+        return
+    }
+
+    // 최초 네비게이션 높이를 반영합니다.
+    updateHeaderNavHeight()
+
+    // 반응형 또는 하위 메뉴 노출로 높이가 변경되면 다시 계산합니다.
+    headerNavResizeObserver = new ResizeObserver(() => {
+        updateHeaderNavHeight()
+    })
+
+    headerNavResizeObserver.observe(headerNavRef.value)
+})
+
+onUnmounted(() => {
+    headerNavResizeObserver?.disconnect()
+    headerNavResizeObserver = null
+})
 </script>
 
 <style lang="scss">
