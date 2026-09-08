@@ -967,6 +967,7 @@ div.company-detail-footer-fixed-box {
     width: 100%;
     box-shadow: 4px 0px 20px 0px #00000029;
     background-color: $color-white;
+    z-index: 9999;
     @include r(padding-top, 10, 10, 10, 10, 10);
     @include r(padding-bottom, 10, 10, 10, 10, 10);
     @include r(padding-left, 10, 10, 10, 10, 10);

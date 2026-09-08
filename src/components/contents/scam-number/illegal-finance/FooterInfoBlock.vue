@@ -69,6 +69,12 @@ section.footer-info-block-section {
         }
     }
     p.info-title {
+        text-align: right;
+        font-weight: $font-weight-regular;
+        color: $color-gray-500;
+        @include r(font-size, 14, 14, 14, 14, 14);
+        @include r(line-height, 20, 20, 20, 20, 20);
+        @include r(margin-top, 20, 20, 20, 20, 20);
     }
 }
 </style>

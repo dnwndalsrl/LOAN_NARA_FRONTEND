@@ -18,7 +18,14 @@
                             }"
                         >
                             <button type="button" @click="onClickTab(tabItem.value)">
-                                {{ tabItem.title }}
+                                <span class="pc-title">
+                                    {{ tabItem.title }}
+                                </span>
+
+                                <span
+                                    class="mobile-title"
+                                    v-html="tabItem.mobileTitle || tabItem.title"
+                                ></span>
                             </button>
                         </li>
                     </ul>
@@ -323,6 +330,7 @@ const tabInfo = [
     {
         value: 3,
         title: '불법고금리 피해예방 10계명',
+        mobileTitle: '불법고금리<br />피해예방 10계명',
     },
 ]
 
@@ -491,9 +499,11 @@ div.illegal-finance-high-interest-section {
                         cursor: pointer;
                         &.is-active {
                             button {
-                                color: $color-primary-500;
                                 background-color: $color-gray-200;
                                 border-radius: 8px;
+                                span {
+                                    color: $color-primary-500;
+                                }
                             }
                         }
                         button {
@@ -506,9 +516,36 @@ div.illegal-finance-high-interest-section {
                             line-height: 1;
                             padding: 0;
                             border: none;
-                            color: $color-gray-400;
-                            font-weight: $font-weight-bold;
-                            @include r(font-size, 14, 16, 18, 18, 18);
+                            background-color: inherit;
+                            span {
+                                display: block;
+                                line-height: 1.2;
+                                color: $color-gray-400;
+                                font-weight: $font-weight-bold;
+                                &.pc-title {
+                                    display: block;
+                                }
+                                &.mobile-title {
+                                    display: none;
+                                }
+                                @include r(font-size, 14, 16, 18, 18, 18);
+                                @include respond(mobile-plus) {
+                                    &.pc-title {
+                                        display: none;
+                                    }
+                                    &.mobile-title {
+                                        display: block;
+                                    }
+                                }
+                                @include respond(mobile) {
+                                    &.pc-title {
+                                        display: none;
+                                    }
+                                    &.mobile-title {
+                                        display: block;
+                                    }
+                                }
+                            }
                         }
                     }
                 }

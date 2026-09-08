@@ -55,10 +55,7 @@ section.content-block {
     div.content-header {
         display: flex;
         align-items: center;
-
-        @include r(gap, 14, 14, 14, 14, 14);
         @include r(margin-bottom, 20, 20, 20, 20, 20);
-
         span.content-badge {
             flex-shrink: 0;
             display: flex;
@@ -69,7 +66,7 @@ section.content-block {
             color: $color-error-500;
             background-color: $color-error-100;
             font-weight: $font-weight-bold;
-
+            @include r(margin-right, 14, 14, 14, 14, 14);
             @include r(height, 28, 28, 28, 28, 28);
             @include r(padding-left, 12, 12, 12, 12, 12);
             @include r(padding-right, 12, 12, 12, 12, 12);
@@ -80,12 +77,14 @@ section.content-block {
             flex-shrink: 0;
             color: $color-gray-400;
             font-weight: $font-weight-bold;
-
+            @include r(margin-right, 11, 11, 11, 11, 11);
+            @include r(width, 25, 25, 25, 25, 25);
             @include r(font-size, 16, 16, 16, 16, 16);
         }
 
         div.content-icon {
             flex-shrink: 0;
+            @include r(margin-right, 14, 14, 14, 14, 14);
             @include r(width, 20, 20, 20, 20, 20);
             img {
                 display: block;
