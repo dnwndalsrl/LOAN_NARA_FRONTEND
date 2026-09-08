@@ -49,7 +49,13 @@ const mainBannerStatusInfo = ref([
 
 <style lang="scss">
 div.main-banner-section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     div.title-area {
+        @include r(height, 56, 63, 63, 65, 56);
+        @include r(margin-bottom, 22, 22, 22, 20, 0);
         p.sub-title {
             font-weight: $font-weight-bold;
             color: #d9e5f1;
@@ -60,10 +66,14 @@ div.main-banner-section {
             font-weight: $font-weight-extra-bold;
             color: $color-white;
             @include r(font-size, 24, 28, 28, 28, 28);
+            @include r(font-size, 24, 28, 28, 28, 28);
         }
     }
     div.statistics-area {
-        @include r(margin-top, 22, 22, 22, 20, 26);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        @include r(height, 99, 99, 99, 99, 99);
         div.title-align-box {
             display: flex;
             align-items: center;
