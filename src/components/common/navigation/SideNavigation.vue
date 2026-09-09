@@ -143,6 +143,7 @@ const isActiveSubMenu = (subMenu: any) => {
 
 <style lang="scss">
 aside.side-navigation {
+    flex-shrink: 0;
     width: 15.313rem;
     display: none;
     @include respond(pc) {

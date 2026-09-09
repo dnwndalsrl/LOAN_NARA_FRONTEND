@@ -464,7 +464,6 @@ onUnmounted(() => {
 div.illegal-finance-high-interest-section {
     div.align-box {
         display: flex;
-        align-items: flex-start;
         @include r(gap, 40, 40, 40, 40, 40);
         section.page-contents-wrapper {
             flex: 1 1 0;
