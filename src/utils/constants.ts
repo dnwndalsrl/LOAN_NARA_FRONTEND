@@ -92,32 +92,32 @@ export const ALL_PAGE = [
                         label: '고금리',
 
                         // 실제 페이지의 h1 제목
-                        pageTitle: '불법 금융 대응',
+                        pageTitle: '고금리',
 
                         subPath: '/scam-number/illegal-finance/high-interest',
                     },
                     {
                         key: 'illegalCollection',
                         label: '불법채권추심',
-                        pageTitle: '불법 금융 대응',
+                        pageTitle: '불법채권추심',
                         subPath: '/scam-number/illegal-finance/illegal-collection',
                     },
                     {
                         key: 'illegalBrokerageFee',
                         label: '불법대출중개수수료',
-                        pageTitle: '불법 금융 대응',
+                        pageTitle: '불법대출중개수수료',
                         subPath: '/scam-number/illegal-finance/illegal-brokerage-fee',
                     },
                     {
                         key: 'loanScam',
                         label: '대출사기',
-                        pageTitle: '불법 금융 대응',
+                        pageTitle: '대출사기',
                         subPath: '/scam-number/illegal-finance/loan-scam',
                     },
                     {
                         key: 'phishingScam',
                         label: '피싱사기',
-                        pageTitle: '불법 금융 대응',
+                        pageTitle: '피싱사기',
                         subPath: '/scam-number/illegal-finance/phishing-scam',
                     },
                 ],

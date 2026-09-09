@@ -149,6 +149,9 @@ section.content-block {
                     strong {
                         color: $color-error-500;
                         font-weight: $font-weight-medium;
+                        &.bold-type {
+                            font-weight: $font-weight-bold;
+                        }
                         &.black-bold {
                             color: $color-gray-900;
                             font-weight: $font-weight-bold;
