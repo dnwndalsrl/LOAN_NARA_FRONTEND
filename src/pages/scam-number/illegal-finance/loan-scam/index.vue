@@ -482,29 +482,7 @@ div.illegal-finance-loan-scam-section {
                                 line-height: 1.2;
                                 color: $color-gray-400;
                                 font-weight: $font-weight-bold;
-                                &.pc-title {
-                                    display: block;
-                                }
-                                &.mobile-title {
-                                    display: none;
-                                }
                                 @include r(font-size, 14, 16, 18, 18, 18);
-                                @include respond(mobile-plus) {
-                                    &.pc-title {
-                                        display: none;
-                                    }
-                                    &.mobile-title {
-                                        display: block;
-                                    }
-                                }
-                                @include respond(mobile) {
-                                    &.pc-title {
-                                        display: none;
-                                    }
-                                    &.mobile-title {
-                                        display: block;
-                                    }
-                                }
                             }
                         }
                     }

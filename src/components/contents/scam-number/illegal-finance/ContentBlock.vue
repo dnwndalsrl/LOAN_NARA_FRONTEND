@@ -300,6 +300,50 @@ section.content-block {
                     }
                 }
             }
+            div.img-twin-card-box {
+                div.contents-wrapper {
+                    display: flex;
+                    border: 1px solid $color-gray-200;
+                    border-radius: 16px;
+                    @include r(gap, 20, 20, 20, 20, 20);
+                    @include r(margin-top, 10, 10, 10, 10, 10);
+                    @include r(margin-left, 12, 12, 12, 12, 12);
+                    @include r(padding-top, 24, 24, 24, 24, 24);
+                    @include r(padding-bottom, 24, 24, 24, 24, 24);
+                    @include r(padding-left, 24, 24, 24, 24, 24);
+                    @include r(padding-right, 24, 24, 24, 24, 24);
+                    div.box-item {
+                        div.box-title {
+                            display: flex;
+                            align-items: flex-start;
+                            @include r(gap, 8, 8, 8, 8, 8);
+                            @include r(margin-bottom, 10, 10, 10, 10, 10);
+                            div.circle {
+                                flex-shrink: 0;
+                                background-color: $color-gray-900;
+                                border-radius: 50%;
+                                @include r(margin-top, 7, 7, 7, 7, 7);
+                                @include r(width, 4, 4, 4, 4, 4);
+                                @include r(height, 4, 4, 4, 4, 4);
+                            }
+                            p {
+                                color: $color-gray-900;
+                                font-weight: $font-weight-bold;
+                                @include r(font-size, 14, 14, 14, 14, 14);
+                                @include r(line-height, 20, 20, 20, 20, 20);
+                            }
+                        }
+                        div.img-box {
+                            @include r(margin-left, 12, 12, 12, 12, 12);
+                            img {
+                                display: block;
+                                width: 100%;
+                                height: auto;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
