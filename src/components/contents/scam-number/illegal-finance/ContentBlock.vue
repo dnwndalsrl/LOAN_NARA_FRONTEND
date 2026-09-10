@@ -200,7 +200,7 @@ section.content-block {
                             flex-shrink: 0;
                             background-color: $color-gray-900;
                             border-radius: 50%;
-                            margin-top: 6px;
+                            @include r(margin-top, 6, 6, 6, 6, 6);
                             @include r(width, 4, 4, 4, 4, 4);
                             @include r(height, 4, 4, 4, 4, 4);
                         }
@@ -216,6 +216,85 @@ section.content-block {
                                     color: $color-gray-900;
                                     font-weight: $font-weight-bold;
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+            div.img-card-box {
+                div.title-wrapper {
+                    display: flex;
+                    align-items: baseline;
+                    @include r(gap, 8, 8, 8, 8, 8);
+                    div.img-box {
+                        flex-shrink: 0;
+                        @include r(width, 5, 5, 5, 5, 5);
+                        img {
+                            display: block;
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+                    p {
+                        color: $color-gray-900;
+                        font-weight: $font-weight-bold;
+                        @include r(font-size, 14, 14, 14, 14, 14);
+                        @include r(line-height, 20, 20, 20, 20, 20);
+                    }
+                }
+                div.contents-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    border: 1px solid $color-gray-200;
+                    border-radius: 16px;
+                    @include r(gap, 10, 10, 10, 10, 10);
+                    @include r(margin-top, 10, 10, 10, 10, 10);
+                    @include r(margin-left, 12, 12, 12, 12, 12);
+                    @include r(padding-top, 24, 24, 24, 24, 24);
+                    @include r(padding-bottom, 24, 24, 24, 24, 24);
+                    @include r(padding-left, 24, 24, 24, 24, 24);
+                    @include r(padding-right, 24, 24, 24, 24, 24);
+                    div.box-title {
+                        display: flex;
+                        align-items: flex-start;
+                        @include r(gap, 8, 8, 8, 8, 8);
+                        div.circle {
+                            flex-shrink: 0;
+                            background-color: $color-gray-900;
+                            border-radius: 50%;
+                            @include r(margin-top, 7, 7, 7, 7, 7);
+                            @include r(width, 4, 4, 4, 4, 4);
+                            @include r(height, 4, 4, 4, 4, 4);
+                        }
+                        p {
+                            color: $color-gray-900;
+                            font-weight: $font-weight-bold;
+                            @include r(font-size, 14, 14, 14, 14, 14);
+                            @include r(line-height, 20, 20, 20, 20, 20);
+                        }
+                    }
+                    div.box-contents {
+                        display: flex;
+                        align-items: center;
+                        @include r(gap, 20, 20, 20, 20, 20);
+                        @include r(margin-left, 12, 12, 12, 12, 12);
+                        @include respond(mobile) {
+                            flex-direction: column;
+                        }
+                        div.img-box {
+                            img {
+                                display: block;
+                                width: 100%;
+                                height: auto;
+                            }
+                        }
+                        p {
+                            color: $color-gray-900;
+                            font-weight: $font-weight-regular;
+                            @include r(font-size, 14, 14, 14, 14, 14);
+                            @include r(line-height, 20, 20, 20, 20, 20);
+                            strong {
+                                font-weight: $font-weight-bold;
                             }
                         }
                     }
