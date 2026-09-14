@@ -1,3 +1,29 @@
+type NavMenuType = 'link' | 'modal'
+
+interface NavChildMenu {
+    key: string
+    label: string
+    type: NavMenuType
+    subPath: string
+}
+
+interface NavSubMenu {
+    key: string
+    label: string
+    type: NavMenuType
+    subPath?: string
+    action?: string
+    childMenus?: NavChildMenu[]
+}
+
+interface NavMenu {
+    key: string
+    label: string
+    type: NavMenuType
+    path: string
+    subMenus: NavSubMenu[]
+}
+
 // 대출나라 전 Page Menu
 export const ALL_PAGE = [
     {
@@ -90,10 +116,7 @@ export const ALL_PAGE = [
                     {
                         key: 'highInterest',
                         label: '고금리',
-
-                        // 실제 페이지의 h1 제목
                         pageTitle: '고금리',
-
                         subPath: '/scam-number/illegal-finance/high-interest',
                     },
                     {
@@ -211,69 +234,81 @@ export const ALL_PAGE = [
 ]
 
 // 대출나라 네비게이션 메뉴
-export const NAV_MENUS = [
+export const NAV_MENUS: NavMenu[] = [
     {
         key: 'regionSearch',
         label: '지역별 업체 찾기',
         path: '/browse/region/all',
+        type: 'link',
         subMenus: [],
     },
     {
         key: 'loanTypeSearch',
         label: '상품별 업체 찾기',
         path: '/browse/loan-type/all',
+        type: 'link',
         subMenus: [],
     },
     {
         key: 'recommended',
         label: '오늘의 추천 업체',
         path: '/browse/recommended',
+        type: 'link',
         subMenus: [],
     },
     {
         key: 'customSearch',
         label: '맞춤검색',
         path: '/browse/search',
+        type: 'link',
         subMenus: [],
     },
     {
         key: 'scamNumber',
         label: '사기번호 검색',
         path: '/scam-number/search',
+        type: 'link',
         subMenus: [
             {
                 key: 'scamNumberSearch',
                 label: '사기번호 검색',
+                type: 'link',
                 subPath: '/scam-number/search',
             },
             {
                 key: 'illegalFinance',
                 label: '불법 금융 대응',
+                type: 'link',
                 subPath: '/scam-number/illegal-finance/high-interest',
                 childMenus: [
                     {
                         key: 'highInterest',
                         label: '고금리',
+                        type: 'link',
                         subPath: '/scam-number/illegal-finance/high-interest',
                     },
                     {
                         key: 'illegalCollection',
                         label: '불법채권추심',
+                        type: 'link',
                         subPath: '/scam-number/illegal-finance/illegal-collection',
                     },
                     {
                         key: 'illegalBrokerageFee',
                         label: '불법대출중개수수료',
+                        type: 'link',
                         subPath: '/scam-number/illegal-finance/illegal-brokerage-fee',
                     },
                     {
                         key: 'loanScam',
                         label: '대출사기',
+                        type: 'link',
                         subPath: '/scam-number/illegal-finance/loan-scam',
                     },
                     {
                         key: 'phishingScam',
                         label: '피싱사기',
+                        type: 'link',
                         subPath: '/scam-number/illegal-finance/phishing-scam',
                     },
                 ],
@@ -284,15 +319,24 @@ export const NAV_MENUS = [
         key: 'officialCompany',
         label: '정식업체 조회',
         path: '/official-company/search',
+        type: 'link',
         subMenus: [
             {
                 key: 'officialCompanySearch',
                 label: '정식업체 조회',
+                type: 'link',
                 subPath: '/official-company/search',
+            },
+            {
+                key: 'companyCheckGuide',
+                label: '업체 확인 방법',
+                type: 'modal',
+                action: 'companyCheckGuide',
             },
             {
                 key: 'integratedSearch',
                 label: '대부업체 통합조회',
+                type: 'link',
                 subPath: '/official-company/integrated-search',
             },
         ],
@@ -301,15 +345,18 @@ export const NAV_MENUS = [
         key: 'community',
         label: '커뮤니티',
         path: '/community/finance-news',
+        type: 'link',
         subMenus: [
             {
                 key: 'financeNews',
                 label: '금융뉴스',
+                type: 'link',
                 subPath: '/community/finance-news',
             },
             {
                 key: 'loanNews',
                 label: '대부업 뉴스',
+                type: 'link',
                 subPath: '/community/loan-news',
             },
         ],
@@ -318,15 +365,18 @@ export const NAV_MENUS = [
         key: 'guide',
         label: '이용안내',
         path: '/guide/customer',
+        type: 'link',
         subMenus: [
             {
                 key: 'customerGuide',
                 label: '고객 이용안내',
+                type: 'link',
                 subPath: '/guide/customer',
             },
             {
                 key: 'companyGuide',
                 label: '업체 이용안내',
+                type: 'link',
                 subPath: '/guide/company',
             },
         ],
@@ -335,25 +385,30 @@ export const NAV_MENUS = [
         key: 'support',
         label: '고객센터',
         path: '/support/notice',
+        type: 'link',
         subMenus: [
             {
                 key: 'notice',
                 label: '공지사항',
+                type: 'link',
                 subPath: '/support/notice',
             },
             {
                 key: 'faq',
                 label: '자주 묻는 질문',
+                type: 'link',
                 subPath: '/support/faq',
             },
             {
                 key: 'inquiry',
                 label: '1:1 문의',
+                type: 'link',
                 subPath: '/support/inquiry',
             },
             {
                 key: 'adInquiry',
                 label: '광고문의',
+                type: 'link',
                 subPath: '/support/ad-inquiry',
             },
         ],
@@ -362,6 +417,7 @@ export const NAV_MENUS = [
         key: 'loanWiki',
         label: '대출위키',
         path: '/loan-wiki',
+        type: 'link',
         subMenus: [],
     },
 ]

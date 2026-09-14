@@ -7,6 +7,9 @@ export const useCommonStore = defineStore('common', {
 
         // LABTOP, TABLET, MOBILE일때 자식메뉴 Open Value
         isDrawerMenuOpen: false,
+
+        // 업체 확인 방법 Modal Open Value
+        isCompanyCheckModalOpen: false,
     }),
 
     actions: {
@@ -24,6 +27,16 @@ export const useCommonStore = defineStore('common', {
 
         closeDrawerMenu() {
             this.isDrawerMenuOpen = false
+        },
+
+        // 업체 확인 방법 Modal Open
+        openCompanyCheckModal() {
+            this.isCompanyCheckModalOpen = true
+        },
+
+        // 업체 확인 방법 Modal Close
+        closeCompanyCheckModal() {
+            this.isCompanyCheckModalOpen = false
         },
     },
 })

@@ -7,7 +7,6 @@
         aria-label="주요 메뉴"
     >
         <!-- 메뉴 영역 -->
-        <!-- 메뉴 영역 -->
         <div class="navigation-menu-wrapper">
             <!-- 부모 메뉴 -->
             <div class="parent-menu-swiper-wrapper">
@@ -47,7 +46,9 @@
                             :key="subMenu.key"
                             class="sub-menu-slide"
                         >
+                            <!-- 페이지 이동 메뉴 -->
                             <NuxtLink
+                                v-if="subMenu.type === 'link'"
                                 :to="subMenu.subPath"
                                 class="sub-menu-link"
                                 :class="{
@@ -56,6 +57,15 @@
                             >
                                 {{ subMenu.label }}
                             </NuxtLink>
+
+                            <!-- Modal 메뉴 -->
+                            <span
+                                v-else-if="subMenu.type === 'modal'"
+                                class="sub-menu-link"
+                                @click="commonStore.openCompanyCheckModal()"
+                            >
+                                {{ subMenu.label }}
+                            </span>
                         </SwiperSlide>
                     </Swiper>
                 </div>
@@ -102,13 +112,25 @@
                     <p class="parent-title">{{ parentMenuItem.label }}</p>
                     <ul class="child-menu-wrapper">
                         <li
-                            v-for="(childMenuItem, childMenuIndex) in parentMenuItem.subMenus"
+                            v-for="childMenuItem in parentMenuItem.subMenus"
                             :key="childMenuItem.key"
                             class="child-menu-item"
                         >
-                            <NuxtLink :to="childMenuItem.subPath">
+                            <!-- 페이지 이동 메뉴 -->
+                            <NuxtLink
+                                v-if="childMenuItem.type === 'link'"
+                                :to="childMenuItem.subPath"
+                            >
                                 {{ childMenuItem.label }}
                             </NuxtLink>
+
+                            <!-- Modal 메뉴 -->
+                            <span
+                                v-else-if="childMenuItem.type === 'modal'"
+                                @click="commonStore.openCompanyCheckModal()"
+                            >
+                                {{ childMenuItem.label }}
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -155,13 +177,24 @@
                                     :key="sub.key"
                                     class="child-menu-item"
                                 >
+                                    <!-- 페이지 이동 메뉴 -->
                                     <NuxtLink
+                                        v-if="sub.type === 'link'"
                                         :to="sub.subPath"
-                                        @click="commonStore.closeDrawerMenu"
                                         class="child-title"
+                                        @click="commonStore.closeDrawerMenu"
                                     >
                                         {{ sub.label }}
                                     </NuxtLink>
+
+                                    <!-- Modal 메뉴 -->
+                                    <span
+                                        v-else-if="sub.type === 'modal'"
+                                        class="child-title"
+                                        @click="commonStore.openCompanyCheckModal()"
+                                    >
+                                        {{ sub.label }}
+                                    </span>
                                 </li>
                             </ul>
                         </li>
@@ -189,14 +222,13 @@ let headerNavResizeObserver: ResizeObserver | null = null
 // 현재 URL을 기준으로 선택된 상위 메뉴를 찾습니다.
 const currentParentMenu = computed(() => {
     return NAV_MENUS.find((menu) => {
-        // 상위 메뉴 URL과 일치하는 경우
         if (route.path === menu.path) {
             return true
         }
 
-        // 하위 메뉴 또는 자식 메뉴 URL과 일치하는 경우
         return menu.subMenus?.some((subMenu) => {
-            if (route.path === subMenu.subPath) {
+            // Modal 메뉴는 URL 비교 대상에서 제외
+            if (subMenu.type === 'link' && route.path === subMenu.subPath) {
                 return true
             }
 
@@ -214,12 +246,15 @@ const currentSubMenu = computed(() => {
     }
 
     return currentParentMenu.value.subMenus.find((subMenu) => {
-        // 2Depth 메뉴와 현재 URL이 동일한 경우
+        // Modal 메뉴는 활성 메뉴 대상에서 제외
+        if (subMenu.type === 'modal') {
+            return false
+        }
+
         if (route.path === subMenu.subPath) {
             return true
         }
 
-        // 3Depth 메뉴 중 현재 URL과 동일한 메뉴가 있는 경우
         return subMenu.childMenus?.some((childMenu) => {
             return route.path === childMenu.subPath
         })
@@ -258,12 +293,15 @@ const onNavLeave = () => {
 
 // 현재 URL을 기준으로 하위 메뉴 활성화 여부를 반환합니다.
 const isActiveSubMenu = (subMenu: any) => {
-    // 하위 메뉴 URL과 현재 URL이 동일한 경우
+    // Modal 메뉴는 활성화 대상이 아닙니다.
+    if (subMenu.type === 'modal') {
+        return false
+    }
+
     if (route.path === subMenu.subPath) {
         return true
     }
 
-    // 자식 메뉴 중 현재 URL과 동일한 메뉴가 있는 경우
     return Boolean(
         subMenu.childMenus?.some((childMenu: any) => {
             return route.path === childMenu.subPath
@@ -380,6 +418,16 @@ nav.loan-nara-header-nav-container {
                                 }
                                 @include r(font-size, 15, 15, 15, 15, 15);
                             }
+                            span {
+                                cursor: pointer;
+                                font-weight: $font-weight-medium;
+                                color: $color-gray-500;
+                                &.is-active {
+                                    font-weight: $font-weight-semi-bold;
+                                    color: $color-gray-900;
+                                }
+                                @include r(font-size, 15, 15, 15, 15, 15);
+                            }
                         }
                     }
                 }
@@ -471,6 +519,15 @@ nav.loan-nara-header-nav-container {
                             }
                             @include r(font-size, 14, 14, 14, 14, 14);
                         }
+                        span {
+                            cursor: pointer;
+                            font-weight: $font-weight-medium;
+                            color: $color-gray-900;
+                            &:hover {
+                                color: $color-primary-500;
+                            }
+                            @include r(font-size, 14, 14, 14, 14, 14);
+                        }
                     }
                 }
             }
@@ -556,6 +613,12 @@ div.menu-drawer-wrapper {
                                     font-weight: $font-weight-semi-bold;
                                     color: #6a6a6a;
                                     text-decoration: none;
+                                    @include r(font-size, 14, 14, 14, 14, 14);
+                                }
+                                span {
+                                    cursor: pointer;
+                                    font-weight: $font-weight-semi-bold;
+                                    color: #6a6a6a;
                                     @include r(font-size, 14, 14, 14, 14, 14);
                                 }
                             }

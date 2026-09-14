@@ -15,8 +15,9 @@
                         :key="subMenu.key"
                         class="sub-menu-item"
                     >
-                        <!-- 2Depth -->
+                        <!-- 2Depth Link -->
                         <NuxtLink
+                            v-if="subMenu.type === 'link'"
                             :to="subMenu.subPath"
                             class="sub-menu-link"
                             :class="{
@@ -25,11 +26,19 @@
                         >
                             <span>{{ subMenu.label }}</span>
 
-                            <!-- 현재 활성화된 2Depth 메뉴에만 화살표 표시 -->
                             <div v-if="isActiveSubMenu(subMenu)" class="img-box">
                                 <img src="/images/common/right_arrow_black.png" alt="" />
                             </div>
                         </NuxtLink>
+
+                        <!-- 2Depth Modal -->
+                        <span
+                            v-else-if="subMenu.type === 'modal'"
+                            class="sub-menu-link"
+                            @click="commonStore.openCompanyCheckModal()"
+                        >
+                            {{ subMenu.label }}
+                        </span>
 
                         <!-- 3Depth -->
                         <ul v-if="subMenu.childMenus?.length" class="child-menu-list">
@@ -43,7 +52,9 @@
                             >
                                 <NuxtLink :to="childMenu.subPath">
                                     <span class="bullet"></span>
-                                    <span class="label">{{ childMenu.label }}</span>
+                                    <span class="label">
+                                        {{ childMenu.label }}
+                                    </span>
                                 </NuxtLink>
                             </li>
                         </ul>
@@ -53,7 +64,7 @@
         </nav>
 
         <!-- 업체찾기 바로가기 -->
-        <!-- <div class="quick-menu-wrapper">
+        <div class="quick-menu-wrapper">
             <h3>나에게 딱 맞는 업체찾기!</h3>
 
             <ul class="quick-menu-list">
@@ -61,14 +72,17 @@
                     <NuxtLink to="/browse/region/all">
                         <div class="menu-info">
                             <div class="img-box">
-                                <img src="/images/common/map_ico.png" alt="" />
+                                <img src="/images/common/map_ico.png" alt="지역별 업체찾기" />
                             </div>
 
                             <span>지역별 업체찾기</span>
                         </div>
 
                         <div class="arrow-box">
-                            <img src="/images/common/right_arrow.png" alt="" />
+                            <img
+                                src="/images/common/right_arrow_gray.png"
+                                alt="지역별 업체찾기 바로가기"
+                            />
                         </div>
                     </NuxtLink>
                 </li>
@@ -77,44 +91,52 @@
                     <NuxtLink to="/browse/loan-type/all">
                         <div class="menu-info">
                             <div class="img-box">
-                                <img src="/images/common/product_ico.png" alt="" />
+                                <img src="/images/common/giftcard_icon.png" alt="상품별 업체찾기" />
                             </div>
 
                             <span>상품별 업체찾기</span>
                         </div>
 
                         <div class="arrow-box">
-                            <img src="/images/common/right_arrow.png" alt="" />
+                            <img
+                                src="/images/common/right_arrow_gray.png"
+                                alt="상품별 업체찾기 바로가기"
+                            />
                         </div>
                     </NuxtLink>
                 </li>
             </ul>
-        </div> -->
+        </div>
     </aside>
 </template>
 
 <script setup lang="ts">
+import { useCommonStore } from '~/store/common'
+
+const commonStore = useCommonStore()
 const route = useRoute()
 
 // =================================================== Computed
 // 현재 URL을 기준으로 해당 페이지의 상위 메뉴를 찾습니다.
 const currentMenu = computed(() => {
-    return ALL_PAGE.find((menu) => {
+    return NAV_MENUS.find((menu) => {
         // 상위 메뉴 URL 확인
         if (route.path === menu.path) {
             return true
         }
 
-        // 하위 메뉴 URL 확인
-        return menu.subMenus?.some((subMenu) => {
-            if (route.path === subMenu.subPath) {
+        // 하위 메뉴 및 3Depth URL 확인
+        return menu.subMenus.some((subMenu) => {
+            // Modal 메뉴는 URL이 없으므로 제외
+            if (subMenu.type === 'link' && subMenu.subPath && route.path === subMenu.subPath) {
                 return true
             }
 
-            // 하위 메뉴의 자식 메뉴 URL 확인
-            return subMenu.childMenus?.some((childMenu) => {
-                return route.path === childMenu.subPath
-            })
+            return Boolean(
+                subMenu.childMenus?.some((childMenu) => {
+                    return route.path === childMenu.subPath
+                }),
+            )
         })
     })
 })
@@ -127,12 +149,15 @@ const isActiveMenu = (path: string) => {
 
 // 현재 URL을 기준으로 2Depth 메뉴 활성화 여부를 확인합니다.
 const isActiveSubMenu = (subMenu: any) => {
-    // 2Depth 메뉴 URL과 현재 URL이 동일한 경우
-    if (route.path === subMenu.subPath) {
+    // Modal 메뉴는 활성화 대상이 아닙니다.
+    if (subMenu.type === 'modal') {
+        return false
+    }
+
+    if (subMenu.subPath && route.path === subMenu.subPath) {
         return true
     }
 
-    // 현재 URL이 해당 2Depth의 3Depth 메뉴에 포함된 경우
     return Boolean(
         subMenu.childMenus?.some((childMenu: any) => {
             return route.path === childMenu.subPath
@@ -206,6 +231,17 @@ aside.side-navigation {
                             }
                         }
                     }
+                    span.sub-menu-link {
+                        cursor: pointer;
+                        display: block;
+                        color: $color-gray-500;
+                        font-weight: $font-weight-medium;
+                        @include r(padding-top, 16, 16, 16, 16, 16);
+                        @include r(padding-bottom, 16, 16, 16, 16, 16);
+                        @include r(padding-left, 16, 16, 16, 16, 16);
+                        @include r(padding-right, 16, 16, 16, 16, 16);
+                        @include r(font-size, 16, 16, 16, 16, 16);
+                    }
                     ul.child-menu-list {
                         display: flex;
                         flex-direction: column;
@@ -246,6 +282,69 @@ aside.side-navigation {
                                     @include r(font-size, 14, 14, 14, 14, 14);
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    div.quick-menu-wrapper {
+        background-color: $color-gray-100;
+        border-radius: 16px;
+        @include r(margin-top, 24, 24, 24, 24, 24);
+        @include r(padding-top, 16, 16, 16, 16, 16);
+        @include r(padding-bottom, 16, 16, 16, 16, 16);
+        @include r(padding-left, 16, 16, 16, 16, 16);
+        @include r(padding-right, 16, 16, 16, 16, 16);
+        h3 {
+            color: $color-gray-900;
+            font-weight: $font-weight-bold;
+            @include r(font-size, 14, 14, 14, 14, 14);
+        }
+        ul.quick-menu-list {
+            display: flex;
+            flex-direction: column;
+            @include r(gap, 8, 8, 8, 8, 8);
+            @include r(margin-top, 12, 12, 12, 12, 12);
+            li {
+                a {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+                    height: 100%;
+                    background-color: $color-white;
+                    border: 1px solid $color-gray-200;
+                    border-radius: 8px;
+                    text-decoration: none;
+                    @include r(padding-top, 16, 16, 16, 16, 16);
+                    @include r(padding-bottom, 16, 16, 16, 16, 16);
+                    @include r(padding-left, 16, 16, 16, 16, 16);
+                    @include r(padding-right, 16, 16, 16, 16, 16);
+                    div.menu-info {
+                        display: flex;
+                        align-items: center;
+                        @include r(gap, 10, 10, 10, 10, 10);
+                        div.img-box {
+                            @include r(width, 24, 24, 24, 24, 24);
+                            img {
+                                display: block;
+                                width: 100%;
+                                height: auto;
+                            }
+                        }
+                        span {
+                            color: $color-gray-900;
+                            font-weight: $font-weight-semi-bold;
+                            @include r(font-size, 14, 14, 14, 14, 14);
+                        }
+                    }
+                    div.arrow-box {
+                        @include r(width, 6, 6, 6, 6, 6);
+                        img {
+                            display: block;
+                            width: 100%;
+                            height: auto;
                         }
                     }
                 }

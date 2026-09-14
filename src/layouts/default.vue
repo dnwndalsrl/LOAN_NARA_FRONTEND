@@ -83,6 +83,7 @@
         <ClientOnly>
             <div v-show="commonStore.isMegaMenuOpen" class="menu-dim"></div>
         </ClientOnly>
+        <CompanyCheckModal />
     </div>
 </template>
 
