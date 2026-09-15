@@ -16,12 +16,21 @@ interface NavSubMenu {
     childMenus?: NavChildMenu[]
 }
 
+interface MegaMenuItem {
+    key: string
+    label: string
+    path: string
+}
+
 interface NavMenu {
     key: string
     label: string
     type: NavMenuType
     path: string
     subMenus: NavSubMenu[]
+
+    megaMenuItems?: MegaMenuItem[]
+    megaMenuMorePath?: string
 }
 
 // 대출나라 전 Page Menu
@@ -241,6 +250,34 @@ export const NAV_MENUS: NavMenu[] = [
         path: '/browse/region/all',
         type: 'link',
         subMenus: [],
+        megaMenuItems: [
+            {
+                key: 'seoul',
+                label: '서울',
+                path: '/browse/region/1/all',
+            },
+            {
+                key: 'gyeonggi',
+                label: '경기',
+                path: '/browse/region/2/all',
+            },
+            {
+                key: 'incheon',
+                label: '인천',
+                path: '/browse/region/3/all',
+            },
+            {
+                key: 'daejeon',
+                label: '대전',
+                path: '/browse/region/4/all',
+            },
+            {
+                key: 'daegu',
+                label: '대구',
+                path: '/browse/region/5/all',
+            },
+        ],
+        megaMenuMorePath: '/browse/region/all',
     },
     {
         key: 'loanTypeSearch',
@@ -248,6 +285,34 @@ export const NAV_MENUS: NavMenu[] = [
         path: '/browse/loan-type/all',
         type: 'link',
         subMenus: [],
+        megaMenuItems: [
+            {
+                key: 'worker',
+                label: '직장인',
+                path: '/browse/loan-type/worker',
+            },
+            {
+                key: 'unemployed',
+                label: '무직자',
+                path: '/browse/loan-type/unemployed',
+            },
+            {
+                key: 'business',
+                label: '사업자',
+                path: '/browse/loan-type/business',
+            },
+            {
+                key: 'overdue',
+                label: '연체자',
+                path: '/browse/loan-type/overdue',
+            },
+            {
+                key: 'badCredit',
+                label: '신불자',
+                path: '/browse/loan-type/bad-credit',
+            },
+        ],
+        megaMenuMorePath: '/browse/loan-type/all',
     },
     {
         key: 'recommended',

@@ -110,7 +110,24 @@
                     class="menu-align-box"
                 >
                     <p class="parent-title">{{ parentMenuItem.label }}</p>
-                    <ul class="child-menu-wrapper">
+                    <!-- 지역별 / 상품별 Header 전용 메뉴 -->
+                    <ul v-if="parentMenuItem.megaMenuItems?.length" class="mega-quick-menu-wrapper">
+                        <li
+                            v-for="megaItem in parentMenuItem.megaMenuItems"
+                            :key="megaItem.key"
+                            class="mega-quick-menu-item"
+                        >
+                            <NuxtLink :to="megaItem.path">
+                                {{ megaItem.label }}
+                            </NuxtLink>
+                        </li>
+
+                        <li v-if="parentMenuItem.megaMenuMorePath" class="mega-quick-menu-item">
+                            <NuxtLink :to="parentMenuItem.megaMenuMorePath"> +더보기 </NuxtLink>
+                        </li>
+                    </ul>
+                    <!-- 기존 2Depth 메뉴 -->
+                    <ul v-else class="child-menu-wrapper">
                         <li
                             v-for="childMenuItem in parentMenuItem.subMenus"
                             :key="childMenuItem.key"
@@ -503,6 +520,22 @@ nav.loan-nara-header-nav-container {
                     cursor: pointer;
                     @include r(margin-bottom, 16, 16, 16, 16, 16);
                     @include r(font-size, 13, 13, 13, 13, 13);
+                }
+                ul.mega-quick-menu-wrapper {
+                    display: grid;
+                    grid-template-columns: repeat(2, auto);
+                    @include r(gap, 14, 14, 14, 14, 14);
+                    li.mega-quick-menu-item {
+                        a {
+                            font-weight: $font-weight-medium;
+                            color: $color-gray-900;
+                            text-decoration: none;
+                            &:hover {
+                                color: $color-primary-500;
+                            }
+                            @include r(font-size, 14, 14, 14, 14, 14);
+                        }
+                    }
                 }
                 ul.child-menu-wrapper {
                     li.child-menu-item {
