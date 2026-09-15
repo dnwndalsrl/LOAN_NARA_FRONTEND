@@ -452,9 +452,13 @@ const bottomContentsList = [
 div.illegal-finance-illegal-collection-section {
     div.align-box {
         display: flex;
+        align-items: flex-start;
+        width: 100%;
+        min-width: 0;
         @include r(gap, 40, 40, 40, 40, 40);
         section.page-contents-wrapper {
-            width: 100%;
+            flex: 1 1 0;
+            min-width: 0;
             div.page-header {
                 @include r(margin-bottom, 20, 30, 30, 30, 30);
             }

@@ -135,11 +135,12 @@ div.normal-table {
                                     tr.el-table__row {
                                         background-color: #ffffff !important;
                                         td.el-table__cell {
-                                            padding: 0 !important;
-                                            height: 37px !important;
+                                            @include r(padding-top, 10, 10, 10, 10, 10);
+                                            @include r(padding-bottom, 10, 10, 10, 10, 10);
                                             div.cell {
                                                 color: $color-gray-900;
                                                 line-height: normal !important;
+                                                padding: 0;
                                                 p {
                                                     display: block;
                                                     width: 100%;
@@ -147,6 +148,11 @@ div.normal-table {
                                                     overflow: hidden;
                                                     white-space: nowrap;
                                                     text-overflow: ellipsis;
+                                                }
+                                                .no-overflow {
+                                                    overflow: hidden;
+                                                    white-space: normal;
+                                                    text-overflow: initial;
                                                 }
                                                 .align-center {
                                                     text-align: center !important;

@@ -1,5 +1,5 @@
 <template>
-    <div class="illegal-finance-illegal-brokerage-fee-section">
+    <div class="official-company-search-section">
         <div class="align-box">
             <SideNavigation />
             <section class="page-contents-wrapper">
@@ -166,12 +166,16 @@ const onUpdateCurrentPage = (page: number) => {
 </script>
 
 <style lang="scss">
-div.illegal-finance-illegal-brokerage-fee-section {
+div.official-company-search-section {
     div.align-box {
         display: flex;
+        align-items: flex-start;
+        width: 100%;
+        min-width: 0;
         @include r(gap, 40, 40, 40, 40, 40);
         section.page-contents-wrapper {
-            width: 100%;
+            flex: 1 1 0;
+            min-width: 0;
             div.page-header {
                 @include r(margin-bottom, 20, 30, 30, 30, 30);
             }

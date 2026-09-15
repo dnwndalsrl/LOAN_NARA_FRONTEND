@@ -458,12 +458,13 @@ onUnmounted(() => {
 div.illegal-finance-phishing-scam-section {
     div.align-box {
         display: flex;
+        align-items: flex-start;
+        width: 100%;
+        min-width: 0;
         @include r(gap, 40, 40, 40, 40, 40);
         section.page-contents-wrapper {
             flex: 1 1 0;
             min-width: 0;
-            width: 100%;
-            align-self: stretch;
             div.page-header {
                 @include r(margin-bottom, 20, 30, 30, 30, 30);
             }
