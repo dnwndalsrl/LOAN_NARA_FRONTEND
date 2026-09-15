@@ -1,6 +1,6 @@
 <template>
     <section class="page-header-box">
-        <div class="align-box">
+        <div class="header-align-box">
             <h1 class="page-title">{{ title }}</h1>
             <nav v-show="isPc || isLaptop" class="breadcrumb-area">
                 <p class="crumb">홈</p>
@@ -116,7 +116,7 @@ const resolveNavigationInfo = (nav: any, routePath: string) => {
 
 <style lang="scss">
 section.page-header-box {
-    div.align-box {
+    div.header-align-box {
         display: flex;
         align-items: center;
         justify-content: space-between;
