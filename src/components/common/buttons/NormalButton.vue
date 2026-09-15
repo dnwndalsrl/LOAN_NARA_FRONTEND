@@ -175,6 +175,7 @@ button.normal-button {
             line-height: 1;
         }
         div.img-box {
+            flex-shrink: 0;
             @include r(width, 10, 10, 10, 10, 10);
             @include r(height, 10, 10, 10, 10, 10);
             img {
