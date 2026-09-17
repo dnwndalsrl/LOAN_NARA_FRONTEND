@@ -612,6 +612,7 @@ div.company-detail-section {
                     align-items: flex-start;
                     flex-wrap: wrap;
                     @include r(row-gap, 16, 16, 16, 16, 16);
+                    @include r(column-gap, 0, 0, 40, 40, 40);
                     &.is-full {
                         div.content-item {
                             @include respond(pc) {
@@ -631,13 +632,13 @@ div.company-detail-section {
                         display: flex;
                         align-items: flex-start;
                         @include respond(pc) {
-                            flex: 0 0 50%;
+                            flex: 0 0 calc((100% - 2.5rem) / 2);
                         }
                         @include respond(laptop) {
-                            flex: 0 0 50%;
+                            flex: 0 0 calc((100% - 2.5rem) / 2);
                         }
                         @include respond(tablet) {
-                            flex: 0 0 50%;
+                            flex: 0 0 calc((100% - 2.5rem) / 2);
                         }
                         p.content-title {
                             font-weight: $font-weight-bold;
