@@ -1,7 +1,12 @@
 <template>
     <div class="normal-table">
         <template v-if="!isMobileView || props.mobileTableMode">
-            <el-table :data="props.data" :style="{ width: '100%' }" v-bind="$attrs">
+            <el-table
+                :data="props.data"
+                :style="{ width: '100%' }"
+                v-bind="$attrs"
+                @row-click="onRowClick"
+            >
                 <slot />
                 <template #empty>
                     <slot name="empty">
@@ -52,6 +57,7 @@ const props = withDefaults(
 const emit = defineEmits<{
     (e: 'update:currentPage', value: number): void
     (e: 'change', payload: { page: number; size: number }): void
+    (e: 'row-click', row: any): void
 }>()
 
 const currentPage = ref(props.currentPage)
@@ -85,6 +91,11 @@ const onCurrentChange = (page: number) => {
         page,
         size: pageSize.value,
     })
+}
+
+// 선택한 행 정보를 부모 컴포넌트에 전달합니다.
+const onRowClick = (row: any) => {
+    emit('row-click', row)
 }
 </script>
 
@@ -148,6 +159,9 @@ div.normal-table {
                                                     overflow: hidden;
                                                     white-space: nowrap;
                                                     text-overflow: ellipsis;
+                                                }
+                                                .is-cursor {
+                                                    cursor: pointer;
                                                 }
                                                 .no-overflow {
                                                     overflow: hidden;

@@ -121,20 +121,27 @@ const route = useRoute()
 const currentMenu = computed(() => {
     return NAV_MENUS.find((menu) => {
         // 상위 메뉴 URL 확인
-        if (route.path === menu.path) {
+        if (route.path === menu.path || route.path.startsWith(`${menu.path}/`)) {
             return true
         }
 
         // 하위 메뉴 및 3Depth URL 확인
         return menu.subMenus.some((subMenu) => {
             // Modal 메뉴는 URL이 없으므로 제외
-            if (subMenu.type === 'link' && subMenu.subPath && route.path === subMenu.subPath) {
+            if (
+                subMenu.type === 'link' &&
+                subMenu.subPath &&
+                (route.path === subMenu.subPath || route.path.startsWith(`${subMenu.subPath}/`))
+            ) {
                 return true
             }
 
             return Boolean(
                 subMenu.childMenus?.some((childMenu) => {
-                    return route.path === childMenu.subPath
+                    return (
+                        route.path === childMenu.subPath ||
+                        route.path.startsWith(`${childMenu.subPath}/`)
+                    )
                 }),
             )
         })
@@ -144,7 +151,7 @@ const currentMenu = computed(() => {
 // =================================================== Function
 // 현재 페이지와 메뉴 URL이 동일한지 확인합니다.
 const isActiveMenu = (path: string) => {
-    return route.path === path
+    return route.path === path || route.path.startsWith(`${path}/`)
 }
 
 // 현재 URL을 기준으로 2Depth 메뉴 활성화 여부를 확인합니다.
@@ -154,13 +161,18 @@ const isActiveSubMenu = (subMenu: any) => {
         return false
     }
 
-    if (subMenu.subPath && route.path === subMenu.subPath) {
+    if (
+        subMenu.subPath &&
+        (route.path === subMenu.subPath || route.path.startsWith(`${subMenu.subPath}/`))
+    ) {
         return true
     }
 
     return Boolean(
         subMenu.childMenus?.some((childMenu: any) => {
-            return route.path === childMenu.subPath
+            return (
+                route.path === childMenu.subPath || route.path.startsWith(`${childMenu.subPath}/`)
+            )
         }),
     )
 }

@@ -79,7 +79,7 @@
                                         <p class="contents">{{ item.area }}</p>
                                     </div>
                                 </div>
-                                <button>자세히 보기</button>
+                                <NuxtLink :to="`/company/${item.id}`">자세히 보기</NuxtLink>
                             </li>
                         </ul>
                         <div class="pagination-box">
@@ -399,19 +399,18 @@ div.official-company-search-section {
                                     }
                                 }
                             }
-                            button {
+                            a {
                                 cursor: pointer;
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
                                 width: 100%;
-                                background-color: inherit;
                                 border: 1px solid $color-secondary-500;
                                 border-radius: 6px;
                                 line-height: 1;
                                 color: $color-secondary-500;
                                 font-weight: $font-weight-bold;
-                                padding: 0;
+                                text-decoration: none;
                                 @include r(margin-top, 18, 18, 18, 18, 18);
                                 @include r(font-size, 13, 14, 14, 14, 14);
                                 @include r(height, 37, 37, 37, 37, 37);

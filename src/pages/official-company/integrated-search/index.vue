@@ -68,6 +68,7 @@
                             :show-total="true"
                             v-model:current-page="listData.currentPage"
                             @change="onChangePage"
+                            @row-click="onClickCompanyRow"
                         >
                             <!-- PC 테이블 컬럼 -->
                             <el-table-column label="업체명">
@@ -128,6 +129,56 @@
                             </template>
                         </ActionTableListBox>
                     </div>
+                    <div class="warning-info-box">
+                        <h3 class="info-title">P2P연계대부업 관련 주의사항 안내</h3>
+                        <div class="info-wrapper">
+                            <div class="info-item">
+                                <div class="img-box">
+                                    <img
+                                        src="/images/common/warning_circle_blue.png"
+                                        alt="주의사항"
+                                    />
+                                </div>
+                                <div class="text-box">
+                                    <p>
+                                        온라인투자연계금융업법 시행(’20.8.27.)에 따라 P2P연계대부업
+                                        또는 금전대부업(구 P2P연계대부업) 등록으로 조회된 업체는
+                                        ’21.8.27.부터 온라인투자연계금융업 등록없이는 기존
+                                        P2P연계대부업의 영위가 불가하오니 동 업체의
+                                        온라인투자연계금융업 등록여부를 반드시 확인하여 주시기
+                                        바랍니다.
+                                    </p>
+                                    <NuxtLink
+                                        target="_blank"
+                                        to="https://fine.fss.or.kr/fine/fncco/systemFncCo/list.do?menuNo=900038"
+                                    >
+                                        <span>온라인투자연계금융업 등록업체 확인하기</span>
+                                        <div class="arrow-box">
+                                            <img
+                                                src="/images/common/right_arrow_blue.png"
+                                                alt="바로가기"
+                                            />
+                                        </div>
+                                    </NuxtLink>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="img-box">
+                                    <img
+                                        src="/images/common/warning_circle_blue.png"
+                                        alt="주의사항"
+                                    />
+                                </div>
+                                <div class="text-box">
+                                    <p>
+                                        대부업 또는 대부중개업 등록에 관한 자세한 문의는 당해
+                                        대부업자 등의 영업소 소재지 주소를 관할하는 지방자치단체에
+                                        문의하여 주시기 바랍니다.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -138,9 +189,11 @@
 import { useCommonStore } from '~/store/common'
 
 const commonStore = useCommonStore()
+const router = useRouter()
 // =================================================== State
 // 검색 Value
 const searchValue = ref('')
+
 // 줄광고 테이블 리스트 더미데이터
 const listData = reactive({
     total: 100,
@@ -176,6 +229,15 @@ const listData = reactive({
 const onChangePage = ({ page, size }: { page: number; size: number }) => {
     listData.currentPage = page
     listData.pageSize = size
+}
+
+// 선택한 업체 상세페이지로 이동합니다.
+const onClickCompanyRow = (row: any) => {
+    if (!row?.seq) {
+        return
+    }
+
+    router.push(`/official-company/integrated-search/${row.seq}`)
 }
 </script>
 
@@ -329,6 +391,77 @@ div.official-company-integrated-search-section {
                 }
                 div.list-box {
                     @include r(margin-top, 60, 60, 60, 60, 60);
+                    tbody {
+                        td {
+                            cursor: pointer;
+                        }
+                    }
+                }
+                div.warning-info-box {
+                    background-color: $color-gray-100;
+                    border-radius: 16px;
+                    @include r(padding-top, 24, 24, 24, 24, 24);
+                    @include r(padding-bottom, 24, 24, 24, 24, 24);
+                    @include r(padding-left, 24, 24, 24, 24, 24);
+                    @include r(padding-right, 24, 24, 24, 24, 24);
+                    @include r(margin-top, 51, 68, 68, 68, 68);
+                    h3.info-title {
+                        font-weight: $font-weight-bold;
+                        color: $color-gray-900;
+                        @include r(font-size, 18, 18, 18, 18, 18);
+                        @include r(margin-bottom, 16, 16, 16, 16, 16);
+                    }
+                    div.info-wrapper {
+                        display: flex;
+                        flex-direction: column;
+                        @include r(gap, 8, 8, 8, 8, 8);
+
+                        div.info-item {
+                            display: flex;
+                            @include r(gap, 6, 6, 6, 6, 6);
+                            div.img-box {
+                                flex-shrink: 0;
+                                @include r(width, 14, 14, 14, 14, 14);
+                                @include r(margin-top, 3, 3, 3, 3, 3);
+                                img {
+                                    display: block;
+                                    width: 100%;
+                                    height: auto;
+                                }
+                            }
+                            div.text-box {
+                                p {
+                                    font-weight: $font-weight-medium;
+                                    color: $color-gray-900;
+                                    @include r(font-size, 14, 14, 14, 14, 14);
+                                    @include r(line-height, 20, 20, 20, 20, 20);
+                                }
+                                a {
+                                    display: flex;
+                                    align-items: center;
+                                    text-decoration: none;
+                                    @include r(gap, 8, 8, 8, 8, 8);
+                                    @include r(margin-top, 4, 4, 4, 4, 4);
+                                    span {
+                                        display: block;
+                                        font-weight: $font-weight-bold;
+                                        color: $color-primary-500;
+                                        @include r(font-size, 13, 13, 13, 13, 13);
+                                        @include r(line-height, 20, 20, 20, 20, 20);
+                                    }
+                                    div.arrow-box {
+                                        flex-shrink: 0;
+                                        @include r(width, 6, 6, 6, 6, 6);
+                                        img {
+                                            display: block;
+                                            width: 100%;
+                                            height: auto;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -24,6 +24,7 @@
             :page-sizes="pageSizes"
             @update:current-page="onUpdateCurrentPage"
             @change="onChangePage"
+            @row-click="onRowClick"
         >
             <!-- Element Plus 테이블 컬럼 -->
             <slot />
@@ -69,8 +70,10 @@ const props = withDefaults(
 const emit = defineEmits<{
     (e: 'update:currentPage', value: number): void
     (e: 'change', payload: { page: number; size: number }): void
+    (e: 'row-click', row: any): void
 }>()
 
+// ========================================= Function
 // 현재 페이지 변경값을 부모 컴포넌트에 전달합니다.
 const onUpdateCurrentPage = (page: number) => {
     emit('update:currentPage', page)
@@ -79,6 +82,11 @@ const onUpdateCurrentPage = (page: number) => {
 // 페이지와 페이지당 노출 개수를 부모 컴포넌트에 전달합니다.
 const onChangePage = (payload: { page: number; size: number }) => {
     emit('change', payload)
+}
+
+// 선택한 행 정보를 부모 페이지에 전달합니다.
+const onRowClick = (row: any) => {
+    emit('row-click', row)
 }
 </script>
 <style lang="scss">
