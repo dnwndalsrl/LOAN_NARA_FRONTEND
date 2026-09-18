@@ -442,7 +442,7 @@ export const NAV_MENUS: NavMenu[] = [
                 key: 'companyGuide',
                 label: '업체 이용안내',
                 type: 'link',
-                subPath: '/guide/company',
+                subPath: '/support/ad-inquiry',
             },
         ],
     },
