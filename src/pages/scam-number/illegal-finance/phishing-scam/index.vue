@@ -480,7 +480,7 @@ div.illegal-finance-phishing-scam-section {
                     border-radius: 16px;
                     top: calc(var(--header-nav-height, 57px) + var(--tab-sticky-offset));
                     @include r(--tab-sticky-offset, 20, 20, 20, 20, 20);
-                    @include r(height, 78, 82, 65, 65, 65);
+                    @include r(height, 61, 63, 65, 65, 65);
                     @include r(padding-top, 8, 8, 8, 8, 8);
                     @include r(padding-bottom, 8, 8, 8, 8, 8);
                     @include r(padding-left, 8, 8, 8, 8, 8);
