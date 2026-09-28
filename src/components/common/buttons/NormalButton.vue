@@ -132,7 +132,7 @@ button.normal-button {
     font-weight: $font-weight-bold;
     line-height: 1;
     padding: 0;
-    border: none;
+    border: 1px solid black;
     @each $name, $color in $button-colors {
         &.bg-#{$name} {
             background-color: $color;
