@@ -122,4 +122,8 @@ export default defineNuxtConfig({
         url: 'https://대출나라.com',
         name: '대출나라 웹사이트',
     },
+    devServer: {
+        host: '0.0.0.0',
+        port: 3000,
+    },
 })

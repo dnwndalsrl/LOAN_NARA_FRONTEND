@@ -350,6 +350,7 @@ div.support-fap-section {
                     }
                 }
                 div.faq-collapse {
+                    @include r(margin-top, 40, 40, 40, 40, 40);
                     div.faq-item {
                         div.el-collapse-item__header {
                             padding-right: 0;
