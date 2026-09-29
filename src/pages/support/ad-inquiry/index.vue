@@ -25,9 +25,6 @@
                         </li>
                     </ul>
                     <div class="contents-wrapper">
-                        <div class="img-box">
-                            <img src="/images/common/test_image.png" />
-                        </div>
                         <ContentTypeOne v-if="activeTab === 1" />
                         <ContentTypeTwo v-else-if="activeTab === 2" />
                         <ContentTypeThree v-else-if="activeTab === 3" />
@@ -140,13 +137,6 @@ div.support-ad-inquiry-section {
                     }
                 }
                 div.contents-wrapper {
-                    div.img-box {
-                        img {
-                            display: block;
-                            width: 100%;
-                            height: auto;
-                        }
-                    }
                 }
             }
         }
