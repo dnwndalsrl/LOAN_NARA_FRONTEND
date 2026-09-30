@@ -21,6 +21,10 @@
                                 <span class="pc-title">
                                     {{ tabItem.title }}
                                 </span>
+                                <span
+                                    class="mobile-title"
+                                    v-html="tabItem.mobileTitle || tabItem.title"
+                                ></span>
                             </button>
                         </li>
                     </ul>
@@ -44,10 +48,12 @@ const tabInfo = [
     {
         value: 2,
         title: '광고위치 및 비용안내',
+        mobileTitle: '광고위치 및<br />비용안내',
     },
     {
         value: 3,
         title: '대출나라가 정답인 이유',
+        mobileTitle: '대출나라가<br />정답인 이유',
     },
 ]
 
@@ -95,7 +101,7 @@ div.support-ad-inquiry-section {
                     border-radius: 16px;
                     top: calc(var(--header-nav-height, 57px) + var(--tab-sticky-offset));
                     @include r(--tab-sticky-offset, 20, 20, 20, 20, 20);
-                    @include r(height, 63, 65, 65, 65, 65);
+                    @include r(height, 78, 82, 65, 65, 65);
                     @include r(padding-top, 8, 8, 8, 8, 8);
                     @include r(padding-bottom, 8, 8, 8, 8, 8);
                     @include r(padding-left, 8, 8, 8, 8, 8);
@@ -131,7 +137,29 @@ div.support-ad-inquiry-section {
                                 line-height: 1.2;
                                 color: $color-gray-400;
                                 font-weight: $font-weight-bold;
+                                &.pc-title {
+                                    display: block;
+                                }
+                                &.mobile-title {
+                                    display: none;
+                                }
                                 @include r(font-size, 14, 16, 18, 18, 18);
+                                @include respond(mobile-plus) {
+                                    &.pc-title {
+                                        display: none;
+                                    }
+                                    &.mobile-title {
+                                        display: block;
+                                    }
+                                }
+                                @include respond(mobile) {
+                                    &.pc-title {
+                                        display: none;
+                                    }
+                                    &.mobile-title {
+                                        display: block;
+                                    }
+                                }
                             }
                         }
                     }

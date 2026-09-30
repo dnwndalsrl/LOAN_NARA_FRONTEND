@@ -16,7 +16,7 @@
                 </li>
 
                 <li v-if="index !== processInfo.length - 1" class="arrow-item" aria-hidden="true">
-                    <img src="/images/support/ad-inquiry/process_arrow.png" alt="" />
+                    <img src="/images/support/ad-inquiry/type-one/process_arrow.png" alt="" />
                 </li>
             </template>
         </ul>
@@ -60,27 +60,27 @@
 const processInfo = ref([
     {
         step: 1,
-        image: '/images/support/ad-inquiry/process_1.png',
+        image: '/images/support/ad-inquiry/type-one/process_1.png',
         title: '회원가입',
     },
     {
         step: 2,
-        image: '/images/support/ad-inquiry/process_2.png',
+        image: '/images/support/ad-inquiry/type-one/process_2.png',
         title: '대부등록증 전송',
     },
     {
         step: 3,
-        image: '/images/support/ad-inquiry/process_3.png',
+        image: '/images/support/ad-inquiry/type-one/process_3.png',
         title: '광고선택',
     },
     {
         step: 4,
-        image: '/images/support/ad-inquiry/process_4.png',
+        image: '/images/support/ad-inquiry/type-one/process_4.png',
         title: '광고비 입금',
     },
     {
         step: 5,
-        image: '/images/support/ad-inquiry/process_5.png',
+        image: '/images/support/ad-inquiry/type-one/process_5.png',
         title: '광고노출',
     },
 ])
@@ -88,19 +88,19 @@ const processInfo = ref([
 const registerInfo = ref([
     {
         id: 1,
-        image: '/images/support/ad-inquiry/ad_01.png',
+        image: '/images/support/ad-inquiry/type-one/ad_01.png',
         title: '11년 연속 1위',
         contents: `등록업체수 1위!<br/>대출문의수 1위!<br/>11년 연속 대출중개 분야 1위`,
     },
     {
         id: 2,
-        image: '/images/support/ad-inquiry/ad_02.png',
+        image: '/images/support/ad-inquiry/type-one/ad_02.png',
         title: '맞춤 광고 피드백',
         contents: `데이터 로그 분석을 통한<br/>업체별<br/>맞춤 광고 피드백 전달`,
     },
     {
         id: 3,
-        image: '/images/support/ad-inquiry/ad_03.png',
+        image: '/images/support/ad-inquiry/type-one/ad_03.png',
         title: '타깃 마케팅 가능',
         contents: `대출이 필요한 고객들을<br/>목표로한<br/>타깃 마케팅 가능`,
     },
@@ -111,11 +111,11 @@ const registerInfo = ref([
 
 <style lang="scss">
 div.support-ad-inquiry-content-type-one-section {
+    @include r(margin-top, 40, 40, 40, 40, 40);
     h2 {
         font-weight: $font-weight-bold;
         color: $color-gray-900;
         @include r(font-size, 20, 20, 20, 20, 20);
-        @include r(margin-top, 40, 40, 40, 40, 40);
         @include r(margin-bottom, 24, 24, 24, 24, 24);
     }
     ul.process-list-wrapper {
