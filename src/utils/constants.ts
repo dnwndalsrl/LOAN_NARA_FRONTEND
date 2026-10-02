@@ -240,6 +240,12 @@ export const ALL_PAGE = [
         path: '/loan-wiki',
         subMenus: [],
     },
+    {
+        key: 'legalAbout',
+        label: '회사소개',
+        path: '/legal/about',
+        subMenus: [],
+    },
 ]
 
 // 대출나라 네비게이션 메뉴
