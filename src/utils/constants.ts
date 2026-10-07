@@ -246,6 +246,12 @@ export const ALL_PAGE = [
         path: '/legal/about',
         subMenus: [],
     },
+    {
+        key: 'legalTerms',
+        label: '이용약관',
+        path: '/legal/terms',
+        subMenus: [],
+    },
 ]
 
 // 대출나라 네비게이션 메뉴
