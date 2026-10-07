@@ -1,12 +1,12 @@
 <template>
-    <div class="legal-about-section">
+    <div class="legal-terms-section">
         <div class="align-box">
             <section class="page-contents-wrapper">
                 <div class="page-header">
                     <PageHeaderBox />
                 </div>
                 <div class="page-content">
-                    <div class="terms-parent-item">
+                    <div class="terms-parent-item-wrapper">
                         <p class="terms-text is-medium is-middle-size is-black">
                             이 약관은 주식회사 대출나라대부중개(대출나라)(이하 “회사”라고 합니다)가
                             운영하는 대출직거래 사이트(www.대출나라.com, 이하 “사이트”라고
@@ -15,7 +15,7 @@
                             책임 사항을 규정함으로써 상호 발전을 도모하는 것을 목적으로 합니다.
                         </p>
                     </div>
-                    <!-- 제 1조(약관의 적용) -->
+                    <!-- 제 1조(약관의 적 용) -->
                     <div class="terms-parent-item-wrapper">
                         <div class="main-title-box">
                             <p class="main-title">제 1조(약관의 적용)</p>
@@ -1630,7 +1630,7 @@
 <script setup lang="ts"></script>
 
 <style lang="scss">
-div.legal-about-section {
+div.legal-terms-section {
     div.align-box {
         width: 100%;
         section.page-contents-wrapper {
