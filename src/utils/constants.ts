@@ -258,6 +258,12 @@ export const ALL_PAGE = [
         path: '/legal/privacy',
         subMenus: [],
     },
+    {
+        key: 'legalDisclaimer',
+        label: '책임의 한계와 법적고지',
+        path: '/legal/disclaimer',
+        subMenus: [],
+    },
 ]
 
 // 대출나라 네비게이션 메뉴

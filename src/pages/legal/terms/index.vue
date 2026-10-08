@@ -1652,26 +1652,118 @@ div.legal-terms-section {
                             @include r(font-size, 16, 16, 16, 16, 16);
                         }
                     }
+                    div.terms-table-wrapper {
+                        div.terms-table-box {
+                            width: 100%;
+                            border: 1px solid $color-gray-200;
+                            &.type-1 {
+                                div.table-row {
+                                    grid-template-columns: 25% 50% 25%;
+                                }
+                            }
+
+                            &.type-2 {
+                                div.table-row {
+                                    grid-template-columns: 50% 50%;
+                                }
+                            }
+
+                            div.table-row {
+                                display: grid;
+
+                                &:not(:first-child) {
+                                    border-top: 1px solid $color-gray-200;
+                                }
+
+                                &.is-header {
+                                    div.table-cell {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        background-color: $color-gray-500;
+
+                                        p {
+                                            font-weight: $font-weight-bold;
+                                            color: $color-white;
+
+                                            @include r(font-size, 14, 14, 14, 14, 14);
+                                        }
+                                    }
+                                }
+
+                                div.table-cell {
+                                    min-width: 0;
+                                    @include r(padding-top, 10, 10, 10, 10, 10);
+                                    @include r(padding-bottom, 10, 10, 10, 10, 10);
+                                    @include r(padding-left, 10, 10, 10, 10, 10);
+                                    @include r(padding-right, 10, 10, 10, 10, 10);
+                                    &:not(:first-child) {
+                                        border-left: 1px solid $color-gray-200;
+                                    }
+                                    &.is-center {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                    }
+
+                                    p {
+                                        font-weight: $font-weight-medium;
+                                        color: $color-gray-900;
+                                        line-height: 1.3;
+
+                                        @include r(font-size, 13, 13, 13, 13, 13);
+                                    }
+                                }
+                            }
+                        }
+                    }
                     div.terms-child-item-wrapper {
                         display: flex;
                         flex-direction: column;
                         @include r(gap, 10, 10, 10, 10, 10);
+                        &.type-inline {
+                            @include r(padding-left, 16, 16, 16, 16, 16);
+                            div.terms-child-item {
+                                div.terms-grand-child-item-wrapper {
+                                    @include r(padding-left, 28, 28, 28, 28, 28);
+                                    div.div.grand-child-item {
+                                        div.terms-micro-item-wrapper {
+                                            @include r(padding-left, 40, 40, 40, 40, 40);
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         div.terms-child-item {
                             div.child-item-text {
                                 display: flex;
                                 @include r(gap, 8, 8, 8, 8, 8);
                             }
                             div.terms-grand-child-item-wrapper {
-                                @include r(padding-left, 16, 16, 16, 16, 16);
+                                @include r(padding-left, 28, 28, 28, 28, 28);
                                 div.grand-child-item {
                                     div.grand-child-item-text {
                                         display: flex;
                                     }
                                     div.terms-micro-item-wrapper {
-                                        @include r(padding-left, 36, 36, 36, 36, 36);
+                                        @include r(padding-left, 25, 25, 25, 25, 25);
                                     }
                                 }
                             }
+                        }
+                    }
+                    div.circle-box {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-shrink: 0;
+                        @include r(width, 20, 20, 20, 20, 20);
+                        @include r(height, 20, 20, 20, 20, 20);
+                        div.circle {
+                            border-radius: 50%;
+                            background-color: $color-gray-900;
+                            @include r(width, 3, 3, 3, 3, 3);
+                            @include r(height, 3, 3, 3, 3, 3);
                         }
                     }
                     p.terms-text {
@@ -1704,9 +1796,13 @@ div.legal-terms-section {
                         }
                     }
                     p.number-text {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                         flex-shrink: 0;
                         text-align: center;
                         @include r(width, 20, 20, 20, 20, 20);
+                        @include r(height, 20, 20, 20, 20, 20);
                         // 굵기
                         &.is-medium {
                             font-weight: $font-weight-medium;

@@ -1136,10 +1136,10 @@ div.legal-privacy-section {
                             @include r(padding-left, 16, 16, 16, 16, 16);
                             div.terms-child-item {
                                 div.terms-grand-child-item-wrapper {
-                                    @include r(padding-left, 36, 36, 36, 36, 36);
+                                    @include r(padding-left, 28, 28, 28, 28, 28);
                                     div.div.grand-child-item {
                                         div.terms-micro-item-wrapper {
-                                            @include r(padding-left, 48, 48, 48, 48, 48);
+                                            @include r(padding-left, 40, 40, 40, 40, 40);
                                         }
                                     }
                                 }
@@ -1151,13 +1151,13 @@ div.legal-privacy-section {
                                 @include r(gap, 8, 8, 8, 8, 8);
                             }
                             div.terms-grand-child-item-wrapper {
-                                @include r(padding-left, 16, 16, 16, 16, 16);
+                                @include r(padding-left, 28, 28, 28, 28, 28);
                                 div.grand-child-item {
                                     div.grand-child-item-text {
                                         display: flex;
                                     }
                                     div.terms-micro-item-wrapper {
-                                        @include r(padding-left, 36, 36, 36, 36, 36);
+                                        @include r(padding-left, 25, 25, 25, 25, 25);
                                     }
                                 }
                             }
