@@ -264,6 +264,12 @@ export const ALL_PAGE = [
         path: '/legal/disclaimer',
         subMenus: [],
     },
+    {
+        key: 'legalEmailPolicy',
+        label: '이메일 무단수집 거부',
+        path: '/legal/email-policy',
+        subMenus: [],
+    },
 ]
 
 // 대출나라 네비게이션 메뉴
