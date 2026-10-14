@@ -425,6 +425,9 @@ nav.loan-nara-header-nav-container {
                                 font-weight: $font-weight-bold;
                                 color: $color-gray-900;
                                 text-decoration: none;
+                                &.router-link-active {
+                                    color: $color-primary-500;
+                                }
                                 &:hover {
                                     color: $color-primary-500;
                                 }
