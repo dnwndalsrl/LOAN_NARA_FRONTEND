@@ -19,7 +19,7 @@
                         class="parent-menu-swiper"
                     >
                         <SwiperSlide
-                            v-for="menu in NAV_MENUS"
+                            v-for="menu in headerNavMenus"
                             :key="menu.key"
                             class="parent-menu-slide"
                         >
@@ -105,7 +105,7 @@
         <div v-show="commonStore.isMegaMenuOpen" class="mega-menu-wrapper">
             <div class="mega-menu-inner">
                 <div
-                    v-for="(parentMenuItem, parentMenuIndex) in NAV_MENUS"
+                    v-for="(parentMenuItem, parentMenuIndex) in headerNavMenus"
                     :key="parentMenuItem.key"
                     class="menu-align-box"
                 >
@@ -161,6 +161,7 @@
             :with-header="false"
             append-to-body
             :size="drawerSize"
+            :lock-scroll="true"
             @close="commonStore.closeDrawerMenu()"
             class="menu-drawer-wrapper"
         >
@@ -173,13 +174,23 @@
                         <p>전체메뉴</p>
                     </div>
                     <div class="utility-nav">
-                        <NuxtLink to="/">업체로그인</NuxtLink>
-                        <NuxtLink to="/">업체회원가입</NuxtLink>
+                        <template v-if="authStore.loggedIn">
+                            <!-- <NuxtLink to="/">내 정보</NuxtLink> -->
+                            <p>로그아웃</p>
+                        </template>
+                        <template v-else>
+                            <NuxtLink to="/auth/login">업체로그인</NuxtLink>
+                            <NuxtLink to="/auth/signup/terms">업체회원가입</NuxtLink>
+                        </template>
                     </div>
                 </div>
                 <nav class="drawer-menu">
                     <ul class="drawer-parent-menu-wrapper">
-                        <li v-for="menu in NAV_MENUS" :key="menu.key" class="parent-menu-item">
+                        <li
+                            v-for="menu in visibleNavMenus"
+                            :key="menu.key"
+                            class="parent-menu-item"
+                        >
                             <NuxtLink
                                 :to="menu.path"
                                 @click="commonStore.closeDrawerMenu"
@@ -226,9 +237,11 @@ import 'swiper/css'
 import 'swiper/css/free-mode'
 import { FreeMode } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
+import { useAuthStore } from '~/store/auth'
 import { useCommonStore } from '~/store/common'
 
 const commonStore = useCommonStore()
+const authStore = useAuthStore()
 const route = useRoute()
 const { isPc, isLaptop, isTablet, isMobilePlus, isMobile } = useBreakpoints()
 
@@ -238,13 +251,12 @@ let headerNavResizeObserver: ResizeObserver | null = null
 // ======================================== Computed
 // 현재 URL을 기준으로 선택된 상위 메뉴를 찾습니다.
 const currentParentMenu = computed(() => {
-    return NAV_MENUS.find((menu) => {
+    return headerNavMenus.value.find((menu) => {
         if (route.path === menu.path) {
             return true
         }
 
         return menu.subMenus?.some((subMenu) => {
-            // Modal 메뉴는 URL 비교 대상에서 제외
             if (subMenu.type === 'link' && route.path === subMenu.subPath) {
                 return true
             }
@@ -285,6 +297,24 @@ const drawerSize = computed(() => {
     if (isTablet.value) return '483px'
     if (isMobilePlus.value) return '372px'
     if (isMobile.value) return '348px'
+})
+
+// 로그인 상태에 따라 노출할 네비게이션 메뉴를 반환합니다.
+const visibleNavMenus = computed(() => {
+    return NAV_MENUS.filter((menu) => {
+        if (menu.key === 'mypage') {
+            return authStore.loggedIn
+        }
+
+        return true
+    })
+})
+
+// Header에 노출할 네비게이션 메뉴를 반환합니다.
+const headerNavMenus = computed(() => {
+    return visibleNavMenus.value.filter((menu) => {
+        return menu.key !== 'mypage'
+    })
 })
 
 // ======================================== Watch
@@ -607,6 +637,13 @@ div.menu-drawer-wrapper {
                         font-weight: $font-weight-bold;
                         color: #b9c9e5;
                         text-decoration: none;
+                        cursor: pointer;
+                        @include r(font-size, 13, 13, 13, 13, 13);
+                    }
+                    p {
+                        font-weight: $font-weight-bold;
+                        color: #b9c9e5;
+                        cursor: pointer;
                         @include r(font-size, 13, 13, 13, 13, 13);
                     }
                 }

@@ -76,12 +76,14 @@
                             :bg-color="'gray-300'"
                             :border-color="'gray-300'"
                             :font-color="'gray-500'"
+                            @click="onResetFilter()"
                         />
                         <NormalButton
                             :title="'선택 조건 검색'"
                             :bg-color="'secondary-500'"
                             :border-color="'secondary-500'"
                             :font-color="'white'"
+                            @click="onSearchFilter()"
                         />
                     </div>
                 </div>
