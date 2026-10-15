@@ -4,7 +4,10 @@
             <MypageSideNavigation />
             <section class="page-contents-wrapper">
                 <div class="page-header">
-                    <PageHeaderBox />
+                    <div class="header-top-box">
+                        <MypageMenuNavigation />
+                    </div>
+                    <PageHeaderBox :is-small="true" />
                 </div>
                 <div class="page-content"></div>
             </section>
@@ -26,7 +29,14 @@ div.mypage-ads-extend-section {
             flex: 1 1 0;
             min-width: 0;
             div.page-header {
-                @include r(margin-bottom, 20, 30, 30, 30, 30);
+                @include r(margin-bottom, 30, 40, 40, 40, 40);
+                div.header-top-box {
+                    display: block;
+                    @include respond(pc) {
+                        display: none;
+                    }
+                    @include r(margin-bottom, 31, 31, 31, 31, 31);
+                }
             }
             div.page-content {
             }

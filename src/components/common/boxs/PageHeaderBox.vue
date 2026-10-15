@@ -1,8 +1,8 @@
 <template>
     <section class="page-header-box">
         <div class="header-align-box">
-            <h1 class="page-title">{{ title }}</h1>
-            <nav v-show="isPc || isLaptop" class="breadcrumb-area">
+            <h1 class="page-title" :class="{ 'is-small': isSmall }">{{ title }}</h1>
+            <nav v-show="isPc" class="breadcrumb-area">
                 <p class="crumb">홈</p>
                 <template v-for="(label, idx) in labels" :key="idx">
                     <div class="img-box">
@@ -18,6 +18,15 @@
 </template>
 
 <script setup lang="ts">
+const props = withDefaults(
+    defineProps<{
+        isSmall?: boolean
+    }>(),
+    {
+        isSmall: false,
+    },
+)
+
 const { isPc, isLaptop, isTablet, isMobilePlus, isMobile } = useBreakpoints()
 
 const route = useRoute()
@@ -124,6 +133,9 @@ section.page-header-box {
             color: $color-gray-900;
             font-weight: $font-weight-bold;
             @include r(font-size, 20, 24, 24, 24, 24);
+            &.is-small {
+                @include r(font-size, 18, 20, 20, 20, 24);
+            }
         }
         nav.breadcrumb-area {
             display: flex;
