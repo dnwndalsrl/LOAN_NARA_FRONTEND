@@ -281,6 +281,20 @@ export const ALL_PAGE = [
                 label: '내 정보',
                 type: 'link',
                 subPath: '/mypage/profile',
+                childMenus: [
+                    {
+                        key: 'mypageProfileEdit',
+                        label: '회원정보수정',
+                        type: 'link',
+                        subPath: '/mypage/profile/edit',
+                    },
+                    {
+                        key: 'mypageProfileWithdraw',
+                        label: '회원탈퇴',
+                        type: 'link',
+                        subPath: '/mypage/profile/withdraw',
+                    },
+                ],
             },
             {
                 key: 'mypageAdsExtend',
@@ -377,6 +391,20 @@ export const NAV_MENUS: NavMenu[] = [
                 label: '내 정보',
                 type: 'link',
                 subPath: '/mypage/profile',
+                childMenus: [
+                    {
+                        key: 'mypageProfileEdit',
+                        label: '회원정보수정',
+                        type: 'link',
+                        subPath: '/mypage/profile/edit',
+                    },
+                    {
+                        key: 'mypageProfileWithdraw',
+                        label: '회원탈퇴',
+                        type: 'link',
+                        subPath: '/mypage/profile/withdraw',
+                    },
+                ],
             },
             {
                 key: 'mypageAdsExtend',

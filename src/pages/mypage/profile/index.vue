@@ -67,17 +67,19 @@
                         </div>
                     </div>
                     <div class="button-wrapper">
-                        <NormalButton
+                        <NormalLink
+                            :to="'/mypage/profile/edit'"
                             :title="'회원정보 수정'"
-                            :bg-color="'secondary-500'"
-                            :border-color="'secondary-500'"
-                            :font-color="'white'"
+                            :bgColor="'secondary-500'"
+                            :borderColor="'secondary-500'"
+                            :fontColor="'white'"
                         />
-                        <NormalButton
+                        <NormalLink
+                            :to="'/mypage/profile/withdraw'"
                             :title="'회원 탈퇴'"
-                            :bg-color="'error-500'"
-                            :border-color="'error-500'"
-                            :font-color="'white'"
+                            :bgColor="'error-500'"
+                            :borderColor="'error-500'"
+                            :fontColor="'white'"
                         />
                     </div>
                 </div>
