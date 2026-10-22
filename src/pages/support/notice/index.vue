@@ -120,6 +120,7 @@ const lineAdvertisingTableValue = reactive({
         },
     ],
 })
+
 // ========================================= Function
 // 변경된 페이지를 반영하고 목록을 다시 조회합니다.
 const onChangePage = ({ page, size }: { page: number; size: number }) => {
