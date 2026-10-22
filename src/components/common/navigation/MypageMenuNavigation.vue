@@ -12,11 +12,18 @@
                     class="mypage-menu-swiper"
                 >
                     <SwiperSlide
-                        v-for="(subMenu, subMenuIndex) in currentMenu.subMenus"
+                        v-for="subMenu in currentMenu.subMenus"
                         :key="subMenu.key"
                         class="mypage-menu-slide"
                     >
-                        <NuxtLink :to="subMenu.subPath" class="mypage-menu-link">
+                        <NuxtLink
+                            v-if="subMenu.type === 'link'"
+                            :to="subMenu.subPath"
+                            class="mypage-menu-link"
+                            :class="{
+                                'is-active': isActiveSubMenu(subMenu),
+                            }"
+                        >
                             {{ subMenu.label }}
                         </NuxtLink>
                     </SwiperSlide>
@@ -44,7 +51,6 @@ const currentMenu = computed(() => {
 
         // 하위 메뉴 및 3Depth URL 확인
         return menu.subMenus.some((subMenu) => {
-            // Modal 메뉴는 URL이 없으므로 제외
             if (
                 subMenu.type === 'link' &&
                 subMenu.subPath &&
@@ -64,6 +70,17 @@ const currentMenu = computed(() => {
         })
     })
 })
+
+// =================================================== Function
+
+// 현재 URL을 기준으로 마이페이지 하위 메뉴 활성화 여부를 반환합니다.
+const isActiveSubMenu = (subMenu: any) => {
+    if (subMenu.type !== 'link' || !subMenu.subPath) {
+        return false
+    }
+
+    return route.path === subMenu.subPath || route.path.startsWith(`${subMenu.subPath}/`)
+}
 </script>
 
 <style lang="scss">
@@ -100,6 +117,10 @@ div.mypage-menu-navigation {
                             @include r(padding-right, 8, 8, 8, 8, 8);
                             @include r(font-size, 13, 13, 13, 13, 13);
                             &.router-link-active {
+                                color: $color-primary-500;
+                            }
+                            &.is-active {
+                                background-color: $color-gray-200;
                                 color: $color-primary-500;
                             }
                         }
