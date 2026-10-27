@@ -59,7 +59,7 @@
                         :key="item.id"
                         :title="item.title"
                         :date="item.date"
-                        :linkUrl="`/support/notice/detail/${item.id}`"
+                        :linkUrl="`/support/notice/${item.id}`"
                     />
                 </ul>
             </div>
