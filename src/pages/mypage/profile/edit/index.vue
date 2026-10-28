@@ -477,6 +477,7 @@ div.mypage-profile-edit-section {
                     p.title {
                         font-weight: $font-weight-bold;
                         color: $color-gray-900;
+                        line-height: 1.2;
                         @include r(font-size, 24, 24, 24, 24, 24);
                     }
                     p.content {
@@ -490,6 +491,7 @@ div.mypage-profile-edit-section {
                         }
                     }
                     div.phone-wrapper-box {
+                        width: fit-content;
                         display: flex;
                         align-items: center;
                         border: 1px solid $color-gray-200;
