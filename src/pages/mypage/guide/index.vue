@@ -153,7 +153,7 @@
                                     </div>
                                     <p>대표번호</p>
                                 </div>
-                                <p class="phone-title">010-2190-4569</p>
+                                <p class="phone-title">1599-9687</p>
                             </div>
                         </div>
                     </div>
