@@ -432,6 +432,7 @@ div.mypage-statistics-section {
                         p.content-title {
                             font-weight: $font-weight-bold;
                             color: $color-gray-900;
+                            line-height: 1.2;
                             @include r(font-size, 24, 24, 24, 24, 24);
                             strong {
                                 color: $color-primary-500;

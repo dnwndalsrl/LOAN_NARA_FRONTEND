@@ -9,9 +9,7 @@
             >
                 <slot />
                 <template #empty>
-                    <slot name="empty">
-                        <el-empty description="조회된 결과가 없습니다." />
-                    </slot>
+                    <slot name="empty"></slot>
                 </template>
             </el-table>
         </template>
@@ -159,6 +157,15 @@ div.normal-table {
                                                     overflow: hidden;
                                                     white-space: nowrap;
                                                     text-overflow: ellipsis;
+                                                }
+                                                a {
+                                                    display: block;
+                                                    width: 100%;
+                                                    min-width: 0;
+                                                    overflow: hidden;
+                                                    white-space: nowrap;
+                                                    text-overflow: ellipsis;
+                                                    text-decoration: none;
                                                 }
                                                 .is-cursor {
                                                     cursor: pointer;

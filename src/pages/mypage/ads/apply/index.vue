@@ -361,7 +361,7 @@
 
 <script setup lang="ts">
 // =================================================== State
-const pageStartModalVisible = ref(false)
+const pageStartModalVisible = ref(true)
 const radio1Value = ref(1)
 const radio2Value = ref(1)
 

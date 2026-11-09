@@ -361,6 +361,38 @@ export const ALL_PAGE = [
                 label: '광고 수정 및 점프',
                 type: 'link',
                 subPath: '/mypage/ads/edit',
+                childMenus: [
+                    {
+                        key: 'mypageAdsEditLineAdsDetail',
+                        label: '줄광고 수정',
+                        type: 'link',
+                        subPath: '/mypage/ads/edit/line-ads',
+                    },
+                    {
+                        key: 'mypageAdsEditPremiumAdsDetail',
+                        label: '프리미엄광고 수정',
+                        type: 'link',
+                        subPath: '/mypage/ads/edit/premium-ads',
+                    },
+                    {
+                        key: 'mypageAdsEditMainBannerAdsDetail',
+                        label: '메인배너광고 수정',
+                        type: 'link',
+                        subPath: '/mypage/ads/edit/main-banner-ads',
+                    },
+                    {
+                        key: 'mypageAdsEditAreaBannerAdsDetail',
+                        label: '지역배너광고 수정',
+                        type: 'link',
+                        subPath: '/mypage/ads/edit/area-banner-ads',
+                    },
+                    {
+                        key: 'mypageAdsEditProductBannerAdsDetail',
+                        label: '상품배너 수정',
+                        type: 'link',
+                        subPath: '/mypage/ads/edit/product-banner-ads',
+                    },
+                ],
             },
             {
                 key: 'mypageAdsJumpStatus',
